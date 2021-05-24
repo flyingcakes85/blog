@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Switching to Programmer Dvorak - 3 months later
+title: Switching to Programmer Dvorak - 3 Months Later
 subtitle: Worth it or not?
 categories: typing
 banner : https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1200
