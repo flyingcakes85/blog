@@ -8,15 +8,16 @@ html {
     }
   }
 
-  &[data-scroll-status='top'] {
+  &[data-scroll-status="top"] {
     header.site-header-transparent {
       height: 0;
       margin-top: 12px;
       background-color: transparent;
-      transition: 0.1s height,background-color,box-shadow;
+      transition: 0.1s height, background-color, box-shadow;
 
       &.site-header {
-        .site-brand-inner, .page-link {
+        .site-brand-inner,
+        .page-link {
           color: #fff;
           transition: 0.1s color;
         }
@@ -45,7 +46,7 @@ html {
     }
   }
 
-  &[data-scroll-status='down'] {
+  &[data-scroll-status="down"] {
     header.site-header {
       top: -$header-height;
     }
@@ -64,7 +65,7 @@ html {
   height: $header-height;
   width: 100%;
   transition: height 0.2s, text-shadow 0.2s, top 0.2s;
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, .06);
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.06);
 
   // Positioning context for the mobile navigation icon
   @include flex-sticky(0);
@@ -101,7 +102,8 @@ html {
     letter-spacing: -1px;
     transition: 0.1s filter color;
 
-    &, &:visited {
+    &,
+    &:visited {
       color: $header-text-color;
     }
 
@@ -168,7 +170,7 @@ html {
       clear: both;
       display: none;
       border-radius: 3px;
-      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .06);
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.06);
     }
 
     input:checked ~ .trigger {
@@ -189,7 +191,7 @@ html {
  * Site footer
  */
 .site-footer {
-  @include relative-font-size(1.0);
+  @include relative-font-size(1);
   color: $footer-text-color;
   background-color: $footer-background-color;
   text-align: left;
@@ -282,7 +284,7 @@ html {
       text-decoration: none;
 
       &:after {
-        content: 'NEW';
+        content: "NEW";
         position: absolute;
         margin-left: 8px;
         margin-top: 3px;
@@ -336,7 +338,7 @@ html {
     text-align: center;
 
     & > .previous:before {
-      content: ' ';
+      content: " ";
       border: solid #787878;
       border-width: 0 2px 2px 0;
       display: inline-block;
@@ -347,7 +349,7 @@ html {
     }
 
     & > .next:after {
-      content: ' ';
+      content: " ";
       border: solid #787878;
       border-width: 0 2px 2px 0;
       display: inline-block;
@@ -357,7 +359,8 @@ html {
       -webkit-transform: rotate(-45deg);
     }
 
-    .previous span, .next span {
+    .previous span,
+    .next span {
       color: #b3b3b3;
     }
 
@@ -366,7 +369,6 @@ html {
     }
   }
 }
-
 
 /**
  * Posts
@@ -418,17 +420,24 @@ html {
       }
     }
 
-    img, svg, iframe {
+    img,
+    svg,
+    iframe {
       margin-left: auto;
       margin-right: auto;
       display: block;
     }
 
-    h2, h3, h4, h5, h6 {
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       margin: 60px 0 19px;
     }
 
-    p, hr {
+    p,
+    hr {
       margin-bottom: 24px;
     }
 
@@ -440,7 +449,7 @@ html {
   }
 
   .post-related {
-    &>*:first-child {
+    & > *:first-child {
       @include relative-font-size(1.425);
       color: #333;
       margin-bottom: 14px;
@@ -460,7 +469,7 @@ html {
         }
 
         &:after {
-          content: 'NEW';
+          content: "NEW";
           position: absolute;
           margin-left: 8px;
           margin-top: 3px;
@@ -484,7 +493,6 @@ html {
   padding-top: 25px;
 }
 
-
 /**
  * Posts misc
  */
@@ -502,7 +510,7 @@ html {
   }
 
   .previous:before {
-    content: ' ';
+    content: " ";
     border: solid #787878;
     border-width: 0 2px 2px 0;
     display: inline-block;
@@ -513,7 +521,7 @@ html {
   }
 
   .next:after {
-    content: ' ';
+    content: " ";
     border: solid #787878;
     border-width: 0 2px 2px 0;
     display: inline-block;
@@ -523,7 +531,6 @@ html {
     -webkit-transform: rotate(-45deg);
   }
 }
-
 
 /**
  * Archives page
@@ -548,7 +555,6 @@ html {
     color: $grey-color;
   }
 }
-
 
 /**
  * Page banner
@@ -581,7 +587,7 @@ html {
 
     color: $banner-text-color;
     padding: 10px 5px;
-    text-shadow: 1px 1px 2px #33333355;
+    text-shadow: 1px 1px 4px #000000b0;
 
     & > *:first-child {
       margin: 0;
@@ -616,6 +622,12 @@ html {
       @include media-query($on-palm) {
         padding-right: 0;
       }
+    }
+
+    .readable-background {
+      display: inline-block;
+      background-color: rgba($color: #000000, $alpha: 0.7);
+      padding: 2px;
     }
 
     .post-meta {
@@ -653,12 +665,11 @@ html {
   }
 }
 
-
 /**
  * Layout and sidebar
  */
 .framework {
-    @extend %flex;
+  @extend %flex;
 
   .main {
     @extend %flex-1;
@@ -673,10 +684,8 @@ html {
     @include media-query($on-laptop) {
       display: none;
     }
-
   }
 }
-
 
 /**
  * Segments page
@@ -699,7 +708,7 @@ html {
     }
 
     &:hover:before {
-      content: '#';
+      content: "#";
       left: -1em;
       position: absolute;
     }
@@ -722,7 +731,7 @@ html {
     }
 
     &:after {
-      content: 'NEW';
+      content: "NEW";
       position: absolute;
       margin-left: 8px;
       margin-top: 3px;
