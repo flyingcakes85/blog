@@ -28,6 +28,8 @@ I started practicing on this website called [learn.dvorak.nl](https://learn.dvor
 
 ## Enter Programmer Edition
 
+![Programmer Dvorak Layout](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vgwn3x04y30m0bvw1hoe.png)
+
 About two weeks later, I was comfortable typing on Dvorak keyboard. As they claimed, it was easy to learn. I wasn't a fast typer by any measure, but at least the keys were memorized and I could type without looking at the keyboard - even if it was at 15wpm. I decided I was ready to switch to Dvorak full time.
 
 I went to the Arch Wiki to know how to change my layout. There I found another Dvorak based layout - Programmer Dvorak. The idea behind this layout was to place the common symbols used in programming on the top number row, and have them inserted without pressing Shift. The numbers need to be inserted with Shift key combination. Alphabets were in their right locations as they are on Simplified Dvorak.
