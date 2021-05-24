@@ -11,7 +11,7 @@ Jekyll may not run on Arch Linux because of an error with `webrick`. This is cau
 
 This is the relevant line from error output.
 
-> /blog/vendor/bundle/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require': cannot load such file -- webrick (LoadError)
+> /blog/vendor/bundle/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in `require`: cannot load such file -- webrick (LoadError)
 
 While setting up my GitHub pages blog, I faced this issue. I'll quickly document how to fix this.
 
