@@ -59,6 +59,18 @@ pacman -Sw reflector   # downloads reflector but doesn't install it
 pacman -Syuw   # downloads available updates but doesn't install them
 ```
 
+### About `-Syy`, `-Sy` and `-Syuu`
+
+I edited this post and added this section because this deserves some attention. New users often use `-Syyu` to update packages. This is not a good practice, since if you frequently update, it will put extra load on the mirrors.
+
+`-Sy` will update only those repos that are outdated. `-Syy` will force update all repos even if they are up to date. So avoid using `-Syy`. It is meant to be used in case your packaged database is corrupted or has some other issue.
+
+Similarly, `-Syuu` will force package version to be in sync with the repo. In case your mirror has an outdated version of a package, it will be forcefully downgraded. Use `-Syu` to update packages.
+
+And finally, never use `-Sy` alone. On Arch Linux, **partial upgrades are not supported**. If you do `-Sy` and then install a package, you will run into a case of partial upgrade and that may lead to problems. 
+
+In short, use `-S` to install and `-Syu` to update.
+
 ### Details for a package
 
 ```sh
@@ -114,7 +126,7 @@ pacman -Qdtq
 To uninstall them, simply pipe them to `pacman -Rs` in with the following command
 
 ```sh
-`pacman -Qdtq | pacman -Rs -`
+pacman -Qdtq | pacman -Rs -
 ```
 
 ### Packages no longer part of any repository
