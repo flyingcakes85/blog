@@ -49,6 +49,6 @@ A new project does not start generating revenue from day one. You keep working o
 Selling FOSS or FOSS related services is a win-win for users and developers. Users will be paying for software that they trust and like. The developers can continue to develop ethical software and keep the community alive. The market will get aligned with ethics and that's in favour of all of us. Creating an atmosphere where users pay for FOSS can heavily incentivise ethical software.
 
 <hr>
-1. Since Ardour is open source, you will find binaries available in repositories of Linux distros. While that is available for free and it is totally legal to do so, it is recommmended to donate to the project as a means of supporting development.
+1. Since Ardour is open source, you will find binaries available in repositories of Linux distros. While that is available for free and it is totally legal to do so, it is recommended to donate to the project as a means of supporting development.
 
 Cover photo by [**Marc Mueller**](https://www.pexels.com/@seven11nash?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels) from [**Pexels**](https://www.pexels.com/photo/close-up-of-computer-screen-325111/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels)
