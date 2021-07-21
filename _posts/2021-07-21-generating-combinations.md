@@ -14,7 +14,7 @@ When I say `n = 5` and `r = 3`, it means we are dealing with the first five natu
 
 ## Understanding Combinations
 
-We shall be generating combinations in lexicographic order. Also, since combination does not concern itself with the relative order the chosen elemnets are arranged in, we shall always be having our chosen elemnets in lexicographical order too.
+We shall be generating combinations in lexicographic order. Also, since combination does not concern itself with the relative order the chosen elements are arranged in, we shall always be having our chosen elemnets in lexicographical order too.
 
 The first combination we choose has to be the first `r` elements when the `n` objects are sorted. This is becaues it gives us the lexicographically smallest word with the individual elements themselves in lexicographical ordrer too. (basically, the if all combinations were arranged in a dictionary, then we want to start with the first one) So, in case of `n = 5` and `r = 3`, the first combination is `123`.
 
