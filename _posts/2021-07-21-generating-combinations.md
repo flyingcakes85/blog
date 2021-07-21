@@ -14,9 +14,9 @@ When I say `n = 5` and `r = 3`, it means we are dealing with the first five natu
 
 ## Understanding Combinations
 
-We shall be generating combinations in lexicographic order. Also, since combination does not concern itself with the relative order the chosen elemnets are arranged in, we shall always be having our chosen elemnets in lexicographical order too.
+We shall be generating combinations in lexicographic order. Also, since combination does not concern itself with the relative order the chosen elements are arranged in, we shall always be having our chosen elements in lexicographical order too.
 
-The first combination we choose has to be the first `r` elements when the `n` objects are sorted. This is becaues it gives us the lexicographically smallest word with the individual elements themselves in lexicographical ordrer too. (basically, the if all combinations were arranged in a dictionary, then we want to start with the first one) So, in case of `n = 5` and `r = 3`, the first combination is `123`.
+The first combination we choose has to be the first `r` elements when the `n` objects are sorted. This is because it gives us the lexicographically smallest word with the individual elements themselves in lexicographical order too. (basically, the if all combinations were arranged in a dictionary, then we want to start with the first one) So, in case of `n = 5` and `r = 3`, the first combination is `123`.
 
 Now, think what should be the last combination. I propose that it will be the last `r` elements when the `n` objects are sorted. Why should it be? When we are generating combinations in lexicographical order, each combination should have a greater position in a dictionary. So the last combination should have the greatest elements from given objects. The chosen elements themselves should also be in lexicographical order.
 
@@ -59,9 +59,9 @@ For this function to work, it should be called with `idx` as `r - 1`, since we w
 
 Then it checks if the value at `curr_comb[idx]` is less than its maximum permissible value. If yes, then it increments the value at `idx` and sets its following elements as one plus their left neighbor.
 
-If the value it `idx` is already the maxumum allowed, then the function recursively calls itself with same parameters, but `idx` decremented by one. This continues till either the next combination is found, or the function is called with `idx` less than zero, in that case next combination does not exist.
+If the value it `idx` is already the maximum allowed, then the function recursively calls itself with same parameters, but `idx` decremented by one. This continues till either the next combination is found, or the function is called with `idx` less than zero, in that case next combination does not exist.
 
-The funciton is recursive, so it must pass the sanity test. Does it stop recursing at some point? Each recursive call decrements `idx` by 1. Evenutally, `idx` will be less than zero, in which case the function will no longer recurse. So, it is guaranteed that the function does not recurse indefinitely.
+The function is recursive, so it must pass the sanity test. Does it stop recursing at some point? Each recursive call decrements `idx` by 1. Eventually, `idx` will be less than zero, in which case the function will no longer recurse. So, it is guaranteed that the function does not recurse indefinitely.
 
 ## C++ Code
 
@@ -106,7 +106,7 @@ Following are the required includes:
 
 This code is a direct implementation of the algorithm I shared above. The part that increments the neighbors by 1 has been extracted to its own function called `increment_neighbor`.
 
-You might ask, why are there two functions named `next_combination`, one with a preceeding underscore. The goal of a good interface is to be as simple as possible. In the recursive function, we initially call it with `idx = r - 1`. For a programmer reusing our function, it may be tedious to pass the fourth parameter, when it can be simply deduced from the third second one.
+You might ask, why are there two functions named `next_combination`, one with a preceding underscore. The goal of a good interface is to be as simple as possible. In the recursive function, we initially call it with `idx = r - 1`. For a programmer reusing our function, it may be tedious to pass the fourth parameter, when it can be simply deduced from the third second one.
 
 So, we create a helper function that takes the three required parameters and calls the original recursive function with fourth parameter set.
 
