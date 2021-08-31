@@ -14,7 +14,8 @@ I won't deny the fact. Back in July 2020, YouTube started showing me a suggestio
 
 ## Gateway Drugs of City Pop
 
-Plastic Love starts like a genuinely old song. There is said to be a 15 second rule on YouTube. If your video cannot hook the viewer in first 15 seconds, they will probably not watch rest of the video. Fortunately, the instruments soon turned to a groovy guitar melody and drums. The songs was from 1984, yet the drums felt quite modern.
+
+Plastic Love starts like a genuinely old song. There is said to be a 15 second rule on YouTube. If your video cannot hook the viewer in first 15 seconds, they will probably not watch rest of the video. Fortunately, the instruments soon turned to a groovy guitar melody and drums. The songs was from 1984, yet the drums felt quite modern. Is it City Pop? Sounded more like J-Pop. Even if it was a scam to lure innocent kids into City Pop, I'd say its a good thing :)
 
 ![](//www.youtube.com/watch?v=9Gj47G2e1Jc)
 
@@ -30,8 +31,7 @@ Thanks to the fact that these two are often the songs with which people start th
 
 ## Beyond the Starters
 
-Once you watch one of the above videos, YouTube directs a storm of City Pop videos on to your home feed. Old Coca Cola advertisments, mundane shots from Japan, some random Japanese lady on an outing - the visuals often have actual relations with the songs themselves. Yet, some mental imagery has become synonymous with City Pop. _Imagine yourself driving down the Tokyo roads in a Toyota, with City Pop tracks blasting from the speakers..._. You cannot espace the imagery once you have fallen in the rabbit hole.
-
+Once you watch one of the above videos, YouTube directs a storm of City Pop videos on to your home feed. Old Coca Cola advertisements, mundane shots from Japan, some random Japanese lady on an outing - the visuals often have no actual relations with the songs themselves. Yet, some mental imagery has become synonymous with City Pop. _Imagine yourself driving down the Tokyo roads in a Toyota, with City Pop tracks blasting from the speakers..._. You cannot escape the imagery once you have fallen in the rabbit hole.
 ### Junko Ohashi
 
 ![](//www.youtube.com/watch?v=Q2QUngVGxmE)
@@ -47,7 +47,7 @@ The song starts with this line
 > にぎやかな劇場 ざわめくロビー
 > (A bustling theatre, a noisy lobby)
 
-Perfect setting for a track that (inadverdently?) is a connection with 80's urban scenery. Its not like your usual tracks. Imagine, visiting a mall, and outside an eatery, you see your past love waiting for someone else. That's what this song is!
+Perfect setting for a track that (inadvertently?) is a connection with 80's urban scenery. Its not like your usual tracks. Imagine, visiting a mall, and outside an eatery, you see your past love waiting for someone else. That's what this song is!
 
 There's another one - Sweet Love.
 
