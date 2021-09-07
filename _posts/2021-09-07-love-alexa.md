@@ -11,7 +11,7 @@ Sometimes it feels shady to me that all popular voice assistant softwares are fe
 
 What I see is that the voice assistant sector is 100% dominated by women. I know they are under represented in the IT industry overall, but the voice assistant industry kinda balances it out.
 
-These ladies are supposed to exist in your homes (along with any other lady). These can dim the lights, play songs and crack (poor) jokes - and then themselves do a "Ha Ha Ha". _Can your lady do that, mon ami?_ She'd rather throw a tantrum because you're grown used to ordering around while slouching and binge watching some garbage web series which wouldn't even have seen the light of the day had there not been these OTT platforms accepting shitty content...
+These ladies are supposed to exist in your homes (along with any other lady). These can dim the lights, play songs and crack (poor) jokes - and then themselves do a "Ha Ha Ha". _Can your lady do that, mon ami?_ She'd rather throw a tantrum because you've grown used to ordering around while slouching and binge watching some garbage web series which wouldn't even have seen the light of the day had there not been these OTT platforms accepting shitty content...
 
 Anyways, back to topic. These devices, apart from (of course) spying on your, are also intended to make you lazy, dependent and used to scary tech you don't actually need. God knows what the Kohler's engineers were thinking when they launched a commode with Alexa built in. Do you really need a female voice originating from _there_?
 
