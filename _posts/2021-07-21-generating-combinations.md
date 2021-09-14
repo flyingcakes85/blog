@@ -2,7 +2,7 @@
 layout: post
 title: Generating Combinations using C++
 subtitle: Code and explanation
-categories: coding
+categories: tutorial
 tags: cpp coding
 ---
 
