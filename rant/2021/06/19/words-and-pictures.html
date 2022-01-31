@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Words &amp; Pictures - Stickers gone wrong | flyingcakes</title>
+<meta name="generator" content="Jekyll v4.2.1">
+<meta property="og:title" content="Words &amp; Pictures - Stickers gone wrong">
+<meta name="author" content="Snehit Sah">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Stickers are the new normal - whether you like it or not. I’ve never hated the concept of chat stickers. But the way they are generally used, gets my criticism. Let’s try to trace how it all happened.">
+<meta property="og:description" content="Stickers are the new normal - whether you like it or not. I’ve never hated the concept of chat stickers. But the way they are generally used, gets my criticism. Let’s try to trace how it all happened.">
+<meta property="og:site_name" content="flyingcakes">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-06-19T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Words &amp; Pictures - Stickers gone wrong">
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Snehit Sah"},"description":"Stickers are the new normal - whether you like it or not. I’ve never hated the concept of chat stickers. But the way they are generally used, gets my criticism. Let’s try to trace how it all happened.","@type":"BlogPosting","headline":"Words &amp; Pictures - Stickers gone wrong","dateModified":"2021-06-19T00:00:00+00:00","datePublished":"2021-06-19T00:00:00+00:00","url":"/blog/rant/2021/06/19/words-and-pictures.html","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/rant/2021/06/19/words-and-pictures.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/48585950">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <!-- <link rel="stylesheet" href="/blog/blog/assets/css/main.css"> -->
+  <!-- <script src="/blog/blog/assets/js/main.js"></script> -->
+  <link rel="stylesheet" href="/blog/assets/css/main.css">
+  <!-- <meta property='og:title' content='Mellow Clamour - Blog | flyingcakes'/> -->
+  <meta property="og:image" content="//raw.githubusercontent.com/flyingcakes85/blog/main/assets/images/banners/og-background.png">
+  <!-- <meta property='og:description' content='Blog posts by flyingcakes'/>
+  <meta property='og:url' content='//flyingcakes85.github.io/blog/'/> -->
+  <script src="/blog/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="/blog/feed.xml" title="flyingcakes">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header site-header-transparent" role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="flyingcakes" src="https://avatars.githubusercontent.com/u/48585950" onerror="this.style.display='none'">
+  flyingcakes
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/blog/about.html">ABOUT</a><a class="page-link" href="/blog/archives.html">ARCHIVES</a><a class="page-link" href="/blog/categories.html">CATEGORIES</a><a class="page-link" href="/blog/">HOME</a><a class="page-link" href="/blog/tags.html">TAGS</a>
+
+
+
+
+<span class="page-link">
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: '',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  (function() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;documentElement.setAttribute("data-header-transparent", "");var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="page-banner">
+    <div class="page-banner-img">
+      <div style="background-image: url(/blog/assets/images/post/words-and-pictures-2021-06-19.jpg)"></div>
+    </div>
+    <div class="wrapper">
+      <div class="page-banner-inner">
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Words &amp; Pictures - Stickers gone wrong</h1>
+  <h3 class="post-subtitle"><span class="readable-background">1 picture = 1000 words you probably didn't mean to say</span></h3>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2021-06-19T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jun 19, 2021
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 17 mins</span>
+  </p>
+<div class="post-tags"><a class="post-tag" href="/blog/tags.html#rant">#rant</a></div></header>
+</div>
+    </div>
+  </section><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<blockquote>
+      <h3>This site has moved to <a href="https://snehit.dev">snehit.dev</a>
+</h3>
+</blockquote>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <p>Stickers are the new normal - whether you like it or not. I’ve never hated the concept of chat stickers. But the way they are generally used, gets my criticism. Let’s try to trace how it all happened.</p>
+
+<p>If you are not interested in history lessons, you can directly skip to <a href="#but-why-the-success">why emojis were successful</a>. I chose to include some history of emojis simply because they are interesting, and put an important point that <strong><em>stickers are not a universal language like emojis</em></strong>.</p>
+
+<h2 id="early-internet-3">Early Internet &lt;3</h2>
+
+<p>Early internet survived on low bandwidth and less computation power. Quite naturally, text communication was the norm. However, as you’d expect, people felt the need for a way to express emotions because not everyone can write their messages in the right tone. Depending on your choice of words, your messages could sound polite or rude.</p>
+
+<p>In early 1980’s, the Computer Science community at Carnegie Mellon was making heavy use of online bulletin boards or “bboards”. Many of the conversations there were not based on a serious topic. But the readers had no way of knowing that. Often, readers failed to understand sarcastic remarks/ jokes. So they felt the need for devising a way to mark out non - serious posts from the serious ones. Computers of that era could work with ASCII text only, and the marker <code class="language-plaintext highlighter-rouge">:-)</code> was proposed to be used for non serious posts. The serious posts could be marked with <code class="language-plaintext highlighter-rouge">:-(</code>. The practice spread to other universities and soon these two markers became popular on the internet.</p>
+
+<p>The person behind this proposal was Scott E. Fahlman. You can read his post on this matter at <a href="https://www.cs.cmu.edu/~sef/sefSmiley.htm">this link</a>.</p>
+
+<p>The original message where he put the proposal has been preserved and posted at <a href="https://www.cs.cmu.edu/~sef/Orig-Smiley.htm">this link</a>. Its an interesting read - how a small problem gave birth to and idea still relevant almost three decades later. <em>But can I really expect you to read that…?</em> I’ll come to this later in this post.</p>
+
+<h2 id="wingdings-webdings---failed-attempt">Wingdings, Webdings - failed attempt</h2>
+
+<p>If you remember the Windows XP days, you might know about these fonts. They were an absolute mystery to me. You open any text editor. Switch the font to Webdings. Then you typed random stuff, and instead of alphabets or numbers, you saw a variety of icons. Interesting, huh?</p>
+
+<p>Later when I got to know about FontAwesome, everything started making sense. Back in the old days, it was simply not possible to use high res images because of bandwidth limitations. As an alternative, Microsoft included Webdings in Internet Explorer. This font was a set of icons mapped to alphabets and numbers. This made it very easy for website publishers to use an icon on their websites without needing to include images.</p>
+
+<p>Unfortunately, Webdings was too early for its time. Many people failed to understand the point of this font. Microsoft would continue to develop things that would fail not because they were bad in particular, but rather because they would be too early for their time.</p>
+
+<p>The older version of Webdings, called Wingdings faced controversy over its representation of NYC.</p>
+
+<p>Up until now, emojis were still restricted to simple ASCII combinations.</p>
+
+<h2 id="1997---new-implementation-same-idea">1997 - New Implementation, Same Idea</h2>
+
+<p>The need for emojis was much felt in the days. Unlike today, there were no standard operating systems for phones. Each manufacturer developed their own OS, features and apps. Having a cool new feature could actually mean great sales for the company. SoftBank, known as J-Phone at the time, released the SkyWalker DP-211SW mobile phone on the 1st of November 1997, which had 90 emojis. The SoftBank emoji designs heavily influenced Apple’s original emojis which were designed to be compatible with this set when launched in Japan, due to iPhone being a SoftBank - exclusive phone when first released.</p>
+
+<h2 id="1999---becoming-a-worldwide-phenomenon">1999 - Becoming a worldwide phenomenon</h2>
+
+<p>Softbank doesn’t get much recognition for emojis. The major credit for introducing emojis goes to NTT DoCoMo. Shigetaka Kurita created 176 emojis to be used with NTT DoCoMo’s integrated mobile internet service, debuting in February 1999. The service allowed only 250 characters per message, so Kurita had to figure out a way of communication in a expressive but short way. This emoji set was the first one to go massively popular</p>
+
+<h2 id="just-keeps-getting-better">Just keeps getting better</h2>
+
+<p>After NTT DoCoMo, almost every communication platform wanted to adopt emojis. MSN Messenger was one of the early adopters and they also introduced emoticons and support for custom emojis. Gmail adopted it too. Emoji support became a must for every social media platform. Apple launched emojis in Japan in 2008, but waited till 2011 for a worldwide release.</p>
+
+<p>Post 2010, emojis became ubiquitous on the internet. Documentaries came up on emojis. Kate Perry’s music video for Roar had a deep focus on emojis. We got emoji translators, Chevrolet’s emoji press release, emoji commercials. In 2013, Oxford added the word “emoji” to its dictionary and in 2015, face with tears emoji becomes their word of the year.</p>
+
+<h2 id="but-why-the-success">But why the success</h2>
+
+<p>Emojis have been massively successful. But why?</p>
+
+<p>They denote a common language. On the internet, I’m talking to people from all over the world. I face the same problem that people in the 80’s were facing - ensuring correct tone of message. You cannot be sure what the person at other side of the chat thinks about your message. But appending a smiley emoji or a victory emoji makes the context sound positive and is pretty efficient in ensuring that your message is read in the right tone.</p>
+
+<p>Emojis also add character to your text. On WhatsApp, the first pane in their emoji selector lists the most common emojis used by the user. Looking at that list, you can, to some extent, gain idea about the person. This choice of emojis eventually adds character to their messages.</p>
+
+<p>Emojis can also relate with real events. In 2020, the smiling face with tear emoji was introduced. This was the year when Covid-19 took over the world, and this emoji became very popular. It simply connected with people’s feelings. <em>I’m smiling, but every thing is certainly not right with me.</em></p>
+
+<p>The sense of informalness added in by usage of emojis may not be acceptable in all corporate environments. There have been news reports where employees were dismissed from job because they replied with “ok hand” emoji instead of actually writing some text. Dismissing from job for such action may be an overkill, but the fact that emojis are not words is certainly true.</p>
+
+<h2 id="side-ways">Side Ways</h2>
+
+<p>Some unrelated but related topics.</p>
+
+<h3 id="trolls-and-covid">Trolls and Covid</h3>
+
+<p>During mid 2010, social media wasn’t as immune to trolls as it is today. Many trolls didn’t mean any harm. They just wanted to have fun. Maybe they had a bad day and wanted to vent off. Sure, there were legit trolls that needed to be dealt with force. But not all trolls intended to cause harm. They wanted to have fun by mocking a person, or sending vague replies etc.</p>
+
+<p>In 2020, many of us became like those trolls. We were having a very bad year. We didn’t have our friends to lighten our mood. We didn’t imagine that we’d have to go months without having “fun”. And so, we became internet trolls. We started deriving pleasure from indulging in “troll behavior”. As usual, we didn’t consider the implications of our actions, and just went on with flow.</p>
+
+<p>As if Covid-19 wasn’t bad enough, mild troll behavior also became “accepted” among teenagers.</p>
+
+<h3 id="attention-span">Attention span</h3>
+
+<p>This has been a legitimate concern for a few years now. I will not comment whether our attention span is reducing or not. I can however, draw patterns from daily experiences and common habits.</p>
+
+<p>While sending messages on a chat application, many users have the habit of splitting their text in short bytes/ sentences and sending them as separate messages instead of sending the complete text as one message. A very small observation, but important nevertheless. Users know that the person at other side will not read long texts and instead ask for a <em>tl;dr</em>. They know that if they take 10 seconds to type out the message, then the other person will switch to a different task. Sending short but regular messages every 2-3 messages ensures that the reader has his attention/focus to the current chat and doesn’t switch to a different task.</p>
+
+<p>Search for user engagement techniques online and you’ll be greeted with methods that display the concerning state of human mind. Some examples :</p>
+
+<ul>
+  <li>10 seconds is the time taken by a visitor to decide whether they will stay on your website</li>
+  <li>15 seconds is the time taken by a viewer to decide whether they will watch your YouTube video</li>
+  <li>if your website takes more than 3 seconds to load, users will exit it</li>
+  <li><em>more such stuff</em></li>
+</ul>
+
+<p>They might sound interesting and useful if you are looking to increase engagement and visitor retention. At the same time, this also displays the dark side of the effects of a fast paced lifestyle.</p>
+
+<p>Remember in the first section I said <em>can I really expect you to read that</em>? The source of my concern is this same idea that people these days in general are less inclined towards spending time on a task and instead want to get task done with minimal effort. If you post a long reply to someone, chances are that the receiver won’t even read it and instead mock you for that.</p>
+
+<h3 id="bad--cool">Bad = Cool</h3>
+
+<p>This is really a universal truth. Can’t discuss this - since I suppose you know about it already.</p>
+
+<strike> And you probably are quite cool person. </strike>
+
+<h2 id="modern-internet-and-chat-stickers">Modern Internet and Chat Stickers</h2>
+
+<p>Finally, we come to stickers. This blog post was written after news surfaced about disciplinary action was taken against students who sent stickers in response to a query by another student. It sounds a bit over the top to take disciplinary action for sending a bunch of stickers, which prima facie don’t look explicit or suggestive. But we can always critically examine the things that were <em>not said</em>.</p>
+
+<blockquote>
+  <p>A picture is worth a thousand words</p>
+</blockquote>
+
+<p><em>“A thousand words”</em> you probably didn’t mean to say. Chat stickers don’t just denote an emotion like emoji. They have a story. A picture being worth a thousand words is not an understatement. While emojis are more or less a common language across the world, this is not the case with stickers. They are not limited to depicting emotional expressions, items of daily use or common experiences. Stickers often have screen grabs from popular media. There isn’t much said in those, but lot is implied. Implying negligence may seem like a small thing, but its disrespectful nevertheless.</p>
+
+<p>I am tired of getting sticker responses to queries posted in utmost seriousness. My conversations look like a fight between the text I type, and “funny” stickers that the other person sends in response.</p>
+
+<p>But, does approaching disciplinary committee make sense? Everything you read in the last section (if you didn’t skip through) has a role here when you try to consider the actions of students who shared stickers</p>
+
+<ul>
+  <li>According to the notice put by the disciplinary committee, the students sending stickers didn’t mean intentional harm or disrespect but were just “having fun”. The committee took notice that “fun” should not come in the way of someone else’s self respect and awarded suitable punishment. The action of students here is directly related to troll behavior I talked about. Its normal to assume that they just wanted to have a “good time”, because <em>good times</em> have been severely reduced post 2020. To lighten their mood or otherwise, they indulged in an act that isn’t <em>technically wrong</em> prima facie, but display typical troll behavior. Troll behavior is funny for everyone except the person actually being trolled.</li>
+  <li>Attention span and ability to focus is certainly lacking in their action. The original poster put a query related to exam results in the WhatsApp group. The response from group members could have been a simple one sentence answer. There was no hint of informalness in the original message. The message certainly did not deserve a wave of (derogatory) stickers in response.</li>
+  <li>Sending stickers supposedly make you look cool. Because your language skills may not be as good as you want to be. Maybe you never really cared much about your language skills. Maybe you simply don’t want to type. You have a cool set of stickers at your disposal that combine some “funny” images with some “funny” texts. <em>Funny</em> in quotes because its over the top to expect that a person is going to interpret your “humor” in the way you want it to - especially when there is possibility of a negative interpretation. But you don’t know about it, right? The usage of derogatory stickers has been normalized to such an extent that nobody thinks twice before sending them. These stickers are not explicit. They are not suggestive. They are not against any law. They are disrespectful. The concept of self respect seems to have been drowned these days. Ego takes the center stage. People don’t shy away from harming others’ self respect, but will easily take offense when their ego is shattered. In this case, the people who shared stickers unknowingly ended up harming another person’s self respect.</li>
+</ul>
+
+<h2 id="me-taking-sides">Me Taking Sides</h2>
+
+<p>So are stickers unethical and should they be banned? Absolutely not. Far from that.</p>
+
+<p>The point is that you should refrain from posting them on platform where you know there are members not necessarily on the same page as you. I’ve come across instances where someone posts an “inside joke” on a public forum and ends up creating a controversy. The content by itself didn’t need any censoring, but it was open to interpretations that related to hate against a section of society, or culturally unacceptable remarks etc.</p>
+
+<p>Its true that these days taking offense has become human rights of sorts. People want to be offended at the slightest of dis-balance. I don’t promote this behavior, but at the same time, I also don’t promote disrespectful actions by others.</p>
+
+<p>Even though I don’t like taking sides, it might seem that I am speaking from side of the person who <em>took offense</em>. Part of the reason is that this person tried to resolve the issue in a respectful manner without speaking anything against the accused students in public. Understand the scenario carefully. A person is met with derogatory replies on a group with many members. Instead of making a mess on the same group and possibly disrespecting the accused, this person decides to send a direct message to the accused, politely but sternly telling them that their response was disrespectful. This is a very thoughtful action, which unfortunately met with even more derogatory messages on the group. The accused seem to have totally overlooked the fact that the OP (who faced disrespect) tried to not hurt their self respect on a group with many other members.</p>
+
+<p>So at this point, the accused seem to deserve no sympathy and technically fall into the danger zone. They kept up their nuisance even though they were told that it was not acceptable. They were aware that they weren’t doing the right thing, yet they chose to continue with whatever they were doing.</p>
+
+<h2 id="at-the-root">At the root</h2>
+
+<p>Nobody is at fault, really. All that happened is just a sum result of how life has been treating them. All their carelessness is because the society did not try to make them more thoughtful people. Society as a whole, is becoming less conservative day by day. And the result is that things that were earlier considered taboo or simply just wrong, are now “normalized”. I don’t want to live in the society of 60’s. I don’t want to live in a society where everyone is a supposed to be an idol of perfection and lose all their character. But being more open minded shouldn’t mean that we start neglecting basic rights and harm dignity of fellow citizen.</p>
+
+<p>Solution is easy and an old concept - <strong>self regulation</strong>. But our past record is a testament to the fact that we humans are very bad at that…</p>
+
+<hr>
+
+<p>Cover photo by <a href="https://www.pexels.com/@tracy-le-blanc-67789?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Tracy Le Blanc</a> from <a href="https://www.pexels.com/photo/person-holding-iphone-showing-social-networks-folder-607812/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels">Pexels</a></p>
+
+
+    </div>
+
+</article>
+<a href="https://github.com/flyingcakes85"> Follow Me </a><div class="post-nav">
+<a class="previous" href="/blog/internet/2021/06/11/fastly-outage.html" title="Fastly CDN Outage">Fastly CDN Outage</a><a class="next" href="/blog/tutorial/2021/07/21/generating-combinations.html" title="Generating Combinations using C++">Generating Combinations using C++</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/blog/shell/2021/06/01/mpv-yt.html" title="Generating Combinations using C++">Playing YouTube Videos with VLC/MPV</a></li>
+<li><a class="post-link" href="/blog/tutorial/2021/07/21/generating-combinations.html" title="Generating Combinations using C++">Generating Combinations using C++</a></li>
+<li><a class="post-link" href="/blog/tutorial/2021/09/14/git-workshop-notes.html" title="Generating Combinations using C++">Git Workshop Notes</a></li>
+<li><a class="post-link" href="/blog/rant/2021/06/19/words-and-pictures.html" title="Generating Combinations using C++">Words &amp; Pictures - Stickers gone wrong</a></li>
+</ul>
+    </div>
+<div class="post-comments"></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+      <div>Copyright © 2021 @Snehit Sah</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/blog/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

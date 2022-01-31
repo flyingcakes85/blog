@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Git Workshop Notes | flyingcakes</title>
+<meta name="generator" content="Jekyll v4.2.1">
+<meta property="og:title" content="Git Workshop Notes">
+<meta name="author" content="Snehit Sah">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="About the book">
+<meta property="og:description" content="About the book">
+<meta property="og:site_name" content="flyingcakes">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-09-14T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Git Workshop Notes">
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Snehit Sah"},"description":"About the book","@type":"BlogPosting","headline":"Git Workshop Notes","dateModified":"2021-09-14T00:00:00+00:00","datePublished":"2021-09-14T00:00:00+00:00","url":"/blog/tutorial/2021/09/14/git-workshop-notes.html","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/tutorial/2021/09/14/git-workshop-notes.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/48585950">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <!-- <link rel="stylesheet" href="/blog/blog/assets/css/main.css"> -->
+  <!-- <script src="/blog/blog/assets/js/main.js"></script> -->
+  <link rel="stylesheet" href="/blog/assets/css/main.css">
+  <!-- <meta property='og:title' content='Mellow Clamour - Blog | flyingcakes'/> -->
+  <meta property="og:image" content="//raw.githubusercontent.com/flyingcakes85/blog/main/assets/images/banners/og-background.png">
+  <!-- <meta property='og:description' content='Blog posts by flyingcakes'/>
+  <meta property='og:url' content='//flyingcakes85.github.io/blog/'/> -->
+  <script src="/blog/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="/blog/feed.xml" title="flyingcakes">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="flyingcakes" src="https://avatars.githubusercontent.com/u/48585950" onerror="this.style.display='none'">
+  flyingcakes
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/blog/about.html">ABOUT</a><a class="page-link" href="/blog/archives.html">ARCHIVES</a><a class="page-link" href="/blog/categories.html">CATEGORIES</a><a class="page-link" href="/blog/">HOME</a><a class="page-link" href="/blog/tags.html">TAGS</a>
+
+
+
+
+<span class="page-link">
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: '',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  (function() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Git Workshop Notes</h1>
+  <h3 class="post-subtitle"><span class="readable-background">Follow along notes for workshops I take</span></h3>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2021-09-14T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Sep 14, 2021
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 39 mins</span>
+  </p>
+<div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#coding">#coding</a><a class="post-tag" href="/blog/tags.html#tutorial">#tutorial</a>
+</div></header>
+<blockquote>
+      <h3>This site has moved to <a href="https://snehit.dev">snehit.dev</a>
+</h3>
+</blockquote>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="about-the-book">About the book</h2>
+
+<p>This book is provided in digital format free of cost. You are free to use the content as long as you follow the CC-BY-SA 4.0 license terms.</p>
+
+<p><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png" width="100"></p>
+
+<p><strong>Git Workshop Notes © 2021 by <a href="https://github.com/flyingcakes85">Snehit Sah</a> is licensed under Attribution-ShareAlike 4.0 International. To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-sa/4.0/">http://creativecommons.org/licenses/by-sa/4.0/</a></strong></p>
+
+<p>Any suggestions, typo or errors can be mailed to <a href="mailto:snehitsah@protonmail.com">snehitsah@protonmail.com</a>.</p>
+
+<h2 id="introduction-to-git">Introduction to Git</h2>
+
+<h3 id="basics">Basics</h3>
+
+<p>Git is an open source distributed version control system.</p>
+
+<p>VCS (version control system) refers to a system which can keep track of all the code that is added to a project. Often, you want the history of the project to be preserved for various reasons. Say, the latest version of your software has major bugs, and as a result, you want to rollback some changes to an earlier date. This will only be possible if your code base is version controlled.</p>
+
+<p>Git is also called <em>distributed</em> because the code base isn’t stored on one server. Instead, each of the developers working on the project can have their own copies of the project. They can make changes independently on their machines, and then request for their changes to be merged back into the original software.</p>
+
+<h3 id="why-git">Why Git?</h3>
+
+<p>Git is one of the topics covered in MIT’s Missing Semester. This course covers multiple useful topics that are oftenly not formally taught, but they can be very useful to students.</p>
+
+<p>Git is a vast and powerful software, but <strong>you don’t need to be an expert at Git.</strong> You just need to know enought commands to maintain your repository and contribute to other repositories. Rest of the stuff, you can learn as you go.</p>
+
+<p>There are two things that I believe are important for open source softwares, and Git helps you realize them.</p>
+
+<ol>
+  <li>Integrity of history : The project history is an important data that lets users trust the software. Anyone can see how the softawre developed or when the different components were added. It also lets people track new changes, so that external contributors can focus more on testing new code and also restrict themselves to auditing new code.</li>
+  <li>Long term maintainability : With git, you can associate commits with a descriptive commit message. This lets future maintainers know more about the code. Commits also carry author email - which can be useful in case a maintainer needs to contact a past maintainer to discuss some legacy code.</li>
+</ol>
+
+<h3 id="my-approach-to-git">My approach to Git</h3>
+
+<p>I believe many Git workshops get the direction wrong. Their focus is on GitHub; and git is shown as a side utility. I call that the “easy way”. Instructor will create a repository. They’ll ask viewers to fork the repo, make some minor change via GitHub web interface, and create pull request. Such workshops end with a “grand message” that the viewer made their first PR. Its cool and all, but its severly lacking in some important concepts.</p>
+
+<p>I instead prefer bringing Git to the center stage. Git is very powerful, and knowing how to work with the command line utility is going to serve you quite far on your journey. GitHub has a cool self explanatory UI - do you really need to forum more over learning that as compared to a powerful command line utility?</p>
+
+<p>Another minor complaint with having all focus on GitHub is that new students fail to appreciate the existence of other git repository hosting services. Truth is that once you learn Git, you can work with any hosting service.</p>
+
+<h3 id="a-note-about-git-gui-programs">A note about Git GUI programs</h3>
+
+<p>I’m not against GUI programs altogether. Once in a blue moon, even I fall back to using GUI. Hovever, while learning its better to use command line client only. That way you know what is happening and it stregthens your understanding.</p>
+
+<p>PS. Recorded lectures from The Missing Semester are free to view. You can check out their website here : <a href="https://missing.csail.mit.edu/">https://missing.csail.mit.edu/</a>.</p>
+
+<h2 id="starting-with-git">Starting with Git</h2>
+
+<p>We already know that Git tracks your project. So, every time you change a file and commit it to the project (basically asking Git to mark a milestone you can return to later, if needed), Git is recording the <strong>changes</strong> you made to each file. Note that complete files are not duplicated. Only the changes you made to each file are stored by Git. It is intelligent enough to create the complete file by knowing the changes you made all through.</p>
+
+<h3 id="installing">Installing</h3>
+
+<p>Downloads are offered at git-scm website. Windows users should download installer from the website. Users on *nix systems can use their package manager for the same.</p>
+
+<p><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+
+<p>To check if git is woring, open a terminal, and run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>This should output the version name. An example output, on my system:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git version 2.33.0
+</code></pre></div></div>
+
+<p>I’m starting with shell commands now. Git commands should work on all systems, but other commands like <code class="language-plaintext highlighter-rouge">echo</code> will probably work only on *nix based systems. May also in Git Bash on Windows.</p>
+
+<h3 id="setting-up-git">Setting up Git</h3>
+
+<p>Git needs some info to create commits. At the very least, it needs to know your name and email. Run the following commands to set them up.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"email@domain.com"</span>
+</code></pre></div></div>
+
+<p>You can verify them too. I have shown the commands with their outputs.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired ~]<span class="nv">$ </span>git config <span class="nt">--global</span> user.name
+Snehit Sah
+<span class="o">[</span>snehit@wired ~]<span class="nv">$ </span>git config <span class="nt">--global</span> user.email
+snehitsah@protonmail.com
+</code></pre></div></div>
+
+<p>You may also change the default init branch to something other than <code class="language-plaintext highlighter-rouge">master</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> init.defaultBranch main
+</code></pre></div></div>
+
+<p>You can replace <code class="language-plaintext highlighter-rouge">main</code> with any other name you like. This step is not necessary. Do this only if you don’t want your default branches in new repositories to be named <code class="language-plaintext highlighter-rouge">master</code>.</p>
+
+<h3 id="initializing-a-repository">Initializing a repository</h3>
+
+<p>Create a new folder. Change working directory to this new folder. And then initialize a new repository.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>my-project
+<span class="nb">cd </span>my-project
+git init
+</code></pre></div></div>
+
+<p>Now, you can open your code editor in this folder. Any files you add here will automatically be noticed by git. I run the following command to launch VS Code in my repo.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>code <span class="nb">.</span>
+</code></pre></div></div>
+
+<h3 id="adding-files">Adding files</h3>
+
+<p>You can either create files via a text editor like VS Code, or even the classic notepad, or you can use a terminal utility to create files. I’ll use <code class="language-plaintext highlighter-rouge">echo</code> to create a simple python script.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print('Hello World')"</span> <span class="o">&gt;</span> test.py
+</code></pre></div></div>
+
+<p>It creates a file <code class="language-plaintext highlighter-rouge">test.py</code> with the code <code class="language-plaintext highlighter-rouge">print('Hello World')</code>.</p>
+
+<p>Now, lets check if git notices this file or not. Run <code class="language-plaintext highlighter-rouge">git status</code> in the same folder, and you should get such an ouput.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to include <span class="k">in </span>what will be committed<span class="o">)</span>
+	test.py
+
+nothing added to commit but untracked files present
+<span class="o">(</span>use <span class="s2">"git add"</span> to track<span class="o">)</span>
+</code></pre></div></div>
+
+<p>There is quite some information here. The first line tells we are on this branch called <code class="language-plaintext highlighter-rouge">main</code>. Don’t worry if you don’t know what branches are. I’ll discuss it soon.</p>
+
+<p>Next is a section called <code class="language-plaintext highlighter-rouge">Untracked files</code>. This lists the file that are there in folder, but git isn’t yet tracking them for changes. Our file, <code class="language-plaintext highlighter-rouge">test.py</code> is listed there. Git is also telling us a command to start tracking them… So lets move on to that.</p>
+
+<h3 id="adding-files-to-staging">Adding files to staging</h3>
+
+<p>Run this command to start tracking <code class="language-plaintext highlighter-rouge">test.py</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add test.py
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">git add</code> serves two purposes. If a file is untracked, then it will start tracking it and add to staging area. If a file is already being tracked, but has some changes, then git will simply just add the file to staging area.</p>
+
+<p>What is the staging area, you ask? Its the files whose change will be recorded and stored when you run git commit the next time.</p>
+
+<p>Before we move on to the next command, let’s see the output of <code class="language-plaintext highlighter-rouge">git status</code> after running the above <code class="language-plaintext highlighter-rouge">git add</code> command.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">"git rm --cached &lt;file&gt;..."</span> to unstage<span class="o">)</span>
+	new file:   test.py
+</code></pre></div></div>
+
+<p>Our file <code class="language-plaintext highlighter-rouge">test.py</code> is now listed under a different section - <code class="language-plaintext highlighter-rouge">Changes to be committed</code>.</p>
+
+<p>If you have multiple files in a project, you can simply use the following command to add all changed and untracked files.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nt">-A</span>
+</code></pre></div></div>
+
+<p>Be careful while running this. It may possibly add any extra files you created in the repository which you actually don’t want in commits.</p>
+
+<h3 id="committing-changes">Committing changes</h3>
+
+<p>Once you have files in the staging area, you <code class="language-plaintext highlighter-rouge">commit</code>. This is an important step. Note that commits are the mechanism by which git is able to preserve history. You can see commits as milestones, which anyone can check out.</p>
+
+<p>Commits are acompained by at least a title, and an optional message. Try to keep the message/title short, yet informative. For larger projects, it becomes necessary to have informative commit messages so that reviewers know what the commit does.</p>
+
+<p>Run this in the terminal</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit
+</code></pre></div></div>
+
+<p>This should land you in a text editor, usually vi(m), where you add commit title and message. This is what you should see.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   test.py
+#
+</code></pre></div></div>
+
+<p>This is giving the output you saw with <code class="language-plaintext highlighter-rouge">git status</code> one more time, so that you can be sure that you are committing all the files you want. On the first line, give a commit title. Leave a blank line, and from the third line, you can write the description.</p>
+
+<p>Here is an example. Note that I did not remove the lines that were already there. They are starting with a ‘#’ and git will ignore them.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Add test.py with basic code
+
+New beginnings - This file prints
+Hello World. Tested with Python3.7
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   test.py
+#
+</code></pre></div></div>
+
+<p>Save and close the file. Git should create a commit now, and print some message in the terminal.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git commit
+<span class="o">[</span>main <span class="o">(</span>root-commit<span class="o">)</span> 5de911e] Add test.py with basic code
+ 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
+ create mode 100644 test.py
+</code></pre></div></div>
+
+<p>Its called <code class="language-plaintext highlighter-rouge">root-commit</code> because its the first commit in this repo. There is a fancy alphanumeric string following it. <code class="language-plaintext highlighter-rouge">5de911e</code> - these are the first few characters of the commit hash. Commit hash is a 20 character alphanumeric SHA1 hash that is generated using data from past commit, changes in current commit, timestamp, author info etc. These hashes are git’s primary mechanism to detect any changes to past code.</p>
+
+<p>If you don’t want to add a desription to your commit - maybe because the change is very minor and self explanatory - you can use the shorthand to just add a commit title.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Fix typo in code"</span>
+</code></pre></div></div>
+
+<h3 id="checking-logs">Checking logs</h3>
+
+<p>Since we have made a commit, its a permanent part of the repository now. You can see logs to verify the commit is there.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log
+commit 5de911e18db087d3c3a57031dab49637e316608f <span class="o">(</span>HEAD -&gt; main<span class="o">)</span>
+Author: Snehit Sah &lt;snehitsah@protonmail.com&gt;
+Date:   Thu Sep 9 12:12:00 2021 +0530
+
+    Add test.py with basic code
+
+    New beginnings - This file prints
+    Hello World. Tested with Python3.7
+</code></pre></div></div>
+
+<p>This gives us information about the commit we just made. As we make more commits, the log will grow lager. In the first line, you have the complete commit hash. (in the last section, we only saw first 7 characters). We also have information about the author, commit date/time and message. If you are not interested in author info, and just want to see commit messages, we can use the shorter format with <code class="language-plaintext highlighter-rouge">git log --oneline</code></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log <span class="nt">--oneline</span>
+5de911e <span class="o">(</span>HEAD -&gt; main<span class="o">)</span> Add test.py with basic code
+</code></pre></div></div>
+
+<p>This is more useful to know how the project grew, since it omits author info, dates and commit description.</p>
+
+<h3 id="amending-last-commit">Amending last commit</h3>
+
+<p>Sometimes it happens that you forgot to add a file to staging before commit, or there’s a tiny change you need to make, which should have been a part of the last commit. In such situations, git provides an easy way to amend last commit. Assuming you made a commit, do some edits to code. Then do <code class="language-plaintext highlighter-rouge">git add</code> as usual. While committing, include the <code class="language-plaintext highlighter-rouge">--amend</code> flag to instruct git to update the last commit instead of creating a new one.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">--amend</span>
+</code></pre></div></div>
+
+<p>If you look at the log, you will see the commit hash changes. This signifies that <em>some</em> changes were made. Later on when you upload your code on the internet, these hashes will allow other collaborators ensure they have the same code as you. If you edit a past comment and upload it, then other collaborators will get to know about it. In general, its not a good idea to amend/edit commits if you have published them onto the web. Do this only if the commits to be edited are only on your local machine. One exception is that when you accidently commited and published sesnsitive info, like access keys, password etc.</p>
+
+<p>PS. In case you are wondering if other collaborators will match commit hash letter by letter to verify integrity - the answer is an obvious “no!”. Git does that automatically.</p>
+
+<h3 id="recap">Recap</h3>
+
+<p>Try creating another file, and make some changes to <code class="language-plaintext highlighter-rouge">test.py</code>. Check status. Add both files to staging, and then make a commit. Check log to verify the commit was made.</p>
+
+<p>You can use any text editor for the task. I’ll quickly give the relevant shell commands for those who want to follow along in the shell.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print('New file')"</span> <span class="o">&gt;</span> new_file.py
+<span class="nb">echo</span> <span class="s2">"print('Another line')"</span> <span class="o">&gt;&gt;</span> test.py
+</code></pre></div></div>
+
+<p>Output of <code class="language-plaintext highlighter-rouge">git status</code> at this stage.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git status
+On branch main
+Changes not staged <span class="k">for </span>commit:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">"git restore &lt;file&gt;..."</span> to discard changes <span class="k">in </span>working directory<span class="o">)</span>
+	modified:   test.py
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to include <span class="k">in </span>what will be committed<span class="o">)</span>
+	new_file.py
+
+no changes added to commit <span class="o">(</span>use <span class="s2">"git add"</span> and/or <span class="s2">"git commit -a"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Continuing on to add files and commit them.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add new_file.py
+git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Update test.py and add new code"</span>
+</code></pre></div></div>
+
+<p>Ouptut of <code class="language-plaintext highlighter-rouge">git log</code></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log
+commit 9c804c05610ca86f720abda62b297e9d2e6a725f <span class="o">(</span>HEAD -&gt; main<span class="o">)</span>
+Author: Snehit Sah &lt;snehitsah@protonmail.com&gt;
+Date:   Thu Sep 9 12:34:49 2021 +0530
+
+    Update test.py and add new code
+
+commit 5de911e18db087d3c3a57031dab49637e316608f
+Author: Snehit Sah &lt;snehitsah@protonmail.com&gt;
+Date:   Thu Sep 9 12:12:00 2021 +0530
+
+    Add test.py with basic code
+
+    New beginnings - This file prints
+    Hello World. Tested with Python3.7
+</code></pre></div></div>
+
+<h3 id="using-gitignore-file">Using gitignore file</h3>
+
+<p>You may have some files in your project directory which you don’t want git to track. For example, upon testing C/C++ apps, you have a binary that shouldn’t be there with the code. To prevent them from accidently being committed, you can add them to gitignore file. You’ll first have to create a file named <code class="language-plaintext highlighter-rouge">.gitignore</code> in the root of your repo folder. Then you list the file paths that should not be tracked.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"*/a.out"</span> <span class="o">&gt;&gt;</span> .gitignore
+</code></pre></div></div>
+
+<p>This will prevent git from tracking any file with name <code class="language-plaintext highlighter-rouge">a.out</code>. The aesterix at beginning is a wildcard that will select any path where <code class="language-plaintext highlighter-rouge">a.out</code> exists. To add folders, append a forward slash after path.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"build/"</span> <span class="o">&gt;&gt;</span> .gitignore
+</code></pre></div></div>
+
+<h2 id="working-with-remotes">Working with remotes</h2>
+
+<p>Up until now, we have been working on our local system. Git however is built to facilitate collaboration of multiple developers. To let other developers work on our code, we need to publish this code to a website.</p>
+
+<p>Now, you can upload your code anywhere. Zip it up and put on cloud storage like Google Drive or Dropbox. Or send the files as an attachment to your friend. There are many ways, but they won’t preserve the commit history and messages (unless you include the hidden <code class="language-plaintext highlighter-rouge">.git</code> folder). Moreover, it will be difficult to use collaboration features of git.</p>
+
+<p>It is much better to use a hosting service that is specially made for Git repositories. One of them is GitHub and thats the one which we will be using for this tutorial.</p>
+
+<p>Head over to their sign up page and create an account if not done already.
+<a href="https://github.com/join">https://github.com/join</a></p>
+
+<h3 id="connecting-a-remote-repository">Connecting a remote repository</h3>
+
+<p>Create a new GitHub repository at <a href="https://github.com/new">https://github.com/new</a>. Give it a name. Description is optional. Make sure that all checkboxes under initialization are unchecked.</p>
+
+<p><img src="/blog/assets/images/post/github-new-repo.png" alt="" title="GitHub New Repo"></p>
+
+<p>Create the repository. On the page you are redirected to, you have an https link under <em>Quick setup</em>.</p>
+
+<p>Link is of the form <code class="language-plaintext highlighter-rouge">https://github.com/&lt;username&gt;/&lt;repo-name&gt;.git</code>. Copy this link.</p>
+
+<p>In your terminal, you will now tell git to use this remote link for publishing on the internet. You use the <code class="language-plaintext highlighter-rouge">git remote add</code> command to do this.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/flyingcakes85/my-project.git
+</code></pre></div></div>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">origin</code> specifies the remote name. You can give it any name. <code class="language-plaintext highlighter-rouge">origin</code> is a common name for the primary remote location. Make sure you use your repo link in the command.</p>
+
+<p>Before you push your branch, you first need an access token. Think of it as an alternate password to your account. For security reasons, using your actual password is not supported on GitHub. SSH is the easier way, but setting it up is out of the scope of this tutorial.</p>
+
+<p>Head over to this link : <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a>. Click on “Generate new token”. It may ask your password again.</p>
+
+<p>Add a note to identify the token later. Check the first box which says “repo”. It should automatically check the 5 boxes under it. Scroll down and click “Generate token”. You will be redirected back to the token page where you can see your newly created token. Copy it to a file and store it somewhere you can access. While pushing form the terminal, you will use this token instead of your password.</p>
+
+<p>Finally, you can push your branch to the remote.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push <span class="nt">-u</span> origin main
+</code></pre></div></div>
+
+<p>It will ask your username and password. Enter your GitHub username only (not the complete link) and for password, use the token we just generated. Now on in this tutorial, I won’t mention that you have to use this token, so keep it in mind.</p>
+
+<p><code class="language-plaintext highlighter-rouge">-u</code> is a shorthand for <code class="language-plaintext highlighter-rouge">--set-upstream</code>. It tells git that <code class="language-plaintext highlighter-rouge">origin</code> is the upstream for <code class="language-plaintext highlighter-rouge">main</code> i.e. the remote location where the <code class="language-plaintext highlighter-rouge">main</code> branch should be published. You might be wondering why we need to tell this? Git can work with multiple remotes, and often, different branches need to be published to different remotes. For any future push on this branch, you don’t need to mention upstream, and simply running <code class="language-plaintext highlighter-rouge">git push</code> should do tho work for you.</p>
+
+<h3 id="pulling-remote-changes">Pulling remote changes</h3>
+
+<p>Say someone else contributed to your repository. The changes they contributed will be stored on GitHub (or whichever remote you are using). You need to get the changes down on your machine. <code class="language-plaintext highlighter-rouge">git pull</code> is the command we use to get changes from remote to our local system.</p>
+
+<p>Since we may not be able to find a contributor right away, so let us make changes ourselves on the remote. GitHub web interface allows making changes to code without needing to have repository on your local system. Head over to the repository on your GitHub account.</p>
+
+<p>You will be able to see the files you added - <code class="language-plaintext highlighter-rouge">test.py</code> and <code class="language-plaintext highlighter-rouge">new_file.py</code>. Click on any of them, let’s say <code class="language-plaintext highlighter-rouge">test.py</code>. You will see the code you wrote. On top right of the code, you can see a pencil icon that lets you make changes to file.</p>
+
+<p><img src="/blog/assets/images/post/file-edit.png" alt="" title="file-edit"></p>
+
+<p>Add a some code and click “Commit changes”.</p>
+
+<p><img src="/blog/assets/images/post/commit-web.png" alt="" title="commit web"></p>
+
+<p>Now, if you go to repository page, and click on the number of commits (see screengrab below), you can see 3 commits listed. We made 2 commits earlier. The third commit was made just now via GitHub web.</p>
+
+<p><img src="/blog/assets/images/post/commit-history.png" alt="" title="commit web"></p>
+
+<p>Go back to the terminal and run <code class="language-plaintext highlighter-rouge">git log --oneline</code>. You will still see only 2 commits here. This mean we need to pull remote commits on to our local machine. Run <code class="language-plaintext highlighter-rouge">git pull</code> to do the same. Here is the output in my case</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git pull
+remote: Enumerating objects: 5, <span class="k">done</span><span class="nb">.</span>
+remote: Counting objects: 100% <span class="o">(</span>5/5<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+remote: Compressing objects: 100% <span class="o">(</span>3/3<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+remote: Total 3 <span class="o">(</span>delta 0<span class="o">)</span>, reused 0 <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused 0
+Unpacking objects: 100% <span class="o">(</span>3/3<span class="o">)</span>, 709 bytes | 35.00 KiB/s, <span class="k">done</span><span class="nb">.</span>
+From https://github.com/flyingcakes85/my-project
+   9c804c0..7e8fc14  main       -&gt; origin/main
+Updating 9c804c0..7e8fc14
+Fast-forward
+ test.py | 2 ++
+ 1 file changed, 2 insertions<span class="o">(</span>+<span class="o">)</span>
+</code></pre></div></div>
+
+<p>You can see the text <code class="language-plaintext highlighter-rouge">test.py | 2 ++</code>. This mean that there were 2 additions made to this file. Deletions are followed by <code class="language-plaintext highlighter-rouge">--</code>. Now, if you run <code class="language-plaintext highlighter-rouge">git log --oneline</code> in terminal, you can see third commit too.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log <span class="nt">--oneline</span>
+7e8fc14 <span class="o">(</span>HEAD -&gt; main, origin/main<span class="o">)</span> Update test.py
+9c804c0 Update test.py and add new code
+5de911e Add test.py with basic code
+</code></pre></div></div>
+
+<h3 id="listing-remotes">Listing remotes</h3>
+
+<p>You can use <code class="language-plaintext highlighter-rouge">git remote</code> to list remote names configured for current repo, or pass the <code class="language-plaintext highlighter-rouge">-v</code> flag to also list remote links.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git remote
+origin
+<span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git remote <span class="nt">-v</span>
+origin	https://github.com/flyingcakes85/my-project.git <span class="o">(</span>fetch<span class="o">)</span>
+origin	https://github.com/flyingcakes85/my-project.git <span class="o">(</span>push<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="using-git-clone">Using git clone</h3>
+
+<p>So far we created a repository on the command line and connected it to a remote. Many times, we already have a git repo online which we want to use on our local machine. You can simply use the <code class="language-plaintext highlighter-rouge">git clone</code> command to download a repository. Note that you can download any public repository with this command even if you did not create it.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/flyingcakes85/my-project.git
+</code></pre></div></div>
+
+<p>Often, the repository you want to download is large, and downloading it can take some time. To get around this, you can use <code class="language-plaintext highlighter-rouge">--depth=N</code> flag to fetch only the past <code class="language-plaintext highlighter-rouge">N</code> commits. You will have all files from the repository, but you won’t have complete commit history.</p>
+
+<h3 id="editing-pushlished-commits">Editing pushlished commits</h3>
+
+<p>Make some changes to a file an instead of a new commit, use <code class="language-plaintext highlighter-rouge">--amend</code> to edit the last commit.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print('More content')"</span> <span class="o">&gt;&gt;</span> new_file.py
+git add new_file.py
+git commit <span class="nt">--amend</span>
+</code></pre></div></div>
+
+<p>Now, if you do a <code class="language-plaintext highlighter-rouge">git push</code>, you will get an error.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git push
+Username <span class="k">for</span> <span class="s1">'https://github.com'</span>: flyingcakes85
+Password <span class="k">for</span> <span class="s1">'https://flyingcakes85@github.com'</span>:
+
+To https://github.com/flyingcakes85/my-project.git
+ <span class="o">!</span> <span class="o">[</span>rejected]        main -&gt; main <span class="o">(</span>non-fast-forward<span class="o">)</span>
+error: failed to push some refs to <span class="s1">'https://github.com/flyingcakes85/my-project.git'</span>
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes <span class="o">(</span>e.g.
+hint: <span class="s1">'git pull ...'</span><span class="o">)</span> before pushing again.
+hint: See the <span class="s1">'Note about fast-forwards'</span> <span class="k">in</span> <span class="s1">'git push --help'</span> <span class="k">for </span>details.
+</code></pre></div></div>
+
+<p>There are two ways to get out of this situation - you either do a <code class="language-plaintext highlighter-rouge">git pull --rebase</code> to merge remote changes to your local copy first. Or you can do <code class="language-plaintext highlighter-rouge">git push -f</code> to force overwrite remote with your code.</p>
+
+<p>If you were to do the latter, you will be changing the history of project. Anyone who has a copy of the project and does <code class="language-plaintext highlighter-rouge">git pull</code> will get a similar error.</p>
+
+<p>The above error is a also common error when you made some change on your remote (via web interface) and then you made some commits on your local machine without pulling remote changes first. As I told, <code class="language-plaintext highlighter-rouge">git pull --rebase</code> should get you out of the fix in most cases.</p>
+
+<p>Keep in mind, editing published commits is not recommended, and you should do this only when necessary.</p>
+
+<h2 id="working-with-branches">Working with Branches</h2>
+
+<p>Git provides the ability to create branches so as to let developers work on new features or bugfix without disturbing the main code. Changes you make to a branch are stored separately from the other branches. You can switch between branches anytime. When you think you have made enough changes to a branch and the changes are working, you can merge the branch into your <code class="language-plaintext highlighter-rouge">main</code> branch.</p>
+
+<h3 id="listing-branches">Listing branches</h3>
+
+<p><code class="language-plaintext highlighter-rouge">git branch</code> will show you your local branches, and adding the <code class="language-plaintext highlighter-rouge">-a</code> flag will also list remote branches.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git branch
+<span class="k">*</span> main
+<span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git branch <span class="nt">-a</span>
+<span class="k">*</span> main
+  remotes/origin/main
+</code></pre></div></div>
+
+<p>The branch marked with an aesterix denotes the currently active branch. Any changes or commits you make are added on the currently active branch.</p>
+
+<h3 id="creating-and-switching-branches">Creating and switching branches</h3>
+
+<p><code class="language-plaintext highlighter-rouge">git branch &lt;name&gt;</code> creates a new branch. <code class="language-plaintext highlighter-rouge">git checkout &lt;name&gt;</code> will switch to the new branch so that further changes are make to the new branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch add-emotes
+git checkout add-emotes
+</code></pre></div></div>
+
+<p>You can also use the shorthand to create and switch branch in one command. Just use the <code class="language-plaintext highlighter-rouge">checkout</code> command with a <code class="language-plaintext highlighter-rouge">-b</code> flag.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git checkout <span class="nt">-b</span> add-emotes
+Switched to a new branch <span class="s1">'add-emotes'</span>
+</code></pre></div></div>
+
+<p>You can also <em>checkout</em> an older commit. This will replace the project files with the content that existed at that commit. Run <code class="language-plaintext highlighter-rouge">git log --oneline</code> to see the commit hashes.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log <span class="nt">--oneline</span>
+f15f7dc <span class="o">(</span>HEAD -&gt; bugfix, origin/main, main, add-emotes<span class="o">)</span> Update test.py
+7e8fc14 Update test.py
+9c804c0 Update test.py and add new code
+5de911e Add test.py with basic code
+</code></pre></div></div>
+
+<p>Note the hash of whichever commit you want to checkout. Say, we want to go to the first commit. Its hash is <code class="language-plaintext highlighter-rouge">5de911e</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout 5de911e
+</code></pre></div></div>
+
+<p>This will land you to the first commit. If you see the project now, you will find only one file. Don’t worry, our changes aren’t lost. We can just switch to <code class="language-plaintext highlighter-rouge">main</code> branch to get our changes back.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+</code></pre></div></div>
+
+<h3 id="working-on-branches---merging-and-stash">Working on branches - merging and stash</h3>
+
+<p>You usually create a branch to work on bug or feature without disturbing the actual code. The benefit here is that if there are any urgent changes required to the main code, you can make commits on main without needing to halt working on bug or feature.</p>
+
+<p>There are usually three situations.</p>
+
+<h4 id="fast-forward-merge">Fast forward merge</h4>
+
+<p>First checkout the newly created <code class="language-plaintext highlighter-rouge">add-emotes</code> branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout add-emotes
+</code></pre></div></div>
+
+<p>Lets make some changes now.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print(':-)')"</span> <span class="o">&gt;&gt;</span> emotes.py
+git add emotes.py
+git commit <span class="nt">-m</span> <span class="s2">"Add emotes"</span>
+</code></pre></div></div>
+
+<p>You test the code. It works and you are satisfied. So you decide to merge it into main. First checkout <code class="language-plaintext highlighter-rouge">main</code> branch then merge the other branch into it.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git checkout main
+Switched to branch <span class="s1">'main'</span>
+<span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git merge add-emotes
+Updating f15f7dc..e74906b
+Fast-forward
+ emotes.py | 1 +
+ 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
+ create mode 100644 emotes.py
+</code></pre></div></div>
+
+<p>Notice the phrase <code class="language-plaintext highlighter-rouge">Fast-forward</code>. It signifies that no commits were made on main from the time of creating branch <code class="language-plaintext highlighter-rouge">add-emotes</code> and the time when we merged it. Git could just “fast-forward” the <code class="language-plaintext highlighter-rouge">main</code> branch with commits from <code class="language-plaintext highlighter-rouge">add-emotes</code>. You ran use <code class="language-plaintext highlighter-rouge">git log --oneline</code> to verify that the commit was indeed applied on <code class="language-plaintext highlighter-rouge">main</code> branch too.</p>
+
+<h4 id="recursive-merge">Recursive merge</h4>
+
+<p>Lets do this process again, but we will make a commit on <code class="language-plaintext highlighter-rouge">main</code> before merging. Again, checkout <code class="language-plaintext highlighter-rouge">add-emotes</code> and make some changes.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout add-emotes
+<span class="nb">echo</span> <span class="s2">"print(':/')"</span> <span class="o">&gt;&gt;</span> emotes.py
+</code></pre></div></div>
+
+<p>Let’s say, you don’t want to commit now, as you want to make more changes. But there’s an important fix to make on the <code class="language-plaintext highlighter-rouge">main</code> branch. You can go forward and switch branch, but it can become messy, because the changes will also show up on main (they are uncommitted) and it will get confusing for you. So, you store the changes to a temporary directory and then make changes on main.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git stash
+</code></pre></div></div>
+
+<p>Upon running this, you will notice that the line we added to <code class="language-plaintext highlighter-rouge">emotes.py</code> is no longer there. Now make changes on main and commit.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+<span class="nb">echo</span> <span class="s2">"print('important bugfix')"</span> <span class="o">&gt;&gt;</span> test.py
+git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Important Bugfix"</span>
+</code></pre></div></div>
+
+<p>Now, let’s switch back to <code class="language-plaintext highlighter-rouge">add-emotes</code> branch and complete our code. We use the <code class="language-plaintext highlighter-rouge">git stash pop</code> command to bring back the changes we had made earlier.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout add-emotes
+git stash pop
+<span class="nb">echo</span> <span class="s2">"print('B-)')"</span> <span class="o">&gt;&gt;</span> emotes.py
+git add emotes.py
+git commit <span class="nt">-S</span> <span class="nt">-m</span> <span class="s2">"Add more emotes"</span>
+</code></pre></div></div>
+
+<p>Now, lets switch back to <code class="language-plaintext highlighter-rouge">main</code> branch and try merging <code class="language-plaintext highlighter-rouge">add-emotes</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+git merge add-emotes
+</code></pre></div></div>
+
+<p>This will land you in your text editor, with the following text.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Merge branch 'add-emotes'
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+</code></pre></div></div>
+
+<p>This is very much like making a commit. This time, there was already a commit made on to <code class="language-plaintext highlighter-rouge">main</code> before we merged the branch. So, git cannot simply fast forward. Save this file and exit. You should get this message.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Merge made by the 'recursive' strategy.
+ emotes.py | 2 ++
+ 1 file changed, 2 insertions(+)
+</code></pre></div></div>
+
+<p>This time, it was not fast forwarded. Git used a different strategy called recursive.</p>
+
+<h4 id="merge-conflict">Merge conflict</h4>
+
+<p>Finally, if you change the same line of the same file in both branch then try to merge them, you run into a merge conflict. Let’s quickly add different text to the same file on both <code class="language-plaintext highlighter-rouge">main</code> branch and <code class="language-plaintext highlighter-rouge">add-emotes</code> branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+<span class="nb">echo</span> <span class="s2">"print('added via main')"</span> <span class="o">&gt;&gt;</span> test.py
+git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Make program better"</span>
+git checkout add-emotes
+<span class="nb">echo</span> <span class="s2">"print('added via add-emotes')"</span> <span class="o">&gt;&gt;</span> test.py
+git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Make program fancy"</span>
+</code></pre></div></div>
+
+<p>If you see the contents of <code class="language-plaintext highlighter-rouge">test.py</code>, you won’t see the line <code class="language-plaintext highlighter-rouge">print('added via main')</code>. If you checkout <code class="language-plaintext highlighter-rouge">main</code>, then you won’t see <code class="language-plaintext highlighter-rouge">print('added via add-emotes')</code>. So, what we have got is different content at same location in two branches. This will lead to a conflict.</p>
+
+<p>First checkout <code class="language-plaintext highlighter-rouge">main</code> branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+</code></pre></div></div>
+
+<p>Lets now merge it and see what happens.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git merge add-emotes
+Auto-merging test.py
+CONFLICT <span class="o">(</span>content<span class="o">)</span>: Merge conflict <span class="k">in </span>test.py
+Automatic merge failed<span class="p">;</span> fix conflicts and <span class="k">then </span>commit the result.
+</code></pre></div></div>
+
+<p>Git bailed out saying it cannot merge - as we expected.</p>
+
+<p>When you get a merge conflict, you shouln’t need to panic. Its not an “error”. It only indicates that git is unable to decide which copy of the code to keep, because the two branches have different changes for the same file location.</p>
+
+<p>Git is telling us that there is a conflict in <code class="language-plaintext highlighter-rouge">test.py</code>. Lets open that file and see what’s there.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print('Hello World')
+print('Another line')
+
+print('Added via GitHub web')
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+print('important bugfix')
+print('added via main')
+=======
+print('added via add-emotes')
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; add-emotes
+</code></pre></div></div>
+
+<p>Here, you can see the conflicting part between angled brackets. From <code class="language-plaintext highlighter-rouge">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> to <code class="language-plaintext highlighter-rouge">=======</code> are the contents that are in <code class="language-plaintext highlighter-rouge">main</code>. From <code class="language-plaintext highlighter-rouge">=======</code> to <code class="language-plaintext highlighter-rouge">&gt;&gt;&gt;&gt;&gt;&gt;&gt; add-emotes</code> are the contents that are in <code class="language-plaintext highlighter-rouge">add-emotes</code>. you can freely remove one of them, along with the angled brackets and equal signs. You may also just remove the brackets and equal signs in case you want to keep changes from both branches. Finally, you may remove it to add some other code altogether. Its all up to you.</p>
+
+<p>Lets say, I remove the code from <code class="language-plaintext highlighter-rouge">main</code>. So my file should now look like this.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print('Hello World')
+print('Another line')
+
+print('Added via GitHub web')
+
+print('added via add-emotes')
+</code></pre></div></div>
+
+<p>Now we can continue on to adding file and committing it.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Merge add-emotes into main"</span>
+</code></pre></div></div>
+
+<p>This will create the merge commit.</p>
+
+<h3 id="deleting-branches">Deleting branches</h3>
+
+<p>You may want to delete a branch if you have merged it into <code class="language-plaintext highlighter-rouge">main</code> and it is no longer needed. Or maybe you decided against incorporating the changes from that branch. In these cases, you can delete the branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-d</span> &lt;name&gt;
+</code></pre></div></div>
+
+<p>If you had published a branch you now want to delete, run this command</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin <span class="nt">--delete</span> &lt;branch name&gt;
+</code></pre></div></div>
+
+<p>Run these commands with care, as you may accidently delete one of the important branches.</p>
+
+<h2 id="beyond-the-book">Beyond the book</h2>
+
+<h3 id="general-development-workflow">General development workflow</h3>
+
+<p>I’ll briefly tell the workflow you follow when contributing to someone else’s repo. You first fork the repository to your account. You clone your fork with <code class="language-plaintext highlighter-rouge">git clone &lt;link&gt;</code>. You will then create a new branch which shall hold the commits you make. You can also directly make commits on <code class="language-plaintext highlighter-rouge">main</code>, but this is almost <strong>never</strong> recommended.</p>
+
+<p>You make some changes then commit it. When you think you have made all the changes you wanted, you push the branch to remote on your repo, using <code class="language-plaintext highlighter-rouge">git push -u origin &lt;branch name&gt;</code>. On GitHub, you finally create a pull request from your branch to the <code class="language-plaintext highlighter-rouge">main</code> or <code class="language-plaintext highlighter-rouge">dev</code> branch of original repo.</p>
+
+<p>Maintainers will often have a separate <code class="language-plaintext highlighter-rouge">dev</code> branch. This can be for various reasons - the simplest one being that they don’t want everyone to be using the latest changes by default as it can be buggy and unstable. Those who want to test new features can manually switch to dev branch and use. Once features from dev branch are tested, it is finally merged into <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p>If available, read the <code class="language-plaintext highlighter-rouge">CONTRIBUTING.md</code> file on the original repo.</p>
+
+<h3 id="referencing-github-pull-requestsissues">Referencing GitHub pull requests/issues</h3>
+
+<p>Say your pull request fixes a certain issue open on the original repository. You can add <code class="language-plaintext highlighter-rouge">Fixes #N</code> to your commit description. Here <code class="language-plaintext highlighter-rouge">N</code> is a number that shows just after the issue title. The numbers also show up on pull request titles. You can use the same <code class="language-plaintext highlighter-rouge">#N</code> format to reference a certain pull request or issue while adding commits on GitHub.</p>
+
+
+    </div>
+
+</article>
+<a href="https://github.com/flyingcakes85"> Follow Me </a><div class="post-nav">
+<a class="previous" href="/blog/rant/2021/09/07/love-alexa.html" title="Love, Alexa">Love, Alexa</a><span></span>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/blog/shell/2021/05/24/aliases.html" title="">Beginner's Guide To Shell Aliases With Examples</a></li>
+<li><a class="post-link" href="/blog/jekyll/2021/05/24/jekyll-webricks-issue.html" title="">Fixing Jekyll/Webrick Issue on Arch Linux</a></li>
+<li><a class="post-link" href="/blog/music/2021/08/31/citp-pop-rabbit-hole.html" title="">City Pop Rabbit Hole Diary</a></li>
+<li><a class="post-link" href="/blog/tutorial/2021/09/14/git-workshop-notes.html" title="">Git Workshop Notes</a></li>
+</ul>
+    </div>
+<div class="post-comments"></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+      <div>Copyright © 2021 @Snehit Sah</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/blog/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

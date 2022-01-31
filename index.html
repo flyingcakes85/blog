@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Home | flyingcakes</title>
+<meta name="generator" content="Jekyll v4.2.1">
+<meta property="og:title" content="Home">
+<meta name="author" content="Snehit Sah">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Ramblings by a Linux Enthusiast and Professional Ranter. I post blogs about FOSS, music and random stuff I like.">
+<meta property="og:description" content="Ramblings by a Linux Enthusiast and Professional Ranter. I post blogs about FOSS, music and random stuff I like.">
+<meta property="og:site_name" content="flyingcakes">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Home">
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Snehit Sah"},"description":"Ramblings by a Linux Enthusiast and Professional Ranter. I post blogs about FOSS, music and random stuff I like.","@type":"WebSite","headline":"Home","url":"/blog/","name":"flyingcakes","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/48585950">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <!-- <link rel="stylesheet" href="/blog/blog/assets/css/main.css"> -->
+  <!-- <script src="/blog/blog/assets/js/main.js"></script> -->
+  <link rel="stylesheet" href="/blog/assets/css/main.css">
+  <!-- <meta property='og:title' content='Mellow Clamour - Blog | flyingcakes'/> -->
+  <meta property="og:image" content="//raw.githubusercontent.com/flyingcakes85/blog/main/assets/images/banners/og-background.png">
+  <!-- <meta property='og:description' content='Blog posts by flyingcakes'/>
+  <meta property='og:url' content='//flyingcakes85.github.io/blog/'/> -->
+  <script src="/blog/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="/blog/feed.xml" title="flyingcakes">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header site-header-transparent" role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="flyingcakes" src="https://avatars.githubusercontent.com/u/48585950" onerror="this.style.display='none'">
+  flyingcakes
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/blog/about.html">ABOUT</a><a class="page-link" href="/blog/archives.html">ARCHIVES</a><a class="page-link" href="/blog/categories.html">CATEGORIES</a><a class="page-link" href="/blog/">HOME</a><a class="page-link" href="/blog/tags.html">TAGS</a>
+
+
+
+
+<span class="page-link">
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: '',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  (function() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;documentElement.setAttribute("data-header-transparent", "");var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="page-banner">
+    <div class="page-banner-img">
+      <div style="background-image: url(/blog/assets/images/banners/home.jpeg)"></div>
+    </div>
+    <div class="wrapper">
+      <div class="page-banner-inner"><div class="page-banner-default">
+            <h1 class="page-banner-heading">
+              Mellow Clamour
+            </h1>
+            <h2 class="page-banner-subheading">
+              Ramblings by a Linux Enthusiast and Professional Ranter
+            </h2>
+          </div></div>
+    </div>
+  </section><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="articles">
+  
+
+  
+
+
+  <div class="pagination">
+  <!-- Post list links -->
+  <ul class="post-list">
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/tutorial/2021/09/14/git-workshop-notes.html">
+          Git Workshop Notes
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Sep 14, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 39 mins</span>
+      </div>
+      <p class="post-excerpt">
+        About the book
+
+This book is provided in digital format free of cost. You are free to use the content as long as you follow the CC-BY-SA 4.0 license terms.
+
+
+
+Git Workshop Notes © 2021 by Snehit Sah is licensed under Attribution-ShareAlike 4.0 International. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/
+
+An...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#coding">#coding</a><a class="post-tag" href="/blog/tags.html#tutorial">#tutorial</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/rant/2021/09/07/love-alexa.html">
+          Love, Alexa
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Sep 07, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 2 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Sometimes it feels shady to me that all popular voice assistant softwares are female. Google Assistant, Cortana and Alexa. Jarvis was supposed to happen, but it didn’t. Samsung’s Bixby wasn’t making waves and then Samantha happened. cough better not talk about her cough
+
+What I see is that the voice assistant sector is 100% dominated by women. I...
+      </p>
+      <div class="post-tags"><a class="post-tag" href="/blog/tags.html#rant">#rant</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/music/2021/08/31/citp-pop-rabbit-hole.html">
+          City Pop Rabbit Hole Diary
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Aug 31, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Part 1 of a series idk how long it will be
+
+
+  You didn’t click on this video. All the choices you ever made led you here…
+
+
+I won’t deny the fact. Back in July 2020, YouTube started showing me a suggestion video titled “Mariya Takeuchi Plastic Love”. On the thumbnail was a black and white picture of a Japanese lady. I tried to avoid tapping on ...
+      </p>
+      <div class="post-tags"><a class="post-tag" href="/blog/tags.html#music">#music</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/rant/2021/08/13/ethical-to-sell-kidney-for-electronics.html">
+          Ethical to Sell Organs for Electronics?
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Aug 13, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
+      </div>
+      <p class="post-excerpt">
+        Forget the title. I see college kids wasting their hearts, and grown up men wasting their kidneys. So, I don’t care what you do with your organs.
+
+Anyways, the bigger question is that is it ethical to purchase products from companies that have pending accusations of employing forced slave labour and child labour in their manufacturing units?
+
+Do...
+      </p>
+      <div class="post-tags"><a class="post-tag" href="/blog/tags.html#rant">#rant</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/rant/2021/07/21/unethical-software-in-education.html">
+          Use of Unethical Software in Education Sector
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jul 21, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 9 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Introduction
+
+Online education has received a huge boost during the pandemic. Even before the pandemic, many educational institutes were focussing on tech literacy. However, all this ends up promoting unethical software. During the IT boom in past decades, we have seen many corporations rely on selling software to make money. Oftentimes, this so...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#rant">#rant</a><a class="post-tag" href="/blog/tags.html#foss">#foss</a><a class="post-tag" href="/blog/tags.html#education">#education</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/tutorial/2021/07/21/generating-combinations.html">
+          Generating Combinations using C++
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jul 21, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 12 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Introduction
+
+The task for this post is to help you understand how to generate combinations of size r using numbers from 1 to n and then extend that code to generate combinations for any set of objects.
+
+When I say n = 5 and r = 3, it means we are dealing with the first five natural numbers to generate combinations of size 3.
+
+Understanding Comb...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#cpp">#cpp</a><a class="post-tag" href="/blog/tags.html#coding">#coding</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/rant/2021/06/19/words-and-pictures.html">
+          Words &amp; Pictures - Stickers gone wrong
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jun 19, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 17 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Stickers are the new normal - whether you like it or not. I’ve never hated the concept of chat stickers. But the way they are generally used, gets my criticism. Let’s try to trace how it all happened.
+
+If you are not interested in history lessons, you can directly skip to why emojis were successful. I chose to include some history of emojis simp...
+      </p>
+      <div class="post-tags"><a class="post-tag" href="/blog/tags.html#rant">#rant</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/internet/2021/06/11/fastly-outage.html">
+          Fastly CDN Outage
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jun 11, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 2 mins</span>
+      </div>
+      <p class="post-excerpt">
+        June 8 - I deployed a simple webpage on GitHub pages. I shared it on a forum where users will take interest in the site. Very soon, a user shared a screenshot saying that the website was inaccessible. At first I was confused as to why this happened. My site was a simple one page HTML site. No external dependencies or sources (not even fonts).
+
+I...
+      </p>
+      <div class="post-tags"><a class="post-tag" href="/blog/tags.html#internet">#internet</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/foss/2021/06/07/foss-and-profit.html">
+          Foss and Profit
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jun 07, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 6 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Often, when people think of FOSS (Free and Open Source Software), they don’t consider that it can bring monetary benefits. It is a prevailing myth that open source software is not compatible with a successful business model. This is part of the reason why open source tends to remain a hobby for most people and never develops into a “profession”....
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#foss">#foss</a><a class="post-tag" href="/blog/tags.html#general">#general</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/shell/2021/06/01/mpv-yt.html">
+          Playing YouTube Videos with VLC/MPV
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jun 01, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 2 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Here’s a quick tip - you can play YouTube videos from your terminal. I like YouTube because its home to lot of content that otherwise is difficult to find. For example, I get my fill of 80’s City Pop from YouTube.
+
+Now I’m not a fan of bloated websites. The YouTube video player page does lot more than just playing a video. It shows suggestions, ...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#shell">#shell</a><a class="post-tag" href="/blog/tags.html#youtube">#youtube</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/fluff/2021/05/27/midori-is-back.html">
+          Midori Is Back
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> May 27, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 2 mins</span>
+      </div>
+      <p class="post-excerpt">
+        First Write
+
+On January 25th, I started writing a Flutter app to let users practice Japanese Kana. Next day, January 26th is a national holiday in India. I used my morning and some of the afternoon to work on this app. The app came out to be decent, considering it was my first app that I built without following a tutorial.
+
+It just worked, altho...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#midori">#midori</a><a class="post-tag" href="/blog/tags.html#flutter">#flutter</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/typing/2021/05/24/programmer-dvorak.html">
+          Switching to Programmer Dvorak - 3 Months Later
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> May 24, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
+      </div>
+      <p class="post-excerpt">
+        I’ve been trying to learn touch typing for long. Like most people, I practiced on qwerty, but could never actually touch type with confidence.
+
+First time I touch typed, I was in third grade. As a part of the computer club, I had to type out a children’s book into MS Word and then copy paste the text into Windows Movie Maker to make a short vide...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#typing">#typing</a><a class="post-tag" href="/blog/tags.html#dvorak">#dvorak</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/jekyll/2021/05/24/jekyll-webricks-issue.html">
+          Fixing Jekyll/Webrick Issue on Arch Linux
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> May 24, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 2 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Jekyll may not run on Arch Linux because of an error with webrick. This is caused because webrick is not yet compatible with latest version of Ruby (3.0.1).
+
+This is the relevant line from error output.
+
+
+  /blog/vendor/bundle/ruby/3.0.0/gems/jekyll-4.2.0/lib/jekyll/commands/serve/servlet.rb:3:in require: cannot load such file – webrick (LoadErr...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#jekyll">#jekyll</a><a class="post-tag" href="/blog/tags.html#ruby">#ruby</a><a class="post-tag" href="/blog/tags.html#tutorial">#tutorial</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/shell/2021/05/24/aliases.html">
+          Beginner's Guide To Shell Aliases With Examples
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> May 24, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 4 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Introduction
+
+*nix shell is a powerful tool that can help you go about your work easily. At the lowest level, it can be thought of as an interpreted language (like python). However, it can seamlessly run binaries and this power combined with shell grammar, you can write scripts to automate processes on your system.
+
+Shell has this feature where ...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#shell">#shell</a><a class="post-tag" href="/blog/tags.html#tutorial">#tutorial</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/fluff/2021/05/23/hello-world.html">
+          Hello World!
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> May 23, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
+      </div>
+      <p class="post-excerpt">
+        Yo! This is the first post here.
+
+I initially planned to use a minimal theme and modify
+it to my liking. Down the line, I realised how bad my
+web dev skills are. So I switched to using a pre baked
+theme.
+
+I’ll post mostly tech related content. But beware, I
+also like music and am studying Japanese language.
+Expect to see random non tech stuff he...
+      </p>
+      <div class="post-tags"><a class="post-tag" href="/blog/tags.html#hello">#hello</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/website/2021/05/23/follow-this-blog.html">
+          Follow this blog via RSS
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> May 23, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 1 min</span>
+      </div>
+      <p class="post-excerpt">
+        To get the latest posts from this blog delivered right on your phone, so that you don’t have to open this website again and again, you can use RSS feed. Below is the link to this blog’s RSS feed:
+https://flyingcakes85.github.io/blog/feed.xml
+This is also on the footer of every blog post.
+
+Download an app like Aggregator that allows you to follow...
+      </p>
+      <div class="post-tags"><a class="post-tag" href="/blog/tags.html#blog">#blog</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h2 class="post-title">
+<a class="post-link" href="/blog/archlinux/2021/05/23/arch-linux-package-management.html">
+          Arch Linux Package Management
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> May 23, 2021</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 8 mins</span>
+      </div>
+      <p class="post-excerpt">
+        Introduction
+
+Arch Linux comes with a powerful package manager called pacman. Often new users take time to figure out its commands because it does not have the usual ‘obvious’ commands like apt. So here is a short post about pacman commands.
+
+Note : All pacman commands need to be run with superuser privileges. You need to prepend the commands wi...
+      </p>
+      <div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#pacman">#pacman</a><a class="post-tag" href="/blog/tags.html#tutorial">#tutorial</a>
+</div>
+    </li>
+</ul>
+
+  <!-- Pagination links -->
+</div>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="common-list">
+  <ul>
+    <li>
+      <a href="/blog/index.html">
+        All<span>17</span>
+      </a>
+    </li>
+
+    
+      <li>
+        <a href="/blog/categories.html#h-archlinux">
+          archlinux <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-fluff">
+          fluff <span>2</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-foss">
+          foss <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-internet">
+          internet <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-jekyll">
+          jekyll <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-music">
+          music <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-rant">
+          rant <span>4</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-shell">
+          shell <span>2</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-tutorial">
+          tutorial <span>2</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-typing">
+          typing <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/blog/categories.html#h-website">
+          website <span>1</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+      <div>Copyright © 2021 @Snehit Sah</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/blog/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

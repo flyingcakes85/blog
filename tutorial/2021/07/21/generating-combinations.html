@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Generating Combinations using C++ | flyingcakes</title>
+<meta name="generator" content="Jekyll v4.2.1">
+<meta property="og:title" content="Generating Combinations using C++">
+<meta name="author" content="Snehit Sah">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="Introduction">
+<meta property="og:description" content="Introduction">
+<meta property="og:site_name" content="flyingcakes">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-07-21T00:00:00+00:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Generating Combinations using C++">
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Snehit Sah"},"description":"Introduction","@type":"BlogPosting","headline":"Generating Combinations using C++","dateModified":"2021-07-21T00:00:00+00:00","datePublished":"2021-07-21T00:00:00+00:00","url":"/blog/tutorial/2021/07/21/generating-combinations.html","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/tutorial/2021/07/21/generating-combinations.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/48585950">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <!-- <link rel="stylesheet" href="/blog/blog/assets/css/main.css"> -->
+  <!-- <script src="/blog/blog/assets/js/main.js"></script> -->
+  <link rel="stylesheet" href="/blog/assets/css/main.css">
+  <!-- <meta property='og:title' content='Mellow Clamour - Blog | flyingcakes'/> -->
+  <meta property="og:image" content="//raw.githubusercontent.com/flyingcakes85/blog/main/assets/images/banners/og-background.png">
+  <!-- <meta property='og:description' content='Blog posts by flyingcakes'/>
+  <meta property='og:url' content='//flyingcakes85.github.io/blog/'/> -->
+  <script src="/blog/assets/js/main.js"></script><link type="application/atom+xml" rel="alternate" href="/blog/feed.xml" title="flyingcakes">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header " role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/">
+  <img class="site-favicon" title="flyingcakes" src="https://avatars.githubusercontent.com/u/48585950" onerror="this.style.display='none'">
+  flyingcakes
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/blog/about.html">ABOUT</a><a class="page-link" href="/blog/archives.html">ARCHIVES</a><a class="page-link" href="/blog/categories.html">CATEGORIES</a><a class="page-link" href="/blog/">HOME</a><a class="page-link" href="/blog/tags.html">TAGS</a>
+
+
+
+
+<span class="page-link">
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="fr">
+          
+          <img src="https://cdn.countryflags.com/thumbs/france/flag-400.png" title="French">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="zh-CN">
+          
+          <img src="https://cdn.countryflags.com/thumbs/china/flag-400.png" title="Chinese(Simple)">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ja">
+          
+          <img src="https://cdn.countryflags.com/thumbs/japan/flag-400.png" title="Japanese">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ru">
+          
+          <img src="https://cdn.countryflags.com/thumbs/russia/flag-400.png" title="Russian">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: '',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  (function() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('auto' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Generating Combinations using C++</h1>
+  <h3 class="post-subtitle"><span class="readable-background">Code and explanation</span></h3>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2021-07-21T00:00:00+00:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jul 21, 2021
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 12 mins</span>
+  </p>
+<div class="post-tags">
+<a class="post-tag" href="/blog/tags.html#cpp">#cpp</a><a class="post-tag" href="/blog/tags.html#coding">#coding</a>
+</div></header>
+<blockquote>
+      <h3>This site has moved to <a href="https://snehit.dev">snehit.dev</a>
+</h3>
+</blockquote>
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="introduction">Introduction</h2>
+
+<p>The task for this post is to help you understand how to generate combinations of size <code class="language-plaintext highlighter-rouge">r</code> using numbers from 1 to <code class="language-plaintext highlighter-rouge">n</code> and then extend that code to generate combinations for any set of objects.</p>
+
+<p>When I say <code class="language-plaintext highlighter-rouge">n = 5</code> and <code class="language-plaintext highlighter-rouge">r = 3</code>, it means we are dealing with the first five natural numbers to generate combinations of size 3.</p>
+
+<h2 id="understanding-combinations">Understanding Combinations</h2>
+
+<p>We shall be generating combinations in lexicographic order. Also, since combination does not concern itself with the relative order the chosen elements are arranged in, we shall always be having our chosen elements in lexicographical order too.</p>
+
+<p>The first combination we choose has to be the first <code class="language-plaintext highlighter-rouge">r</code> elements when the <code class="language-plaintext highlighter-rouge">n</code> objects are sorted. This is because it gives us the lexicographically smallest word with the individual elements themselves in lexicographical order too. (basically, the if all combinations were arranged in a dictionary, then we want to start with the first one) So, in case of <code class="language-plaintext highlighter-rouge">n = 5</code> and <code class="language-plaintext highlighter-rouge">r = 3</code>, the first combination is <code class="language-plaintext highlighter-rouge">123</code>.</p>
+
+<p>Now, think what should be the last combination. I propose that it will be the last <code class="language-plaintext highlighter-rouge">r</code> elements when the <code class="language-plaintext highlighter-rouge">n</code> objects are sorted. Why should it be? When we are generating combinations in lexicographical order, each combination should have a greater position in a dictionary. So the last combination should have the greatest elements from given objects. The chosen elements themselves should also be in lexicographical order.</p>
+
+<p>The knowledge of last combination also gives us an interesting observation. The maximum value at a given index <code class="language-plaintext highlighter-rouge">idx</code> can be <code class="language-plaintext highlighter-rouge">n - r + idx + 1</code>, where index starts from zero. This is necessary to maintain the dictionary order of individual elements in a combination.</p>
+
+<p>Take for example the case of <code class="language-plaintext highlighter-rouge">n = 5</code> and <code class="language-plaintext highlighter-rouge">r = 3</code>. If we position the number 5 at index 1, then the combination will look like <code class="language-plaintext highlighter-rouge">X5_</code>, where <code class="language-plaintext highlighter-rouge">X</code> may be any number lower than 5. The blank at third position should have a number greater than 5 if we are to maintain dictionary order. But placing 6 there is not possible since we only have 5 elements. According to the formula <code class="language-plaintext highlighter-rouge">n - r + idx + 1</code>, the maximum value at third position (or second index) can be 4.</p>
+
+<p>Another thing to note is that every time we increment a position, we need to set the elements to its right as one more than its left neighbor. This will be clear when I discuss the code.</p>
+
+<h2 id="formal-algorithm">Formal Algorithm</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fun next_combination :
+    parameters: integer n - max objects available
+                integer r - size of chosen set
+                array curr_comb - denoting
+                  current combination of r elements
+                integer idx - index to increment
+
+    return:     true if next combination exists
+                  curr_comb is updated in place
+                  with the next combination
+                false if last combination is provided
+    ____
+
+    if idx &lt; 0 :
+        return false
+
+    if curr_comb[idx] &lt; n - r + idx + 1 :
+        ++curr_comb[idx]
+        for i in (idx + 1, n - 1):
+            curr_comb[i] = curr_comb[i - 1]
+        return true
+
+    else :
+        return next_combinaition(n, r, curr_comb, idx - 1)
+</code></pre></div></div>
+
+<p>For this function to work, it should be called with <code class="language-plaintext highlighter-rouge">idx</code> as <code class="language-plaintext highlighter-rouge">r - 1</code>, since we want to start incrementing from last index. This code first check if the index to increment is less than 0. If yes, it means that the next combination does not exist, or in other words, we are already at last combination.</p>
+
+<p>Then it checks if the value at <code class="language-plaintext highlighter-rouge">curr_comb[idx]</code> is less than its maximum permissible value. If yes, then it increments the value at <code class="language-plaintext highlighter-rouge">idx</code> and sets its following elements as one plus their left neighbor.</p>
+
+<p>If the value it <code class="language-plaintext highlighter-rouge">idx</code> is already the maximum allowed, then the function recursively calls itself with same parameters, but <code class="language-plaintext highlighter-rouge">idx</code> decremented by one. This continues till either the next combination is found, or the function is called with <code class="language-plaintext highlighter-rouge">idx</code> less than zero, in that case next combination does not exist.</p>
+
+<p>The function is recursive, so it must pass the sanity test. Does it stop recursing at some point? Each recursive call decrements <code class="language-plaintext highlighter-rouge">idx</code> by 1. Eventually, <code class="language-plaintext highlighter-rouge">idx</code> will be less than zero, in which case the function will no longer recurse. So, it is guaranteed that the function does not recurse indefinitely.</p>
+
+<h2 id="c-code">C++ Code</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">increment_neighbor</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">arr</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">_next_combination</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">curr_comb</span><span class="p">,</span>
+                       <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">curr_comb</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="n">r</span> <span class="o">+</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">++</span><span class="n">curr_comb</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+        <span class="n">increment_neighbor</span><span class="p">(</span><span class="n">curr_comb</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">_next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">curr_comb</span><span class="p">,</span> <span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">next_combination</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">curr_comb</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">_next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">curr_comb</span><span class="p">,</span> <span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Following are the required includes:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;algorithm&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+</span></code></pre></div></div>
+
+<p>This code is a direct implementation of the algorithm I shared above. The part that increments the neighbors by 1 has been extracted to its own function called <code class="language-plaintext highlighter-rouge">increment_neighbor</code>.</p>
+
+<p>You might ask, why are there two functions named <code class="language-plaintext highlighter-rouge">next_combination</code>, one with a preceding underscore. The goal of a good interface is to be as simple as possible. In the recursive function, we initially call it with <code class="language-plaintext highlighter-rouge">idx = r - 1</code>. For a programmer reusing our function, it may be tedious to pass the fourth parameter, when it can be simply deduced from the third second one.</p>
+
+<p>So, we create a helper function that takes the three required parameters and calls the original recursive function with fourth parameter set.</p>
+
+<h2 id="using-our-function">Using Our Function</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// take input for n and r</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter r individual elements (integers) of"</span>
+                 <span class="s">" current combination separated by spaces</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Next combination is</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numbers</span><span class="p">)</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"The input is already the final combination</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This code will simply check if <code class="language-plaintext highlighter-rouge">next_combination</code> return true or false. If true, it means that the next combination was found and it is printed. Otherwise, inform user that we are already at last combination.</p>
+
+<p>To generate all combination, use the following snippet.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+<span class="k">do</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numbers</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">numbers</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="running-on-custom-elements">Running on Custom Elements</h2>
+
+<p>Lets say the user does not want to generate combination of numbers, but instead wants to generate combinations of a custom set of objects. The object can be anything - character, string, struct etc.</p>
+
+<p>The basic idea is to store the <code class="language-plaintext highlighter-rouge">n</code> individual elements in an array. Generate the combination on numbers from 1 to <code class="language-plaintext highlighter-rouge">n</code> as we did earlier. But while printing the combination, instead of number, print the element at that position.</p>
+
+<p>As an example, here is the snippet for generating combinations of words.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">words</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter n individual elements (words)"</span>
+                <span class="s">" separated by spaces</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">words</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+
+<span class="k">do</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numbers</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">word</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">numbers</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="memoization">Memoization</h2>
+
+<p>Recursive algorithms can be made much faster when using memoization. Do we need memoization?</p>
+
+<p>Memoization helps when the function is called with the same parameters multiple times. By storing intermediate results, it does not need to do computations if the parameters provided are not new.</p>
+
+<p>In our function, <code class="language-plaintext highlighter-rouge">n</code> and <code class="language-plaintext highlighter-rouge">r</code> are constant throughout. <code class="language-plaintext highlighter-rouge">idx</code> changes its value, but it does so in a very small range. So there seems to be lot af scope for repetition of parameters. However, the parameter <code class="language-plaintext highlighter-rouge">curr_comb</code> does not repeat. Each combination is different. When recursing with the same combination, then the value of <code class="language-plaintext highlighter-rouge">idx</code> is guaranteed to change.</p>
+
+<p>So we need not use memoization, as the intermediate values are never reused.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>That was the end of this post. Hope you learned something new. You can always shoot me feedback on my email, which is visible on my GitHub profile once you log in.</p>
+
+<p>Follow me on GitHub : <a href="https://github.com/flyingcakes85">flyingcakes85</a></p>
+
+<p>You can receive latest updates from this blog as an RSS feed. See <a href="/blog/website/2021/05/23/follow-this-blog.html">Follow this blog via RSS</a>.</p>
+
+
+    </div>
+
+</article>
+<a href="https://github.com/flyingcakes85"> Follow Me </a><div class="post-nav">
+<a class="previous" href="/blog/rant/2021/06/19/words-and-pictures.html" title="Words &amp; Pictures - Stickers gone wrong">Words &amp; Pictures - Stickers gone...</a><a class="next" href="/blog/rant/2021/07/21/unethical-software-in-education.html" title="Use of Unethical Software in Education Sector">Use of Unethical Software in Education...</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/blog/website/2021/05/23/follow-this-blog.html" title="Use of Unethical Software in Education Sector">Follow this blog via RSS</a></li>
+<li><a class="post-link" href="/blog/rant/2021/07/21/unethical-software-in-education.html" title="Use of Unethical Software in Education Sector">Use of Unethical Software in Education Sector</a></li>
+<li><a class="post-link" href="/blog/foss/2021/06/07/foss-and-profit.html" title="Use of Unethical Software in Education Sector">Foss and Profit</a></li>
+<li><a class="post-link" href="/blog/shell/2021/06/01/mpv-yt.html" title="Use of Unethical Software in Education Sector">Playing YouTube Videos with VLC/MPV</a></li>
+</ul>
+    </div>
+<div class="post-comments"></div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --><style type="text/css" media="screen">
+.post-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+</style>
+
+<div class="post-menu">
+  <div class="post-menu-title">TOC</div>
+  <div class="post-menu-content"></div>
+</div>
+
+<script>
+  function generateContent() {
+    var menu = document.querySelector(".post-menu");
+    var menuContent =  menu.querySelector(".post-menu-content");
+    var headings = document.querySelector(".post-content").querySelectorAll("h2, h3, h4, h5, h6");
+
+    // Hide menu when no headings
+    if (headings.length === 0) {
+      return menu.style.display = "none";
+    }
+
+    // Generate post menu
+    var menuHTML = '';
+    for (var i = 0; i < headings.length; i++) {
+      var h = headings[i];
+      menuHTML += (
+        '<li class="h-' + h.tagName.toLowerCase() + '">'
+        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+    }
+
+    menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
+
+    // The header element
+    var header = document.querySelector('header.site-header');
+
+    function doMenuCollapse(index, over_items) {
+      var items = menuContent.firstChild.children;
+
+      if (over_items == undefined) {
+        over_items = 20;
+      }
+
+      if (items.length < over_items) {
+        return;
+      }
+
+      var activeItem = items[index];
+      var beginItem = activeItem
+      var endItem = activeItem
+      var beginIndex = index;
+      var endIndex = index + 1;
+      while (beginIndex >= 0
+        && !items[beginIndex].classList.contains('h-h2')) {
+        beginIndex -= 1;
+      }
+      while (endIndex < items.length
+        && !items[endIndex].classList.contains('h-h2')) {
+        endIndex += 1;
+      }
+      for (var i = 0; i < beginIndex; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+      for (var i = beginIndex + 1; i < endIndex; i++) {
+        item = items[i]
+        // if (!item.classList.contains('h-h2')) {
+          item.style.display = '';
+        // }
+      }
+      for (var i = endIndex; i < items.length; i++) {
+        item = items[i]
+        if (!item.classList.contains('h-h2')) {
+          item.style.display = 'none';
+        }
+      }
+    }
+
+    // Init menu collapsed
+    doMenuCollapse(-1);
+
+    // Active the menu item
+    window.addEventListener('scroll', function (event) {
+      var lastActive = menuContent.querySelector('.active');
+      var changed = true;
+      var activeIndex = -1;
+      for (var i = headings.length - 1; i >= 0; i--) {
+        var h = headings[i];
+        var headingRect = h.getBoundingClientRect();
+        var headerRect = header.getBoundingClientRect();
+        var headerTop = Math.floor(headerRect.top);
+        var headerHeight = Math.floor(headerRect.height);
+        var headerHeight = headerTop + headerHeight + 20;
+        if (headingRect.top <= headerHeight) {
+          var id = 'h-' + h.getAttribute('id');
+          var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          var curActive = a.parentNode;
+          if (curActive) {
+            curActive.classList.add('active');
+            activeIndex = i;
+          }
+          if (lastActive == curActive) {
+            changed = false;
+          }
+          break;
+        }
+      }
+      if (changed) {
+        if (lastActive) {
+          lastActive.classList.remove('active');
+        }
+        doMenuCollapse(activeIndex);
+      }
+      event.preventDefault();
+    });
+  }
+  generateContent();
+</script>
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+      <div>Copyright © 2021 @Snehit Sah</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/blog/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

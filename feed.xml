@@ -1,0 +1,1278 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2022-01-31T07:50:44+00:00</updated><id>/blog/feed.xml</id><title type="html">flyingcakes</title><subtitle>Ramblings by a Linux Enthusiast and Professional Ranter. I post blogs about FOSS, music and random stuff I like.</subtitle><author><name>Snehit Sah</name></author><entry><title type="html">Git Workshop Notes</title><link href="/blog/tutorial/2021/09/14/git-workshop-notes.html" rel="alternate" type="text/html" title="Git Workshop Notes" /><published>2021-09-14T00:00:00+00:00</published><updated>2021-09-14T00:00:00+00:00</updated><id>/blog/tutorial/2021/09/14/git-workshop-notes</id><content type="html" xml:base="/blog/tutorial/2021/09/14/git-workshop-notes.html"><![CDATA[<h2 id="about-the-book">About the book</h2>
+
+<p>This book is provided in digital format free of cost. You are free to use the content as long as you follow the CC-BY-SA 4.0 license terms.</p>
+
+<p><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png" width="100" /></p>
+
+<p><strong>Git Workshop Notes © 2021 by <a href="https://github.com/flyingcakes85">Snehit Sah</a> is licensed under Attribution-ShareAlike 4.0 International. To view a copy of this license, visit <a href="http://creativecommons.org/licenses/by-sa/4.0/">http://creativecommons.org/licenses/by-sa/4.0/</a></strong></p>
+
+<p>Any suggestions, typo or errors can be mailed to <a href="mailto:snehitsah@protonmail.com">snehitsah@protonmail.com</a>.</p>
+
+<h2 id="introduction-to-git">Introduction to Git</h2>
+
+<h3 id="basics">Basics</h3>
+
+<p>Git is an open source distributed version control system.</p>
+
+<p>VCS (version control system) refers to a system which can keep track of all the code that is added to a project. Often, you want the history of the project to be preserved for various reasons. Say, the latest version of your software has major bugs, and as a result, you want to rollback some changes to an earlier date. This will only be possible if your code base is version controlled.</p>
+
+<p>Git is also called <em>distributed</em> because the code base isn’t stored on one server. Instead, each of the developers working on the project can have their own copies of the project. They can make changes independently on their machines, and then request for their changes to be merged back into the original software.</p>
+
+<h3 id="why-git">Why Git?</h3>
+
+<p>Git is one of the topics covered in MIT’s Missing Semester. This course covers multiple useful topics that are oftenly not formally taught, but they can be very useful to students.</p>
+
+<p>Git is a vast and powerful software, but <strong>you don’t need to be an expert at Git.</strong> You just need to know enought commands to maintain your repository and contribute to other repositories. Rest of the stuff, you can learn as you go.</p>
+
+<p>There are two things that I believe are important for open source softwares, and Git helps you realize them.</p>
+
+<ol>
+  <li>Integrity of history : The project history is an important data that lets users trust the software. Anyone can see how the softawre developed or when the different components were added. It also lets people track new changes, so that external contributors can focus more on testing new code and also restrict themselves to auditing new code.</li>
+  <li>Long term maintainability : With git, you can associate commits with a descriptive commit message. This lets future maintainers know more about the code. Commits also carry author email - which can be useful in case a maintainer needs to contact a past maintainer to discuss some legacy code.</li>
+</ol>
+
+<h3 id="my-approach-to-git">My approach to Git</h3>
+
+<p>I believe many Git workshops get the direction wrong. Their focus is on GitHub; and git is shown as a side utility. I call that the “easy way”. Instructor will create a repository. They’ll ask viewers to fork the repo, make some minor change via GitHub web interface, and create pull request. Such workshops end with a “grand message” that the viewer made their first PR. Its cool and all, but its severly lacking in some important concepts.</p>
+
+<p>I instead prefer bringing Git to the center stage. Git is very powerful, and knowing how to work with the command line utility is going to serve you quite far on your journey. GitHub has a cool self explanatory UI - do you really need to forum more over learning that as compared to a powerful command line utility?</p>
+
+<p>Another minor complaint with having all focus on GitHub is that new students fail to appreciate the existence of other git repository hosting services. Truth is that once you learn Git, you can work with any hosting service.</p>
+
+<h3 id="a-note-about-git-gui-programs">A note about Git GUI programs</h3>
+
+<p>I’m not against GUI programs altogether. Once in a blue moon, even I fall back to using GUI. Hovever, while learning its better to use command line client only. That way you know what is happening and it stregthens your understanding.</p>
+
+<p>PS. Recorded lectures from The Missing Semester are free to view. You can check out their website here : <a href="https://missing.csail.mit.edu/">https://missing.csail.mit.edu/</a>.</p>
+
+<h2 id="starting-with-git">Starting with Git</h2>
+
+<p>We already know that Git tracks your project. So, every time you change a file and commit it to the project (basically asking Git to mark a milestone you can return to later, if needed), Git is recording the <strong>changes</strong> you made to each file. Note that complete files are not duplicated. Only the changes you made to each file are stored by Git. It is intelligent enough to create the complete file by knowing the changes you made all through.</p>
+
+<h3 id="installing">Installing</h3>
+
+<p>Downloads are offered at git-scm website. Windows users should download installer from the website. Users on *nix systems can use their package manager for the same.</p>
+
+<p><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+
+<p>To check if git is woring, open a terminal, and run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>This should output the version name. An example output, on my system:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git version 2.33.0
+</code></pre></div></div>
+
+<p>I’m starting with shell commands now. Git commands should work on all systems, but other commands like <code class="language-plaintext highlighter-rouge">echo</code> will probably work only on *nix based systems. May also in Git Bash on Windows.</p>
+
+<h3 id="setting-up-git">Setting up Git</h3>
+
+<p>Git needs some info to create commits. At the very least, it needs to know your name and email. Run the following commands to set them up.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"email@domain.com"</span>
+</code></pre></div></div>
+
+<p>You can verify them too. I have shown the commands with their outputs.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired ~]<span class="nv">$ </span>git config <span class="nt">--global</span> user.name
+Snehit Sah
+<span class="o">[</span>snehit@wired ~]<span class="nv">$ </span>git config <span class="nt">--global</span> user.email
+snehitsah@protonmail.com
+</code></pre></div></div>
+
+<p>You may also change the default init branch to something other than <code class="language-plaintext highlighter-rouge">master</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config <span class="nt">--global</span> init.defaultBranch main
+</code></pre></div></div>
+
+<p>You can replace <code class="language-plaintext highlighter-rouge">main</code> with any other name you like. This step is not necessary. Do this only if you don’t want your default branches in new repositories to be named <code class="language-plaintext highlighter-rouge">master</code>.</p>
+
+<h3 id="initializing-a-repository">Initializing a repository</h3>
+
+<p>Create a new folder. Change working directory to this new folder. And then initialize a new repository.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>my-project
+<span class="nb">cd </span>my-project
+git init
+</code></pre></div></div>
+
+<p>Now, you can open your code editor in this folder. Any files you add here will automatically be noticed by git. I run the following command to launch VS Code in my repo.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>code <span class="nb">.</span>
+</code></pre></div></div>
+
+<h3 id="adding-files">Adding files</h3>
+
+<p>You can either create files via a text editor like VS Code, or even the classic notepad, or you can use a terminal utility to create files. I’ll use <code class="language-plaintext highlighter-rouge">echo</code> to create a simple python script.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print('Hello World')"</span> <span class="o">&gt;</span> test.py
+</code></pre></div></div>
+
+<p>It creates a file <code class="language-plaintext highlighter-rouge">test.py</code> with the code <code class="language-plaintext highlighter-rouge">print('Hello World')</code>.</p>
+
+<p>Now, lets check if git notices this file or not. Run <code class="language-plaintext highlighter-rouge">git status</code> in the same folder, and you should get such an ouput.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to include <span class="k">in </span>what will be committed<span class="o">)</span>
+	test.py
+
+nothing added to commit but untracked files present
+<span class="o">(</span>use <span class="s2">"git add"</span> to track<span class="o">)</span>
+</code></pre></div></div>
+
+<p>There is quite some information here. The first line tells we are on this branch called <code class="language-plaintext highlighter-rouge">main</code>. Don’t worry if you don’t know what branches are. I’ll discuss it soon.</p>
+
+<p>Next is a section called <code class="language-plaintext highlighter-rouge">Untracked files</code>. This lists the file that are there in folder, but git isn’t yet tracking them for changes. Our file, <code class="language-plaintext highlighter-rouge">test.py</code> is listed there. Git is also telling us a command to start tracking them… So lets move on to that.</p>
+
+<h3 id="adding-files-to-staging">Adding files to staging</h3>
+
+<p>Run this command to start tracking <code class="language-plaintext highlighter-rouge">test.py</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add test.py
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">git add</code> serves two purposes. If a file is untracked, then it will start tracking it and add to staging area. If a file is already being tracked, but has some changes, then git will simply just add the file to staging area.</p>
+
+<p>What is the staging area, you ask? Its the files whose change will be recorded and stored when you run git commit the next time.</p>
+
+<p>Before we move on to the next command, let’s see the output of <code class="language-plaintext highlighter-rouge">git status</code> after running the above <code class="language-plaintext highlighter-rouge">git add</code> command.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">"git rm --cached &lt;file&gt;..."</span> to unstage<span class="o">)</span>
+	new file:   test.py
+</code></pre></div></div>
+
+<p>Our file <code class="language-plaintext highlighter-rouge">test.py</code> is now listed under a different section - <code class="language-plaintext highlighter-rouge">Changes to be committed</code>.</p>
+
+<p>If you have multiple files in a project, you can simply use the following command to add all changed and untracked files.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nt">-A</span>
+</code></pre></div></div>
+
+<p>Be careful while running this. It may possibly add any extra files you created in the repository which you actually don’t want in commits.</p>
+
+<h3 id="committing-changes">Committing changes</h3>
+
+<p>Once you have files in the staging area, you <code class="language-plaintext highlighter-rouge">commit</code>. This is an important step. Note that commits are the mechanism by which git is able to preserve history. You can see commits as milestones, which anyone can check out.</p>
+
+<p>Commits are acompained by at least a title, and an optional message. Try to keep the message/title short, yet informative. For larger projects, it becomes necessary to have informative commit messages so that reviewers know what the commit does.</p>
+
+<p>Run this in the terminal</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit
+</code></pre></div></div>
+
+<p>This should land you in a text editor, usually vi(m), where you add commit title and message. This is what you should see.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   test.py
+#
+</code></pre></div></div>
+
+<p>This is giving the output you saw with <code class="language-plaintext highlighter-rouge">git status</code> one more time, so that you can be sure that you are committing all the files you want. On the first line, give a commit title. Leave a blank line, and from the third line, you can write the description.</p>
+
+<p>Here is an example. Note that I did not remove the lines that were already there. They are starting with a ‘#’ and git will ignore them.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Add test.py with basic code
+
+New beginnings - This file prints
+Hello World. Tested with Python3.7
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   test.py
+#
+</code></pre></div></div>
+
+<p>Save and close the file. Git should create a commit now, and print some message in the terminal.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git commit
+<span class="o">[</span>main <span class="o">(</span>root-commit<span class="o">)</span> 5de911e] Add test.py with basic code
+ 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
+ create mode 100644 test.py
+</code></pre></div></div>
+
+<p>Its called <code class="language-plaintext highlighter-rouge">root-commit</code> because its the first commit in this repo. There is a fancy alphanumeric string following it. <code class="language-plaintext highlighter-rouge">5de911e</code> - these are the first few characters of the commit hash. Commit hash is a 20 character alphanumeric SHA1 hash that is generated using data from past commit, changes in current commit, timestamp, author info etc. These hashes are git’s primary mechanism to detect any changes to past code.</p>
+
+<p>If you don’t want to add a desription to your commit - maybe because the change is very minor and self explanatory - you can use the shorthand to just add a commit title.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Fix typo in code"</span>
+</code></pre></div></div>
+
+<h3 id="checking-logs">Checking logs</h3>
+
+<p>Since we have made a commit, its a permanent part of the repository now. You can see logs to verify the commit is there.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log
+commit 5de911e18db087d3c3a57031dab49637e316608f <span class="o">(</span>HEAD -&gt; main<span class="o">)</span>
+Author: Snehit Sah &lt;snehitsah@protonmail.com&gt;
+Date:   Thu Sep 9 12:12:00 2021 +0530
+
+    Add test.py with basic code
+
+    New beginnings - This file prints
+    Hello World. Tested with Python3.7
+</code></pre></div></div>
+
+<p>This gives us information about the commit we just made. As we make more commits, the log will grow lager. In the first line, you have the complete commit hash. (in the last section, we only saw first 7 characters). We also have information about the author, commit date/time and message. If you are not interested in author info, and just want to see commit messages, we can use the shorter format with <code class="language-plaintext highlighter-rouge">git log --oneline</code></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log <span class="nt">--oneline</span>
+5de911e <span class="o">(</span>HEAD -&gt; main<span class="o">)</span> Add test.py with basic code
+</code></pre></div></div>
+
+<p>This is more useful to know how the project grew, since it omits author info, dates and commit description.</p>
+
+<h3 id="amending-last-commit">Amending last commit</h3>
+
+<p>Sometimes it happens that you forgot to add a file to staging before commit, or there’s a tiny change you need to make, which should have been a part of the last commit. In such situations, git provides an easy way to amend last commit. Assuming you made a commit, do some edits to code. Then do <code class="language-plaintext highlighter-rouge">git add</code> as usual. While committing, include the <code class="language-plaintext highlighter-rouge">--amend</code> flag to instruct git to update the last commit instead of creating a new one.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">--amend</span>
+</code></pre></div></div>
+
+<p>If you look at the log, you will see the commit hash changes. This signifies that <em>some</em> changes were made. Later on when you upload your code on the internet, these hashes will allow other collaborators ensure they have the same code as you. If you edit a past comment and upload it, then other collaborators will get to know about it. In general, its not a good idea to amend/edit commits if you have published them onto the web. Do this only if the commits to be edited are only on your local machine. One exception is that when you accidently commited and published sesnsitive info, like access keys, password etc.</p>
+
+<p>PS. In case you are wondering if other collaborators will match commit hash letter by letter to verify integrity - the answer is an obvious “no!”. Git does that automatically.</p>
+
+<h3 id="recap">Recap</h3>
+
+<p>Try creating another file, and make some changes to <code class="language-plaintext highlighter-rouge">test.py</code>. Check status. Add both files to staging, and then make a commit. Check log to verify the commit was made.</p>
+
+<p>You can use any text editor for the task. I’ll quickly give the relevant shell commands for those who want to follow along in the shell.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print('New file')"</span> <span class="o">&gt;</span> new_file.py
+<span class="nb">echo</span> <span class="s2">"print('Another line')"</span> <span class="o">&gt;&gt;</span> test.py
+</code></pre></div></div>
+
+<p>Output of <code class="language-plaintext highlighter-rouge">git status</code> at this stage.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git status
+On branch main
+Changes not staged <span class="k">for </span>commit:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">"git restore &lt;file&gt;..."</span> to discard changes <span class="k">in </span>working directory<span class="o">)</span>
+	modified:   test.py
+
+Untracked files:
+  <span class="o">(</span>use <span class="s2">"git add &lt;file&gt;..."</span> to include <span class="k">in </span>what will be committed<span class="o">)</span>
+	new_file.py
+
+no changes added to commit <span class="o">(</span>use <span class="s2">"git add"</span> and/or <span class="s2">"git commit -a"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>Continuing on to add files and commit them.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add new_file.py
+git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Update test.py and add new code"</span>
+</code></pre></div></div>
+
+<p>Ouptut of <code class="language-plaintext highlighter-rouge">git log</code></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log
+commit 9c804c05610ca86f720abda62b297e9d2e6a725f <span class="o">(</span>HEAD -&gt; main<span class="o">)</span>
+Author: Snehit Sah &lt;snehitsah@protonmail.com&gt;
+Date:   Thu Sep 9 12:34:49 2021 +0530
+
+    Update test.py and add new code
+
+commit 5de911e18db087d3c3a57031dab49637e316608f
+Author: Snehit Sah &lt;snehitsah@protonmail.com&gt;
+Date:   Thu Sep 9 12:12:00 2021 +0530
+
+    Add test.py with basic code
+
+    New beginnings - This file prints
+    Hello World. Tested with Python3.7
+</code></pre></div></div>
+
+<h3 id="using-gitignore-file">Using gitignore file</h3>
+
+<p>You may have some files in your project directory which you don’t want git to track. For example, upon testing C/C++ apps, you have a binary that shouldn’t be there with the code. To prevent them from accidently being committed, you can add them to gitignore file. You’ll first have to create a file named <code class="language-plaintext highlighter-rouge">.gitignore</code> in the root of your repo folder. Then you list the file paths that should not be tracked.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"*/a.out"</span> <span class="o">&gt;&gt;</span> .gitignore
+</code></pre></div></div>
+
+<p>This will prevent git from tracking any file with name <code class="language-plaintext highlighter-rouge">a.out</code>. The aesterix at beginning is a wildcard that will select any path where <code class="language-plaintext highlighter-rouge">a.out</code> exists. To add folders, append a forward slash after path.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"build/"</span> <span class="o">&gt;&gt;</span> .gitignore
+</code></pre></div></div>
+
+<h2 id="working-with-remotes">Working with remotes</h2>
+
+<p>Up until now, we have been working on our local system. Git however is built to facilitate collaboration of multiple developers. To let other developers work on our code, we need to publish this code to a website.</p>
+
+<p>Now, you can upload your code anywhere. Zip it up and put on cloud storage like Google Drive or Dropbox. Or send the files as an attachment to your friend. There are many ways, but they won’t preserve the commit history and messages (unless you include the hidden <code class="language-plaintext highlighter-rouge">.git</code> folder). Moreover, it will be difficult to use collaboration features of git.</p>
+
+<p>It is much better to use a hosting service that is specially made for Git repositories. One of them is GitHub and thats the one which we will be using for this tutorial.</p>
+
+<p>Head over to their sign up page and create an account if not done already.
+<a href="https://github.com/join">https://github.com/join</a></p>
+
+<h3 id="connecting-a-remote-repository">Connecting a remote repository</h3>
+
+<p>Create a new GitHub repository at <a href="https://github.com/new">https://github.com/new</a>. Give it a name. Description is optional. Make sure that all checkboxes under initialization are unchecked.</p>
+
+<p><img src="/blog/assets/images/post/github-new-repo.png" alt="" title="GitHub New Repo" /></p>
+
+<p>Create the repository. On the page you are redirected to, you have an https link under <em>Quick setup</em>.</p>
+
+<p>Link is of the form <code class="language-plaintext highlighter-rouge">https://github.com/&lt;username&gt;/&lt;repo-name&gt;.git</code>. Copy this link.</p>
+
+<p>In your terminal, you will now tell git to use this remote link for publishing on the internet. You use the <code class="language-plaintext highlighter-rouge">git remote add</code> command to do this.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/flyingcakes85/my-project.git
+</code></pre></div></div>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">origin</code> specifies the remote name. You can give it any name. <code class="language-plaintext highlighter-rouge">origin</code> is a common name for the primary remote location. Make sure you use your repo link in the command.</p>
+
+<p>Before you push your branch, you first need an access token. Think of it as an alternate password to your account. For security reasons, using your actual password is not supported on GitHub. SSH is the easier way, but setting it up is out of the scope of this tutorial.</p>
+
+<p>Head over to this link : <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a>. Click on “Generate new token”. It may ask your password again.</p>
+
+<p>Add a note to identify the token later. Check the first box which says “repo”. It should automatically check the 5 boxes under it. Scroll down and click “Generate token”. You will be redirected back to the token page where you can see your newly created token. Copy it to a file and store it somewhere you can access. While pushing form the terminal, you will use this token instead of your password.</p>
+
+<p>Finally, you can push your branch to the remote.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push <span class="nt">-u</span> origin main
+</code></pre></div></div>
+
+<p>It will ask your username and password. Enter your GitHub username only (not the complete link) and for password, use the token we just generated. Now on in this tutorial, I won’t mention that you have to use this token, so keep it in mind.</p>
+
+<p><code class="language-plaintext highlighter-rouge">-u</code> is a shorthand for <code class="language-plaintext highlighter-rouge">--set-upstream</code>. It tells git that <code class="language-plaintext highlighter-rouge">origin</code> is the upstream for <code class="language-plaintext highlighter-rouge">main</code> i.e. the remote location where the <code class="language-plaintext highlighter-rouge">main</code> branch should be published. You might be wondering why we need to tell this? Git can work with multiple remotes, and often, different branches need to be published to different remotes. For any future push on this branch, you don’t need to mention upstream, and simply running <code class="language-plaintext highlighter-rouge">git push</code> should do tho work for you.</p>
+
+<h3 id="pulling-remote-changes">Pulling remote changes</h3>
+
+<p>Say someone else contributed to your repository. The changes they contributed will be stored on GitHub (or whichever remote you are using). You need to get the changes down on your machine. <code class="language-plaintext highlighter-rouge">git pull</code> is the command we use to get changes from remote to our local system.</p>
+
+<p>Since we may not be able to find a contributor right away, so let us make changes ourselves on the remote. GitHub web interface allows making changes to code without needing to have repository on your local system. Head over to the repository on your GitHub account.</p>
+
+<p>You will be able to see the files you added - <code class="language-plaintext highlighter-rouge">test.py</code> and <code class="language-plaintext highlighter-rouge">new_file.py</code>. Click on any of them, let’s say <code class="language-plaintext highlighter-rouge">test.py</code>. You will see the code you wrote. On top right of the code, you can see a pencil icon that lets you make changes to file.</p>
+
+<p><img src="/blog/assets/images/post/file-edit.png" alt="" title="file-edit" /></p>
+
+<p>Add a some code and click “Commit changes”.</p>
+
+<p><img src="/blog/assets/images/post/commit-web.png" alt="" title="commit web" /></p>
+
+<p>Now, if you go to repository page, and click on the number of commits (see screengrab below), you can see 3 commits listed. We made 2 commits earlier. The third commit was made just now via GitHub web.</p>
+
+<p><img src="/blog/assets/images/post/commit-history.png" alt="" title="commit web" /></p>
+
+<p>Go back to the terminal and run <code class="language-plaintext highlighter-rouge">git log --oneline</code>. You will still see only 2 commits here. This mean we need to pull remote commits on to our local machine. Run <code class="language-plaintext highlighter-rouge">git pull</code> to do the same. Here is the output in my case</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git pull
+remote: Enumerating objects: 5, <span class="k">done</span><span class="nb">.</span>
+remote: Counting objects: 100% <span class="o">(</span>5/5<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+remote: Compressing objects: 100% <span class="o">(</span>3/3<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+remote: Total 3 <span class="o">(</span>delta 0<span class="o">)</span>, reused 0 <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused 0
+Unpacking objects: 100% <span class="o">(</span>3/3<span class="o">)</span>, 709 bytes | 35.00 KiB/s, <span class="k">done</span><span class="nb">.</span>
+From https://github.com/flyingcakes85/my-project
+   9c804c0..7e8fc14  main       -&gt; origin/main
+Updating 9c804c0..7e8fc14
+Fast-forward
+ test.py | 2 ++
+ 1 file changed, 2 insertions<span class="o">(</span>+<span class="o">)</span>
+</code></pre></div></div>
+
+<p>You can see the text <code class="language-plaintext highlighter-rouge">test.py | 2 ++</code>. This mean that there were 2 additions made to this file. Deletions are followed by <code class="language-plaintext highlighter-rouge">--</code>. Now, if you run <code class="language-plaintext highlighter-rouge">git log --oneline</code> in terminal, you can see third commit too.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log <span class="nt">--oneline</span>
+7e8fc14 <span class="o">(</span>HEAD -&gt; main, origin/main<span class="o">)</span> Update test.py
+9c804c0 Update test.py and add new code
+5de911e Add test.py with basic code
+</code></pre></div></div>
+
+<h3 id="listing-remotes">Listing remotes</h3>
+
+<p>You can use <code class="language-plaintext highlighter-rouge">git remote</code> to list remote names configured for current repo, or pass the <code class="language-plaintext highlighter-rouge">-v</code> flag to also list remote links.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git remote
+origin
+<span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git remote <span class="nt">-v</span>
+origin	https://github.com/flyingcakes85/my-project.git <span class="o">(</span>fetch<span class="o">)</span>
+origin	https://github.com/flyingcakes85/my-project.git <span class="o">(</span>push<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="using-git-clone">Using git clone</h3>
+
+<p>So far we created a repository on the command line and connected it to a remote. Many times, we already have a git repo online which we want to use on our local machine. You can simply use the <code class="language-plaintext highlighter-rouge">git clone</code> command to download a repository. Note that you can download any public repository with this command even if you did not create it.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/flyingcakes85/my-project.git
+</code></pre></div></div>
+
+<p>Often, the repository you want to download is large, and downloading it can take some time. To get around this, you can use <code class="language-plaintext highlighter-rouge">--depth=N</code> flag to fetch only the past <code class="language-plaintext highlighter-rouge">N</code> commits. You will have all files from the repository, but you won’t have complete commit history.</p>
+
+<h3 id="editing-pushlished-commits">Editing pushlished commits</h3>
+
+<p>Make some changes to a file an instead of a new commit, use <code class="language-plaintext highlighter-rouge">--amend</code> to edit the last commit.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print('More content')"</span> <span class="o">&gt;&gt;</span> new_file.py
+git add new_file.py
+git commit <span class="nt">--amend</span>
+</code></pre></div></div>
+
+<p>Now, if you do a <code class="language-plaintext highlighter-rouge">git push</code>, you will get an error.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git push
+Username <span class="k">for</span> <span class="s1">'https://github.com'</span>: flyingcakes85
+Password <span class="k">for</span> <span class="s1">'https://flyingcakes85@github.com'</span>:
+
+To https://github.com/flyingcakes85/my-project.git
+ <span class="o">!</span> <span class="o">[</span>rejected]        main -&gt; main <span class="o">(</span>non-fast-forward<span class="o">)</span>
+error: failed to push some refs to <span class="s1">'https://github.com/flyingcakes85/my-project.git'</span>
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes <span class="o">(</span>e.g.
+hint: <span class="s1">'git pull ...'</span><span class="o">)</span> before pushing again.
+hint: See the <span class="s1">'Note about fast-forwards'</span> <span class="k">in</span> <span class="s1">'git push --help'</span> <span class="k">for </span>details.
+</code></pre></div></div>
+
+<p>There are two ways to get out of this situation - you either do a <code class="language-plaintext highlighter-rouge">git pull --rebase</code> to merge remote changes to your local copy first. Or you can do <code class="language-plaintext highlighter-rouge">git push -f</code> to force overwrite remote with your code.</p>
+
+<p>If you were to do the latter, you will be changing the history of project. Anyone who has a copy of the project and does <code class="language-plaintext highlighter-rouge">git pull</code> will get a similar error.</p>
+
+<p>The above error is a also common error when you made some change on your remote (via web interface) and then you made some commits on your local machine without pulling remote changes first. As I told, <code class="language-plaintext highlighter-rouge">git pull --rebase</code> should get you out of the fix in most cases.</p>
+
+<p>Keep in mind, editing published commits is not recommended, and you should do this only when necessary.</p>
+
+<h2 id="working-with-branches">Working with Branches</h2>
+
+<p>Git provides the ability to create branches so as to let developers work on new features or bugfix without disturbing the main code. Changes you make to a branch are stored separately from the other branches. You can switch between branches anytime. When you think you have made enough changes to a branch and the changes are working, you can merge the branch into your <code class="language-plaintext highlighter-rouge">main</code> branch.</p>
+
+<h3 id="listing-branches">Listing branches</h3>
+
+<p><code class="language-plaintext highlighter-rouge">git branch</code> will show you your local branches, and adding the <code class="language-plaintext highlighter-rouge">-a</code> flag will also list remote branches.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git branch
+<span class="k">*</span> main
+<span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git branch <span class="nt">-a</span>
+<span class="k">*</span> main
+  remotes/origin/main
+</code></pre></div></div>
+
+<p>The branch marked with an aesterix denotes the currently active branch. Any changes or commits you make are added on the currently active branch.</p>
+
+<h3 id="creating-and-switching-branches">Creating and switching branches</h3>
+
+<p><code class="language-plaintext highlighter-rouge">git branch &lt;name&gt;</code> creates a new branch. <code class="language-plaintext highlighter-rouge">git checkout &lt;name&gt;</code> will switch to the new branch so that further changes are make to the new branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch add-emotes
+git checkout add-emotes
+</code></pre></div></div>
+
+<p>You can also use the shorthand to create and switch branch in one command. Just use the <code class="language-plaintext highlighter-rouge">checkout</code> command with a <code class="language-plaintext highlighter-rouge">-b</code> flag.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git checkout <span class="nt">-b</span> add-emotes
+Switched to a new branch <span class="s1">'add-emotes'</span>
+</code></pre></div></div>
+
+<p>You can also <em>checkout</em> an older commit. This will replace the project files with the content that existed at that commit. Run <code class="language-plaintext highlighter-rouge">git log --oneline</code> to see the commit hashes.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git log <span class="nt">--oneline</span>
+f15f7dc <span class="o">(</span>HEAD -&gt; bugfix, origin/main, main, add-emotes<span class="o">)</span> Update test.py
+7e8fc14 Update test.py
+9c804c0 Update test.py and add new code
+5de911e Add test.py with basic code
+</code></pre></div></div>
+
+<p>Note the hash of whichever commit you want to checkout. Say, we want to go to the first commit. Its hash is <code class="language-plaintext highlighter-rouge">5de911e</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout 5de911e
+</code></pre></div></div>
+
+<p>This will land you to the first commit. If you see the project now, you will find only one file. Don’t worry, our changes aren’t lost. We can just switch to <code class="language-plaintext highlighter-rouge">main</code> branch to get our changes back.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+</code></pre></div></div>
+
+<h3 id="working-on-branches---merging-and-stash">Working on branches - merging and stash</h3>
+
+<p>You usually create a branch to work on bug or feature without disturbing the actual code. The benefit here is that if there are any urgent changes required to the main code, you can make commits on main without needing to halt working on bug or feature.</p>
+
+<p>There are usually three situations.</p>
+
+<h4 id="fast-forward-merge">Fast forward merge</h4>
+
+<p>First checkout the newly created <code class="language-plaintext highlighter-rouge">add-emotes</code> branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout add-emotes
+</code></pre></div></div>
+
+<p>Lets make some changes now.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print(':-)')"</span> <span class="o">&gt;&gt;</span> emotes.py
+git add emotes.py
+git commit <span class="nt">-m</span> <span class="s2">"Add emotes"</span>
+</code></pre></div></div>
+
+<p>You test the code. It works and you are satisfied. So you decide to merge it into main. First checkout <code class="language-plaintext highlighter-rouge">main</code> branch then merge the other branch into it.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git checkout main
+Switched to branch <span class="s1">'main'</span>
+<span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git merge add-emotes
+Updating f15f7dc..e74906b
+Fast-forward
+ emotes.py | 1 +
+ 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
+ create mode 100644 emotes.py
+</code></pre></div></div>
+
+<p>Notice the phrase <code class="language-plaintext highlighter-rouge">Fast-forward</code>. It signifies that no commits were made on main from the time of creating branch <code class="language-plaintext highlighter-rouge">add-emotes</code> and the time when we merged it. Git could just “fast-forward” the <code class="language-plaintext highlighter-rouge">main</code> branch with commits from <code class="language-plaintext highlighter-rouge">add-emotes</code>. You ran use <code class="language-plaintext highlighter-rouge">git log --oneline</code> to verify that the commit was indeed applied on <code class="language-plaintext highlighter-rouge">main</code> branch too.</p>
+
+<h4 id="recursive-merge">Recursive merge</h4>
+
+<p>Lets do this process again, but we will make a commit on <code class="language-plaintext highlighter-rouge">main</code> before merging. Again, checkout <code class="language-plaintext highlighter-rouge">add-emotes</code> and make some changes.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout add-emotes
+<span class="nb">echo</span> <span class="s2">"print(':/')"</span> <span class="o">&gt;&gt;</span> emotes.py
+</code></pre></div></div>
+
+<p>Let’s say, you don’t want to commit now, as you want to make more changes. But there’s an important fix to make on the <code class="language-plaintext highlighter-rouge">main</code> branch. You can go forward and switch branch, but it can become messy, because the changes will also show up on main (they are uncommitted) and it will get confusing for you. So, you store the changes to a temporary directory and then make changes on main.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git stash
+</code></pre></div></div>
+
+<p>Upon running this, you will notice that the line we added to <code class="language-plaintext highlighter-rouge">emotes.py</code> is no longer there. Now make changes on main and commit.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+<span class="nb">echo</span> <span class="s2">"print('important bugfix')"</span> <span class="o">&gt;&gt;</span> test.py
+git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Important Bugfix"</span>
+</code></pre></div></div>
+
+<p>Now, let’s switch back to <code class="language-plaintext highlighter-rouge">add-emotes</code> branch and complete our code. We use the <code class="language-plaintext highlighter-rouge">git stash pop</code> command to bring back the changes we had made earlier.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout add-emotes
+git stash pop
+<span class="nb">echo</span> <span class="s2">"print('B-)')"</span> <span class="o">&gt;&gt;</span> emotes.py
+git add emotes.py
+git commit <span class="nt">-S</span> <span class="nt">-m</span> <span class="s2">"Add more emotes"</span>
+</code></pre></div></div>
+
+<p>Now, lets switch back to <code class="language-plaintext highlighter-rouge">main</code> branch and try merging <code class="language-plaintext highlighter-rouge">add-emotes</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+git merge add-emotes
+</code></pre></div></div>
+
+<p>This will land you in your text editor, with the following text.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Merge branch 'add-emotes'
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+</code></pre></div></div>
+
+<p>This is very much like making a commit. This time, there was already a commit made on to <code class="language-plaintext highlighter-rouge">main</code> before we merged the branch. So, git cannot simply fast forward. Save this file and exit. You should get this message.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Merge made by the 'recursive' strategy.
+ emotes.py | 2 ++
+ 1 file changed, 2 insertions(+)
+</code></pre></div></div>
+
+<p>This time, it was not fast forwarded. Git used a different strategy called recursive.</p>
+
+<h4 id="merge-conflict">Merge conflict</h4>
+
+<p>Finally, if you change the same line of the same file in both branch then try to merge them, you run into a merge conflict. Let’s quickly add different text to the same file on both <code class="language-plaintext highlighter-rouge">main</code> branch and <code class="language-plaintext highlighter-rouge">add-emotes</code> branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+<span class="nb">echo</span> <span class="s2">"print('added via main')"</span> <span class="o">&gt;&gt;</span> test.py
+git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Make program better"</span>
+git checkout add-emotes
+<span class="nb">echo</span> <span class="s2">"print('added via add-emotes')"</span> <span class="o">&gt;&gt;</span> test.py
+git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Make program fancy"</span>
+</code></pre></div></div>
+
+<p>If you see the contents of <code class="language-plaintext highlighter-rouge">test.py</code>, you won’t see the line <code class="language-plaintext highlighter-rouge">print('added via main')</code>. If you checkout <code class="language-plaintext highlighter-rouge">main</code>, then you won’t see <code class="language-plaintext highlighter-rouge">print('added via add-emotes')</code>. So, what we have got is different content at same location in two branches. This will lead to a conflict.</p>
+
+<p>First checkout <code class="language-plaintext highlighter-rouge">main</code> branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout main
+</code></pre></div></div>
+
+<p>Lets now merge it and see what happens.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>snehit@wired my-project]<span class="nv">$ </span>git merge add-emotes
+Auto-merging test.py
+CONFLICT <span class="o">(</span>content<span class="o">)</span>: Merge conflict <span class="k">in </span>test.py
+Automatic merge failed<span class="p">;</span> fix conflicts and <span class="k">then </span>commit the result.
+</code></pre></div></div>
+
+<p>Git bailed out saying it cannot merge - as we expected.</p>
+
+<p>When you get a merge conflict, you shouln’t need to panic. Its not an “error”. It only indicates that git is unable to decide which copy of the code to keep, because the two branches have different changes for the same file location.</p>
+
+<p>Git is telling us that there is a conflict in <code class="language-plaintext highlighter-rouge">test.py</code>. Lets open that file and see what’s there.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print('Hello World')
+print('Another line')
+
+print('Added via GitHub web')
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+print('important bugfix')
+print('added via main')
+=======
+print('added via add-emotes')
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; add-emotes
+</code></pre></div></div>
+
+<p>Here, you can see the conflicting part between angled brackets. From <code class="language-plaintext highlighter-rouge">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> to <code class="language-plaintext highlighter-rouge">=======</code> are the contents that are in <code class="language-plaintext highlighter-rouge">main</code>. From <code class="language-plaintext highlighter-rouge">=======</code> to <code class="language-plaintext highlighter-rouge">&gt;&gt;&gt;&gt;&gt;&gt;&gt; add-emotes</code> are the contents that are in <code class="language-plaintext highlighter-rouge">add-emotes</code>. you can freely remove one of them, along with the angled brackets and equal signs. You may also just remove the brackets and equal signs in case you want to keep changes from both branches. Finally, you may remove it to add some other code altogether. Its all up to you.</p>
+
+<p>Lets say, I remove the code from <code class="language-plaintext highlighter-rouge">main</code>. So my file should now look like this.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print('Hello World')
+print('Another line')
+
+print('Added via GitHub web')
+
+print('added via add-emotes')
+</code></pre></div></div>
+
+<p>Now we can continue on to adding file and committing it.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add test.py
+git commit <span class="nt">-m</span> <span class="s2">"Merge add-emotes into main"</span>
+</code></pre></div></div>
+
+<p>This will create the merge commit.</p>
+
+<h3 id="deleting-branches">Deleting branches</h3>
+
+<p>You may want to delete a branch if you have merged it into <code class="language-plaintext highlighter-rouge">main</code> and it is no longer needed. Or maybe you decided against incorporating the changes from that branch. In these cases, you can delete the branch.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git branch <span class="nt">-d</span> &lt;name&gt;
+</code></pre></div></div>
+
+<p>If you had published a branch you now want to delete, run this command</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin <span class="nt">--delete</span> &lt;branch name&gt;
+</code></pre></div></div>
+
+<p>Run these commands with care, as you may accidently delete one of the important branches.</p>
+
+<h2 id="beyond-the-book">Beyond the book</h2>
+
+<h3 id="general-development-workflow">General development workflow</h3>
+
+<p>I’ll briefly tell the workflow you follow when contributing to someone else’s repo. You first fork the repository to your account. You clone your fork with <code class="language-plaintext highlighter-rouge">git clone &lt;link&gt;</code>. You will then create a new branch which shall hold the commits you make. You can also directly make commits on <code class="language-plaintext highlighter-rouge">main</code>, but this is almost <strong>never</strong> recommended.</p>
+
+<p>You make some changes then commit it. When you think you have made all the changes you wanted, you push the branch to remote on your repo, using <code class="language-plaintext highlighter-rouge">git push -u origin &lt;branch name&gt;</code>. On GitHub, you finally create a pull request from your branch to the <code class="language-plaintext highlighter-rouge">main</code> or <code class="language-plaintext highlighter-rouge">dev</code> branch of original repo.</p>
+
+<p>Maintainers will often have a separate <code class="language-plaintext highlighter-rouge">dev</code> branch. This can be for various reasons - the simplest one being that they don’t want everyone to be using the latest changes by default as it can be buggy and unstable. Those who want to test new features can manually switch to dev branch and use. Once features from dev branch are tested, it is finally merged into <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p>If available, read the <code class="language-plaintext highlighter-rouge">CONTRIBUTING.md</code> file on the original repo.</p>
+
+<h3 id="referencing-github-pull-requestsissues">Referencing GitHub pull requests/issues</h3>
+
+<p>Say your pull request fixes a certain issue open on the original repository. You can add <code class="language-plaintext highlighter-rouge">Fixes #N</code> to your commit description. Here <code class="language-plaintext highlighter-rouge">N</code> is a number that shows just after the issue title. The numbers also show up on pull request titles. You can use the same <code class="language-plaintext highlighter-rouge">#N</code> format to reference a certain pull request or issue while adding commits on GitHub.</p>]]></content><author><name>Snehit Sah</name></author><category term="tutorial" /><category term="coding" /><category term="tutorial" /><summary type="html"><![CDATA[About the book]]></summary></entry><entry><title type="html">Love, Alexa</title><link href="/blog/rant/2021/09/07/love-alexa.html" rel="alternate" type="text/html" title="Love, Alexa" /><published>2021-09-07T00:00:00+00:00</published><updated>2021-09-07T00:00:00+00:00</updated><id>/blog/rant/2021/09/07/love-alexa</id><content type="html" xml:base="/blog/rant/2021/09/07/love-alexa.html"><![CDATA[<p>Sometimes it feels shady to me that all popular voice assistant softwares are female. Google Assistant, Cortana and Alexa. Jarvis was supposed to happen, but it didn’t. Samsung’s Bixby wasn’t making waves and then Samantha happened. <em>cough</em> better not talk about her <em>cough</em></p>
+
+<p>What I see is that the voice assistant sector is 100% dominated by women. I know they are under represented in the IT industry overall, but the voice assistant industry kinda balances it out.</p>
+
+<p>These ladies are supposed to exist in your homes (along with any other lady). These can dim the lights, play songs and crack (poor) jokes - and then themselves do a “Ha Ha Ha”. <em>Can your lady do that, mon ami?</em> She’d rather throw a tantrum because you’ve grown used to ordering around while slouching and binge watching some garbage web series which wouldn’t even have seen the light of the day had there not been these OTT platforms accepting shitty content…</p>
+
+<p>Anyways, back to topic. These devices, apart from (of course) spying on your, are also intended to make you lazy, dependent and used to scary tech you don’t actually need. God knows what the Kohler’s engineers were thinking when they launched a commode with Alexa built in. Do you really need a female voice originating from <em>there</em>?</p>
+
+<p>Who ever imagined that 21st century boys will be considered cool because they keep a wiretap device in their rooms, which runs proprietary closed source software so you can never be 100% sure what all they are recording. Five years back, I had imagined the future people to be more tech literate and more aware of their digital rights. Unfortunately, the only statistics that have gone up are our stupidity and our reliance on big tech companies. Thanks to affordable high speed internet, we could’ve worked towards federalization and decentralization of web services. Rather, we are still wasting all our bandwidth transferring bytes from servers owned by big tech corporations.</p>
+
+<p>What’s next? We recently got to know that some Amazon Echo devices had been coming equipped with low frequency transmitting devices. And now they come up with what they call <em>Sidewalk</em>. I’d rather call it Amazon Skynet.</p>
+
+<p>Blind trust might work in love; not with proprietary software. But wait… who do you love?</p>]]></content><author><name>Snehit Sah</name></author><category term="rant" /><category term="rant" /><summary type="html"><![CDATA[Sometimes it feels shady to me that all popular voice assistant softwares are female. Google Assistant, Cortana and Alexa. Jarvis was supposed to happen, but it didn’t. Samsung’s Bixby wasn’t making waves and then Samantha happened. cough better not talk about her cough]]></summary></entry><entry><title type="html">City Pop Rabbit Hole Diary</title><link href="/blog/music/2021/08/31/citp-pop-rabbit-hole.html" rel="alternate" type="text/html" title="City Pop Rabbit Hole Diary" /><published>2021-08-31T00:00:00+00:00</published><updated>2021-08-31T00:00:00+00:00</updated><id>/blog/music/2021/08/31/citp-pop-rabbit-hole</id><content type="html" xml:base="/blog/music/2021/08/31/citp-pop-rabbit-hole.html"><![CDATA[<p><em>Part 1 of a series idk how long it will be</em></p>
+
+<blockquote>
+  <p>You didn’t click on this video. All the choices you ever made led you here…</p>
+</blockquote>
+
+<p>I won’t deny the fact. Back in July 2020, YouTube started showing me a suggestion video titled “Mariya Takeuchi Plastic Love”. On the thumbnail was a black and white picture of a Japanese lady. I tried to avoid tapping on that video. YouTube only became more agressive with its suggestion. No matter what king of video I watched, tech, art, EDM or whatever, the first suggestion had to be this song called Plastic Love. Finally, after 3 weeks of dodging the suggestion, I ended up watching the video. Thus I had my first touch with…</p>
+
+<h2 id="gateway-drugs-of-city-pop">Gateway Drugs of City Pop</h2>
+
+<p>Plastic Love starts like a genuinely old song. There is said to be a 15 second rule on YouTube. If your video cannot hook the viewer in first 15 seconds, they will probably not watch rest of the video. Fortunately, the instruments soon turned to a groovy guitar melody and drums. The songs was from 1984, yet the drums felt quite modern. Is it City Pop? Sounded more like J-Pop. Even if it was a scam to lure innocent kids into City Pop, I’d say its a good thing :)</p>
+
+<p><img src="//www.youtube.com/watch?v=9Gj47G2e1Jc" alt="" /></p>
+
+<p>She starts singing, <em>Totsuzen no kisu ya atsui manazashi de</em>, and I know I have lost the battle. YouTube had finally reached the level where it could suggest songs that even I didn’t know I wanted to listen.</p>
+
+<p>I soon discovered that I wasn’t the first person to have fallen into the trap. There were <em>way too many</em> people like me. That black and white photo has become the face of City Pop in some sorts. And talking about gateway drugs, there is another song that happens to have dragged many people in here</p>
+
+<p><img src="//www.youtube.com/watch?v=nuU2YHtxMik" alt="" /></p>
+
+<p>Stay With Me by Miki Matsubara. The song totally drags you into the emotion with no mercy.</p>
+
+<p>Thanks to the fact that these two are often the songs with which people start their City Pop journey, there are many covers of these tracks.</p>
+
+<h2 id="beyond-the-starters">Beyond the Starters</h2>
+
+<p>Once you watch one of the above videos, YouTube directs a storm of City Pop videos on to your home feed. Old Coca Cola advertisements, mundane shots from Japan, some random Japanese lady on an outing - the visuals often have no actual relations with the songs themselves. Yet, some mental imagery has become synonymous with City Pop. <em>Imagine yourself driving down the Tokyo roads in a Toyota, with City Pop tracks blasting from the speakers…</em>. You cannot escape the imagery once you have fallen in the rabbit hole.</p>
+<h3 id="junko-ohashi">Junko Ohashi</h3>
+
+<p><img src="//www.youtube.com/watch?v=Q2QUngVGxmE" alt="" /></p>
+
+<p>This was the first City Pop track to actually make me pause what I’m doing and take a moment to enjoy the imagery it built up in my head. The intro coupled with the album cover instantly dropped me in 80’s New York. The overflowing modernity from a song almost four decades old - I couldn’t resist.</p>
+
+<p>Being surrounded by skyscrapers, seeing men with a businesslike look, cars going down the road. I could feel myself walking past the long gone World Trade Center and experiencing the aura - something eastern world only saw in pictures. No wonder this track could very well be counted as remains from the Twin Towers. (note that the only reference to WTC is the cover album!)</p>
+
+<p>Judging by the title, the lyrics were supposed to elicit romance or something. Rather, they managed to give a different view of the fast paced dynamic life of a city as “modern” as New York(!?). (Don’t blame me; reading experiences, it seems like New York, and especially the Twin Towers were symbols of “modernity” and “urbanisation”)</p>
+
+<p>The song starts with this line</p>
+
+<blockquote>
+  <p>にぎやかな劇場 ざわめくロビー
+(A bustling theatre, a noisy lobby)</p>
+</blockquote>
+
+<p>Perfect setting for a track that (inadvertently?) is a connection with 80’s urban scenery. Its not like your usual tracks. Imagine, visiting a mall, and outside an eatery, you see your past love waiting for someone else. That’s what this song is!</p>
+
+<p>There’s another one - Sweet Love.</p>
+
+<p><img src="//www.youtube.com/watch?v=6C4VR81GDtM" alt="" /></p>
+
+<h3 id="tomoko-aran">Tomoko Aran</h3>
+
+<p>There’s no way you can skip her when discussing City Pop. <em>I’m In Love</em> is a classic that will never die.</p>
+
+<p><img src="//www.youtube.com/watch?v=pE2D3LWADFg" alt="" /></p>
+
+<p>Midnight Pretenders is another of my favorites.</p>
+
+<p><img src="//www.youtube.com/watch?v=KZyS-ms6-RA" alt="" /></p>
+
+<p>Again, you can talk about the album art. Why the hell does it look so cool? No idea.</p>
+
+<h3 id="anri">Anri</h3>
+
+<p>Golden voice definitely! She’s an artist whose albums I can play start to end, without complains. Here are some</p>
+
+<p><img src="//www.youtube.com/watch?v=fp2psphgAK4" alt="" /></p>
+
+<p><img src="//www.youtube.com/watch?v=L4AnjfSUJvg" alt="" /></p>
+
+<p><img src="//www.youtube.com/watch?v=_cPJHqMBR7M" alt="" /></p>
+
+<h3 id="junko-yagami">Junko Yagami</h3>
+
+<p>Who hasn’t listened Bay City?</p>
+
+<p><img src="//www.youtube.com/watch?v=aQGvlemqUpE" alt="" /></p>
+
+<h2 id="bonus--momoko-kikuchi">Bonus : Momoko Kikuchi</h2>
+
+<p>I was supposed to mention her in the next part. But <em>Glass no Sogen</em> is a must listen. How do you describe it? Angel voice? Heaven Harp?</p>
+
+<p><img src="//www.youtube.com/watch?v=GuhkGqJW5ZE" alt="" /></p>
+
+<p>Bye bye until part 2 where I’ll list some more tracks you might not discover easily on your own.</p>]]></content><author><name>Snehit Sah</name></author><category term="music" /><category term="music" /><summary type="html"><![CDATA[Part 1 of a series idk how long it will be]]></summary></entry><entry><title type="html">Ethical to Sell Organs for Electronics?</title><link href="/blog/rant/2021/08/13/ethical-to-sell-kidney-for-electronics.html" rel="alternate" type="text/html" title="Ethical to Sell Organs for Electronics?" /><published>2021-08-13T00:00:00+00:00</published><updated>2021-08-13T00:00:00+00:00</updated><id>/blog/rant/2021/08/13/ethical-to-sell-kidney-for-electronics</id><content type="html" xml:base="/blog/rant/2021/08/13/ethical-to-sell-kidney-for-electronics.html"><![CDATA[<p>Forget the title. I see college kids wasting their hearts, and grown up men wasting their kidneys. So, I don’t care what you do with your organs.</p>
+
+<p>Anyways, the bigger question is that <em>is it ethical to purchase products from companies that have pending accusations of employing forced slave labour and child labour in their manufacturing units?</em></p>
+
+<p>Doesn’t seem so. Because ironically, products marketed by such companies right now seem to be counted as <em>luxury</em> and <em>premium</em> products. Imagine, the phone you use to compose elaborate food porn for Instagram stories, was assembled by a person who never had enough to eat.</p>
+
+<p>Fortunately, this is not an issue to worry about. The situation won’t get any worse. They are already using slave labour. What’s next? <em>Indentured labour?</em> I don’t see that making a come back anytime soon.</p>
+
+<p>Capitalism has been the buzzword among the upper few. With internet access being more universal, the idea has permeated down below too. Capitalism still heavily realies on addictive consumerism. And for addictive consumerism to sustain mentally, consumers must be kept away from facts that may push them away from purchasing goods.</p>
+
+<p>So we might be just waiting to see more such practices evolve. But as I said, don’t worry because indentured labour isn’t making a come back.</p>]]></content><author><name>Snehit Sah</name></author><category term="rant" /><category term="rant" /><summary type="html"><![CDATA[Forget the title. I see college kids wasting their hearts, and grown up men wasting their kidneys. So, I don’t care what you do with your organs.]]></summary></entry><entry><title type="html">Generating Combinations using C++</title><link href="/blog/tutorial/2021/07/21/generating-combinations.html" rel="alternate" type="text/html" title="Generating Combinations using C++" /><published>2021-07-21T00:00:00+00:00</published><updated>2021-07-21T00:00:00+00:00</updated><id>/blog/tutorial/2021/07/21/generating-combinations</id><content type="html" xml:base="/blog/tutorial/2021/07/21/generating-combinations.html"><![CDATA[<h2 id="introduction">Introduction</h2>
+
+<p>The task for this post is to help you understand how to generate combinations of size <code class="language-plaintext highlighter-rouge">r</code> using numbers from 1 to <code class="language-plaintext highlighter-rouge">n</code> and then extend that code to generate combinations for any set of objects.</p>
+
+<p>When I say <code class="language-plaintext highlighter-rouge">n = 5</code> and <code class="language-plaintext highlighter-rouge">r = 3</code>, it means we are dealing with the first five natural numbers to generate combinations of size 3.</p>
+
+<h2 id="understanding-combinations">Understanding Combinations</h2>
+
+<p>We shall be generating combinations in lexicographic order. Also, since combination does not concern itself with the relative order the chosen elements are arranged in, we shall always be having our chosen elements in lexicographical order too.</p>
+
+<p>The first combination we choose has to be the first <code class="language-plaintext highlighter-rouge">r</code> elements when the <code class="language-plaintext highlighter-rouge">n</code> objects are sorted. This is because it gives us the lexicographically smallest word with the individual elements themselves in lexicographical order too. (basically, the if all combinations were arranged in a dictionary, then we want to start with the first one) So, in case of <code class="language-plaintext highlighter-rouge">n = 5</code> and <code class="language-plaintext highlighter-rouge">r = 3</code>, the first combination is <code class="language-plaintext highlighter-rouge">123</code>.</p>
+
+<p>Now, think what should be the last combination. I propose that it will be the last <code class="language-plaintext highlighter-rouge">r</code> elements when the <code class="language-plaintext highlighter-rouge">n</code> objects are sorted. Why should it be? When we are generating combinations in lexicographical order, each combination should have a greater position in a dictionary. So the last combination should have the greatest elements from given objects. The chosen elements themselves should also be in lexicographical order.</p>
+
+<p>The knowledge of last combination also gives us an interesting observation. The maximum value at a given index <code class="language-plaintext highlighter-rouge">idx</code> can be <code class="language-plaintext highlighter-rouge">n - r + idx + 1</code>, where index starts from zero. This is necessary to maintain the dictionary order of individual elements in a combination.</p>
+
+<p>Take for example the case of <code class="language-plaintext highlighter-rouge">n = 5</code> and <code class="language-plaintext highlighter-rouge">r = 3</code>. If we position the number 5 at index 1, then the combination will look like <code class="language-plaintext highlighter-rouge">X5_</code>, where <code class="language-plaintext highlighter-rouge">X</code> may be any number lower than 5. The blank at third position should have a number greater than 5 if we are to maintain dictionary order. But placing 6 there is not possible since we only have 5 elements. According to the formula <code class="language-plaintext highlighter-rouge">n - r + idx + 1</code>, the maximum value at third position (or second index) can be 4.</p>
+
+<p>Another thing to note is that every time we increment a position, we need to set the elements to its right as one more than its left neighbor. This will be clear when I discuss the code.</p>
+
+<h2 id="formal-algorithm">Formal Algorithm</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fun next_combination :
+    parameters: integer n - max objects available
+                integer r - size of chosen set
+                array curr_comb - denoting
+                  current combination of r elements
+                integer idx - index to increment
+
+    return:     true if next combination exists
+                  curr_comb is updated in place
+                  with the next combination
+                false if last combination is provided
+    ____
+
+    if idx &lt; 0 :
+        return false
+
+    if curr_comb[idx] &lt; n - r + idx + 1 :
+        ++curr_comb[idx]
+        for i in (idx + 1, n - 1):
+            curr_comb[i] = curr_comb[i - 1]
+        return true
+
+    else :
+        return next_combinaition(n, r, curr_comb, idx - 1)
+</code></pre></div></div>
+
+<p>For this function to work, it should be called with <code class="language-plaintext highlighter-rouge">idx</code> as <code class="language-plaintext highlighter-rouge">r - 1</code>, since we want to start incrementing from last index. This code first check if the index to increment is less than 0. If yes, it means that the next combination does not exist, or in other words, we are already at last combination.</p>
+
+<p>Then it checks if the value at <code class="language-plaintext highlighter-rouge">curr_comb[idx]</code> is less than its maximum permissible value. If yes, then it increments the value at <code class="language-plaintext highlighter-rouge">idx</code> and sets its following elements as one plus their left neighbor.</p>
+
+<p>If the value it <code class="language-plaintext highlighter-rouge">idx</code> is already the maximum allowed, then the function recursively calls itself with same parameters, but <code class="language-plaintext highlighter-rouge">idx</code> decremented by one. This continues till either the next combination is found, or the function is called with <code class="language-plaintext highlighter-rouge">idx</code> less than zero, in that case next combination does not exist.</p>
+
+<p>The function is recursive, so it must pass the sanity test. Does it stop recursing at some point? Each recursive call decrements <code class="language-plaintext highlighter-rouge">idx</code> by 1. Eventually, <code class="language-plaintext highlighter-rouge">idx</code> will be less than zero, in which case the function will no longer recurse. So, it is guaranteed that the function does not recurse indefinitely.</p>
+
+<h2 id="c-code">C++ Code</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">increment_neighbor</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">idx</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">arr</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">arr</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">_next_combination</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">curr_comb</span><span class="p">,</span>
+                       <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">curr_comb</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="n">r</span> <span class="o">+</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">++</span><span class="n">curr_comb</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+        <span class="n">increment_neighbor</span><span class="p">(</span><span class="n">curr_comb</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">_next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">curr_comb</span><span class="p">,</span> <span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="nf">next_combination</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">curr_comb</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="k">return</span> <span class="n">_next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">curr_comb</span><span class="p">,</span> <span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Following are the required includes:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;algorithm&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+</span></code></pre></div></div>
+
+<p>This code is a direct implementation of the algorithm I shared above. The part that increments the neighbors by 1 has been extracted to its own function called <code class="language-plaintext highlighter-rouge">increment_neighbor</code>.</p>
+
+<p>You might ask, why are there two functions named <code class="language-plaintext highlighter-rouge">next_combination</code>, one with a preceding underscore. The goal of a good interface is to be as simple as possible. In the recursive function, we initially call it with <code class="language-plaintext highlighter-rouge">idx = r - 1</code>. For a programmer reusing our function, it may be tedious to pass the fourth parameter, when it can be simply deduced from the third second one.</p>
+
+<p>So, we create a helper function that takes the three required parameters and calls the original recursive function with fourth parameter set.</p>
+
+<h2 id="using-our-function">Using Our Function</h2>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// take input for n and r</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter r individual elements (integers) of"</span>
+                 <span class="s">" current combination separated by spaces</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Next combination is</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numbers</span><span class="p">)</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"The input is already the final combination</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This code will simply check if <code class="language-plaintext highlighter-rouge">next_combination</code> return true or false. If true, it means that the next combination was found and it is printed. Otherwise, inform user that we are already at last combination.</p>
+
+<p>To generate all combination, use the following snippet.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+<span class="k">do</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numbers</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">numbers</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="running-on-custom-elements">Running on Custom Elements</h2>
+
+<p>Lets say the user does not want to generate combination of numbers, but instead wants to generate combinations of a custom set of objects. The object can be anything - character, string, struct etc.</p>
+
+<p>The basic idea is to store the <code class="language-plaintext highlighter-rouge">n</code> individual elements in an array. Generate the combination on numbers from 1 to <code class="language-plaintext highlighter-rouge">n</code> as we did earlier. But while printing the combination, instead of number, print the element at that position.</p>
+
+<p>As an example, here is the snippet for generating combinations of words.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">words</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">numbers</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Enter n individual elements (words)"</span>
+                <span class="s">" separated by spaces</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">words</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+
+<span class="k">do</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">x</span> <span class="o">:</span> <span class="n">numbers</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">word</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">next_combination</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">numbers</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h2 id="memoization">Memoization</h2>
+
+<p>Recursive algorithms can be made much faster when using memoization. Do we need memoization?</p>
+
+<p>Memoization helps when the function is called with the same parameters multiple times. By storing intermediate results, it does not need to do computations if the parameters provided are not new.</p>
+
+<p>In our function, <code class="language-plaintext highlighter-rouge">n</code> and <code class="language-plaintext highlighter-rouge">r</code> are constant throughout. <code class="language-plaintext highlighter-rouge">idx</code> changes its value, but it does so in a very small range. So there seems to be lot af scope for repetition of parameters. However, the parameter <code class="language-plaintext highlighter-rouge">curr_comb</code> does not repeat. Each combination is different. When recursing with the same combination, then the value of <code class="language-plaintext highlighter-rouge">idx</code> is guaranteed to change.</p>
+
+<p>So we need not use memoization, as the intermediate values are never reused.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>That was the end of this post. Hope you learned something new. You can always shoot me feedback on my email, which is visible on my GitHub profile once you log in.</p>
+
+<p>Follow me on GitHub : <a href="https://github.com/flyingcakes85">flyingcakes85</a></p>
+
+<p>You can receive latest updates from this blog as an RSS feed. See <a href="/blog/website/2021/05/23/follow-this-blog.html">Follow this blog via RSS</a>.</p>]]></content><author><name>Snehit Sah</name></author><category term="tutorial" /><category term="cpp" /><category term="coding" /><summary type="html"><![CDATA[Introduction]]></summary></entry><entry><title type="html">Use of Unethical Software in Education Sector</title><link href="/blog/rant/2021/07/21/unethical-software-in-education.html" rel="alternate" type="text/html" title="Use of Unethical Software in Education Sector" /><published>2021-07-21T00:00:00+00:00</published><updated>2021-07-21T00:00:00+00:00</updated><id>/blog/rant/2021/07/21/unethical-software-in-education</id><content type="html" xml:base="/blog/rant/2021/07/21/unethical-software-in-education.html"><![CDATA[<h2 id="introduction">Introduction</h2>
+
+<p>Online education has received a huge boost during the pandemic. Even before the pandemic, many educational institutes were focussing on tech literacy. However, all this ends up promoting unethical software. During the IT boom in past decades, we have seen many corporations rely on selling software to make money. Oftentimes, this software is proprietary and robs users of their basic rights and freedoms. With the recent push towards IT education and increasing reliance on software in the education industry, unethical softwares have amassed a humongous user base. I’ll try to justify my basis of calling certain softwares “unethical” and how educational institutes unknowingly end up promoting them. The issue has a heavy impact on the quality of software general users eventually have to bear with.</p>
+
+<h2 id="why-foss">Why FOSS?</h2>
+
+<p>Free (as in ‘freedom’) software today is the backbone of many software enterprises. Modern app development is increasingly growing reliant on code reuse. This is made possible because the source code is under an open-source license that lets users adapt, edit and redistribute it.</p>
+
+<p>FOSS encourages choice and power on the part of the user. They are not bound to an ecosystem or suite and rather are free to mix and match the software they like and use it. More advanced users also benefit by being able to modify the software and adapt it to their needs. Having the right to reverse engineer software allows students to learn and possibly develop solutions to existing problems without requiring to code everything from scratch, or relying on an opaque library.</p>
+
+<p>Even for a normal person, who isn’t necessarily into programming, FOSS plays a vital role in their lives. Most of our tech services are online nowadays. And the server space is dominated by free and open-source operating systems, making it possible for you to access the various services on the internet.</p>
+
+<p>FOSS are almost always privacy-respecting and are audited by independent users, who will be quick to point out any flaw that remotely affects privacy. This auditing by independent users also means that FOSS gets faster bug fixes and can be more secure. It may even provide better performance or success rate than its proprietary counterparts. While there is no evidence to conclusively prove this claim, it is a fact that the security by obscurity model followed by most proprietary software hasn’t made them any more secure or reliable than FOSS.</p>
+
+<h2 id="ethics">Ethics</h2>
+
+<p>By encouraging users to modify and redistribute the software, FOSS inculcates a sense of responsibility and respect for freedom. This becomes very important in an age where people gladly agree to give up their privacy and rights <em>just</em> to be “connected” on so-called “social media” platforms.</p>
+
+<p>Closed source and proprietary softwares do not share their source code so adapting it to your needs is impossible unless you are happy with the exact software that is shipped. They can also not be reverse-engineered for learning purposes or otherwise. Developers will try their best to obfuscate the code so that reverse-engineering becomes futile. It means that as a user, you can never be sure that the software is not doing anything malicious. We have seen cases in the past where manufacturers slow down old phones so that people buy new ones or social media apps collecting tons of private user data. There are many such examples of unethical practices, which are made possible because of closed source software.</p>
+
+<h2 id="the-education-sector">The Education Sector</h2>
+
+<p>With the advent of digital learning, students have to use a variety of softwares to complete their courses. At the very least, they need to use a communication platform and video call software.</p>
+
+<p>With Google and Microsoft supporting easy onboarding for educational institutes, there is a high probability that a school/college is using services from one of these companies.</p>
+
+<p>Their software is closed source and proprietary, which means the students have no idea whatsoever about the processing of their data. Meeting softwares may record videos and audio without explicit permission and use it to train their AI software. Misuse of this data is very much possible (and it was highlighted in the case where Amazon employees were caught listening to users via Alexa). Companies try to get around legal hurdles by including clauses in their Terms of Use, which students have to accept if they want to attend classes.</p>
+
+<p>Now, this is a grave situation - as bad as the teacher asking students to do a socially unacceptable act if they want to pass the semester. It will surely become news if something like that happens outside of the tech domain. But when the same student is forced to give up his privacy in the hands of a big tech corporation, so that he can pass the semester, nobody bats an eyelid. Forcing students - directly or indirectly - to use proprietary software should be considered a severe violation of their rights.</p>
+
+<p>Take another common example. In the current age of digital education, many times students are supposed to prepare a “Word Document” or a “PowerPoint Presentation” for their assessment. These again are do or die situations for the student. Either they use a closed source proprietary software (MS Office) or they fail the class. Instead, the teacher should accept assignments in a format like PDF, which can be created using any software the student may want to use. If it’s necessary to accept assignments in a document or presentation format, then teachers can encourage the use of FOSS alternatives for MS Office, like Libre Office.</p>
+
+<p>There are numerous other softwares students are forced to use - like online forms for examinations, circuit simulation softwares etc.</p>
+
+<p>Richard Stallman, who started the free software movement, believes that making students use proprietary software is like making them addicted to cigarettes. Eventually, proprietary softwares will get hold of the student’s life and she/he will have great difficulty in untangling themselves from this addiction. It is the moral responsibility of educational institutes to educate students about these issues and encourage them to stay away from such addictions.</p>
+
+<p>The lack of awareness about FOSS among teachers is eventually inherited by students. These students, later in their lives make bad choices for the softwares to use because they could never appreciate FOSS. A person who grew up in a dictatorial country, cut off from the world, will probably never think of democracy.</p>
+
+<h2 id="future-concerns">Future Concerns</h2>
+
+<p>We already know that the nature of FOSS ensures slightly higher levels of quality than their proprietary counterparts in most cases. It might seem that the difference in success rates of two softwares doesn’t matter if it is something as low as 0.001%. But, every fraction matters when it’s about life and death.</p>
+
+<p>Consider the Boeing MAX 737, which made headlines after 346 people died in two crashes. The cause was traced back to a software that Boeing had installed in the flight control system. Flight crashes are not at all common, and this case can certainly be considered an exception. But lives were lost, which cannot be ignored. We need to think - could we have done better? Had the software been open source, it is possible that someone on the internet would have pointed out the issue beforehand and the deaths could have been avoided.</p>
+
+<p>The field of medical science uses digital equipment nowadays, whose softwares demand very high precision and success rates. After all, the goal is to save people and we cannot afford to lose lives just because a piece of software was at fault. Consider the example of pacemakers, which assist the heart to maintain a constant rhythm. If the software of a pacemaker suffers from any fault, it will pose a huge risk to the patient. Truth is that many doctors don’t know how reliable the software is. If manufacturers make their pacemaker software open source then independent developers from around the world can audit it and there is a higher chance of critical issues being fixed before a patient ends up losing her/his life. Karen Sandlers, who has worked extensively to develop and improve FOSS, gave a keynote in 2018 where she highlighted this issue and described six years of her failed attempts at acquiring source code for her pacemaker. The keynote can be watched on YouTube <a href="https://www.youtube.com/watch?v=8wPAHu_zYDw">at this link</a>.</p>
+
+<p>With the growing reliance on complex closed source softwares everywhere - like driver assist in cars, autopilot systems, medical equipment etc, we can only wonder how much risk our lives are at.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The change must begin from the education sector. This is where students acquire new ideas and form opinions. If we promote the usage of FOSS, the next generation will benefit in many ways. Reliance on proprietary software will only help big tech corporations develop monopolies and follow unethical practices without anyone criticizing them.</p>
+
+<p>You can receive latest updates from this blog as an RSS feed. See <a href="/blog/website/2021/05/23/follow-this-blog.html">Follow this blog via RSS</a>.</p>
+
+<p>Follow me on GitHub : <a href="https://github.com/flyingcakes85">flyingcakes85</a></p>
+
+<p>Cover photo by Nevrax Design Team. <a href="https://www.gnu.org/graphics/listen.html">Source</a></p>]]></content><author><name>Snehit Sah</name></author><category term="rant" /><category term="rant" /><category term="foss" /><category term="education" /><summary type="html"><![CDATA[Introduction]]></summary></entry><entry><title type="html">Words &amp;amp; Pictures - Stickers gone wrong</title><link href="/blog/rant/2021/06/19/words-and-pictures.html" rel="alternate" type="text/html" title="Words &amp;amp; Pictures - Stickers gone wrong" /><published>2021-06-19T00:00:00+00:00</published><updated>2021-06-19T00:00:00+00:00</updated><id>/blog/rant/2021/06/19/words-and-pictures</id><content type="html" xml:base="/blog/rant/2021/06/19/words-and-pictures.html"><![CDATA[<p>Stickers are the new normal - whether you like it or not. I’ve never hated the concept of chat stickers. But the way they are generally used, gets my criticism. Let’s try to trace how it all happened.</p>
+
+<p>If you are not interested in history lessons, you can directly skip to <a href="#but-why-the-success">why emojis were successful</a>. I chose to include some history of emojis simply because they are interesting, and put an important point that <strong><em>stickers are not a universal language like emojis</em></strong>.</p>
+
+<h2 id="early-internet-3">Early Internet &lt;3</h2>
+
+<p>Early internet survived on low bandwidth and less computation power. Quite naturally, text communication was the norm. However, as you’d expect, people felt the need for a way to express emotions because not everyone can write their messages in the right tone. Depending on your choice of words, your messages could sound polite or rude.</p>
+
+<p>In early 1980’s, the Computer Science community at Carnegie Mellon was making heavy use of online bulletin boards or “bboards”. Many of the conversations there were not based on a serious topic. But the readers had no way of knowing that. Often, readers failed to understand sarcastic remarks/ jokes. So they felt the need for devising a way to mark out non - serious posts from the serious ones. Computers of that era could work with ASCII text only, and the marker <code class="language-plaintext highlighter-rouge">:-)</code> was proposed to be used for non serious posts. The serious posts could be marked with <code class="language-plaintext highlighter-rouge">:-(</code>. The practice spread to other universities and soon these two markers became popular on the internet.</p>
+
+<p>The person behind this proposal was Scott E. Fahlman. You can read his post on this matter at <a href="https://www.cs.cmu.edu/~sef/sefSmiley.htm">this link</a>.</p>
+
+<p>The original message where he put the proposal has been preserved and posted at <a href="https://www.cs.cmu.edu/~sef/Orig-Smiley.htm">this link</a>. Its an interesting read - how a small problem gave birth to and idea still relevant almost three decades later. <em>But can I really expect you to read that…?</em> I’ll come to this later in this post.</p>
+
+<h2 id="wingdings-webdings---failed-attempt">Wingdings, Webdings - failed attempt</h2>
+
+<p>If you remember the Windows XP days, you might know about these fonts. They were an absolute mystery to me. You open any text editor. Switch the font to Webdings. Then you typed random stuff, and instead of alphabets or numbers, you saw a variety of icons. Interesting, huh?</p>
+
+<p>Later when I got to know about FontAwesome, everything started making sense. Back in the old days, it was simply not possible to use high res images because of bandwidth limitations. As an alternative, Microsoft included Webdings in Internet Explorer. This font was a set of icons mapped to alphabets and numbers. This made it very easy for website publishers to use an icon on their websites without needing to include images.</p>
+
+<p>Unfortunately, Webdings was too early for its time. Many people failed to understand the point of this font. Microsoft would continue to develop things that would fail not because they were bad in particular, but rather because they would be too early for their time.</p>
+
+<p>The older version of Webdings, called Wingdings faced controversy over its representation of NYC.</p>
+
+<p>Up until now, emojis were still restricted to simple ASCII combinations.</p>
+
+<h2 id="1997---new-implementation-same-idea">1997 - New Implementation, Same Idea</h2>
+
+<p>The need for emojis was much felt in the days. Unlike today, there were no standard operating systems for phones. Each manufacturer developed their own OS, features and apps. Having a cool new feature could actually mean great sales for the company. SoftBank, known as J-Phone at the time, released the SkyWalker DP-211SW mobile phone on the 1st of November 1997, which had 90 emojis. The SoftBank emoji designs heavily influenced Apple’s original emojis which were designed to be compatible with this set when launched in Japan, due to iPhone being a SoftBank - exclusive phone when first released.</p>
+
+<h2 id="1999---becoming-a-worldwide-phenomenon">1999 - Becoming a worldwide phenomenon</h2>
+
+<p>Softbank doesn’t get much recognition for emojis. The major credit for introducing emojis goes to NTT DoCoMo. Shigetaka Kurita created 176 emojis to be used with NTT DoCoMo’s integrated mobile internet service, debuting in February 1999. The service allowed only 250 characters per message, so Kurita had to figure out a way of communication in a expressive but short way. This emoji set was the first one to go massively popular</p>
+
+<h2 id="just-keeps-getting-better">Just keeps getting better</h2>
+
+<p>After NTT DoCoMo, almost every communication platform wanted to adopt emojis. MSN Messenger was one of the early adopters and they also introduced emoticons and support for custom emojis. Gmail adopted it too. Emoji support became a must for every social media platform. Apple launched emojis in Japan in 2008, but waited till 2011 for a worldwide release.</p>
+
+<p>Post 2010, emojis became ubiquitous on the internet. Documentaries came up on emojis. Kate Perry’s music video for Roar had a deep focus on emojis. We got emoji translators, Chevrolet’s emoji press release, emoji commercials. In 2013, Oxford added the word “emoji” to its dictionary and in 2015, face with tears emoji becomes their word of the year.</p>
+
+<h2 id="but-why-the-success">But why the success</h2>
+
+<p>Emojis have been massively successful. But why?</p>
+
+<p>They denote a common language. On the internet, I’m talking to people from all over the world. I face the same problem that people in the 80’s were facing - ensuring correct tone of message. You cannot be sure what the person at other side of the chat thinks about your message. But appending a smiley emoji or a victory emoji makes the context sound positive and is pretty efficient in ensuring that your message is read in the right tone.</p>
+
+<p>Emojis also add character to your text. On WhatsApp, the first pane in their emoji selector lists the most common emojis used by the user. Looking at that list, you can, to some extent, gain idea about the person. This choice of emojis eventually adds character to their messages.</p>
+
+<p>Emojis can also relate with real events. In 2020, the smiling face with tear emoji was introduced. This was the year when Covid-19 took over the world, and this emoji became very popular. It simply connected with people’s feelings. <em>I’m smiling, but every thing is certainly not right with me.</em></p>
+
+<p>The sense of informalness added in by usage of emojis may not be acceptable in all corporate environments. There have been news reports where employees were dismissed from job because they replied with “ok hand” emoji instead of actually writing some text. Dismissing from job for such action may be an overkill, but the fact that emojis are not words is certainly true.</p>
+
+<h2 id="side-ways">Side Ways</h2>
+
+<p>Some unrelated but related topics.</p>
+
+<h3 id="trolls-and-covid">Trolls and Covid</h3>
+
+<p>During mid 2010, social media wasn’t as immune to trolls as it is today. Many trolls didn’t mean any harm. They just wanted to have fun. Maybe they had a bad day and wanted to vent off. Sure, there were legit trolls that needed to be dealt with force. But not all trolls intended to cause harm. They wanted to have fun by mocking a person, or sending vague replies etc.</p>
+
+<p>In 2020, many of us became like those trolls. We were having a very bad year. We didn’t have our friends to lighten our mood. We didn’t imagine that we’d have to go months without having “fun”. And so, we became internet trolls. We started deriving pleasure from indulging in “troll behavior”. As usual, we didn’t consider the implications of our actions, and just went on with flow.</p>
+
+<p>As if Covid-19 wasn’t bad enough, mild troll behavior also became “accepted” among teenagers.</p>
+
+<h3 id="attention-span">Attention span</h3>
+
+<p>This has been a legitimate concern for a few years now. I will not comment whether our attention span is reducing or not. I can however, draw patterns from daily experiences and common habits.</p>
+
+<p>While sending messages on a chat application, many users have the habit of splitting their text in short bytes/ sentences and sending them as separate messages instead of sending the complete text as one message. A very small observation, but important nevertheless. Users know that the person at other side will not read long texts and instead ask for a <em>tl;dr</em>. They know that if they take 10 seconds to type out the message, then the other person will switch to a different task. Sending short but regular messages every 2-3 messages ensures that the reader has his attention/focus to the current chat and doesn’t switch to a different task.</p>
+
+<p>Search for user engagement techniques online and you’ll be greeted with methods that display the concerning state of human mind. Some examples :</p>
+
+<ul>
+  <li>10 seconds is the time taken by a visitor to decide whether they will stay on your website</li>
+  <li>15 seconds is the time taken by a viewer to decide whether they will watch your YouTube video</li>
+  <li>if your website takes more than 3 seconds to load, users will exit it</li>
+  <li><em>more such stuff</em></li>
+</ul>
+
+<p>They might sound interesting and useful if you are looking to increase engagement and visitor retention. At the same time, this also displays the dark side of the effects of a fast paced lifestyle.</p>
+
+<p>Remember in the first section I said <em>can I really expect you to read that</em>? The source of my concern is this same idea that people these days in general are less inclined towards spending time on a task and instead want to get task done with minimal effort. If you post a long reply to someone, chances are that the receiver won’t even read it and instead mock you for that.</p>
+
+<h3 id="bad--cool">Bad = Cool</h3>
+
+<p>This is really a universal truth. Can’t discuss this - since I suppose you know about it already.</p>
+
+<strike> And you probably are quite cool person. </strike>
+
+<h2 id="modern-internet-and-chat-stickers">Modern Internet and Chat Stickers</h2>
+
+<p>Finally, we come to stickers. This blog post was written after news surfaced about disciplinary action was taken against students who sent stickers in response to a query by another student. It sounds a bit over the top to take disciplinary action for sending a bunch of stickers, which prima facie don’t look explicit or suggestive. But we can always critically examine the things that were <em>not said</em>.</p>
+
+<blockquote>
+  <p>A picture is worth a thousand words</p>
+</blockquote>
+
+<p><em>“A thousand words”</em> you probably didn’t mean to say. Chat stickers don’t just denote an emotion like emoji. They have a story. A picture being worth a thousand words is not an understatement. While emojis are more or less a common language across the world, this is not the case with stickers. They are not limited to depicting emotional expressions, items of daily use or common experiences. Stickers often have screen grabs from popular media. There isn’t much said in those, but lot is implied. Implying negligence may seem like a small thing, but its disrespectful nevertheless.</p>
+
+<p>I am tired of getting sticker responses to queries posted in utmost seriousness. My conversations look like a fight between the text I type, and “funny” stickers that the other person sends in response.</p>
+
+<p>But, does approaching disciplinary committee make sense? Everything you read in the last section (if you didn’t skip through) has a role here when you try to consider the actions of students who shared stickers</p>
+
+<ul>
+  <li>According to the notice put by the disciplinary committee, the students sending stickers didn’t mean intentional harm or disrespect but were just “having fun”. The committee took notice that “fun” should not come in the way of someone else’s self respect and awarded suitable punishment. The action of students here is directly related to troll behavior I talked about. Its normal to assume that they just wanted to have a “good time”, because <em>good times</em> have been severely reduced post 2020. To lighten their mood or otherwise, they indulged in an act that isn’t <em>technically wrong</em> prima facie, but display typical troll behavior. Troll behavior is funny for everyone except the person actually being trolled.</li>
+  <li>Attention span and ability to focus is certainly lacking in their action. The original poster put a query related to exam results in the WhatsApp group. The response from group members could have been a simple one sentence answer. There was no hint of informalness in the original message. The message certainly did not deserve a wave of (derogatory) stickers in response.</li>
+  <li>Sending stickers supposedly make you look cool. Because your language skills may not be as good as you want to be. Maybe you never really cared much about your language skills. Maybe you simply don’t want to type. You have a cool set of stickers at your disposal that combine some “funny” images with some “funny” texts. <em>Funny</em> in quotes because its over the top to expect that a person is going to interpret your “humor” in the way you want it to - especially when there is possibility of a negative interpretation. But you don’t know about it, right? The usage of derogatory stickers has been normalized to such an extent that nobody thinks twice before sending them. These stickers are not explicit. They are not suggestive. They are not against any law. They are disrespectful. The concept of self respect seems to have been drowned these days. Ego takes the center stage. People don’t shy away from harming others’ self respect, but will easily take offense when their ego is shattered. In this case, the people who shared stickers unknowingly ended up harming another person’s self respect.</li>
+</ul>
+
+<h2 id="me-taking-sides">Me Taking Sides</h2>
+
+<p>So are stickers unethical and should they be banned? Absolutely not. Far from that.</p>
+
+<p>The point is that you should refrain from posting them on platform where you know there are members not necessarily on the same page as you. I’ve come across instances where someone posts an “inside joke” on a public forum and ends up creating a controversy. The content by itself didn’t need any censoring, but it was open to interpretations that related to hate against a section of society, or culturally unacceptable remarks etc.</p>
+
+<p>Its true that these days taking offense has become human rights of sorts. People want to be offended at the slightest of dis-balance. I don’t promote this behavior, but at the same time, I also don’t promote disrespectful actions by others.</p>
+
+<p>Even though I don’t like taking sides, it might seem that I am speaking from side of the person who <em>took offense</em>. Part of the reason is that this person tried to resolve the issue in a respectful manner without speaking anything against the accused students in public. Understand the scenario carefully. A person is met with derogatory replies on a group with many members. Instead of making a mess on the same group and possibly disrespecting the accused, this person decides to send a direct message to the accused, politely but sternly telling them that their response was disrespectful. This is a very thoughtful action, which unfortunately met with even more derogatory messages on the group. The accused seem to have totally overlooked the fact that the OP (who faced disrespect) tried to not hurt their self respect on a group with many other members.</p>
+
+<p>So at this point, the accused seem to deserve no sympathy and technically fall into the danger zone. They kept up their nuisance even though they were told that it was not acceptable. They were aware that they weren’t doing the right thing, yet they chose to continue with whatever they were doing.</p>
+
+<h2 id="at-the-root">At the root</h2>
+
+<p>Nobody is at fault, really. All that happened is just a sum result of how life has been treating them. All their carelessness is because the society did not try to make them more thoughtful people. Society as a whole, is becoming less conservative day by day. And the result is that things that were earlier considered taboo or simply just wrong, are now “normalized”. I don’t want to live in the society of 60’s. I don’t want to live in a society where everyone is a supposed to be an idol of perfection and lose all their character. But being more open minded shouldn’t mean that we start neglecting basic rights and harm dignity of fellow citizen.</p>
+
+<p>Solution is easy and an old concept - <strong>self regulation</strong>. But our past record is a testament to the fact that we humans are very bad at that…</p>
+
+<hr />
+
+<p>Cover photo by <a href="https://www.pexels.com/@tracy-le-blanc-67789?utm_content=attributionCopyText&amp;utm_medium=referral&amp;utm_source=pexels">Tracy Le Blanc</a> from <a href="https://www.pexels.com/photo/person-holding-iphone-showing-social-networks-folder-607812/?utm_content=attributionCopyText&amp;utm_medium=referral&amp;utm_source=pexels">Pexels</a></p>]]></content><author><name>Snehit Sah</name></author><category term="rant" /><category term="rant" /><summary type="html"><![CDATA[Stickers are the new normal - whether you like it or not. I’ve never hated the concept of chat stickers. But the way they are generally used, gets my criticism. Let’s try to trace how it all happened.]]></summary></entry><entry><title type="html">Fastly CDN Outage</title><link href="/blog/internet/2021/06/11/fastly-outage.html" rel="alternate" type="text/html" title="Fastly CDN Outage" /><published>2021-06-11T00:00:00+00:00</published><updated>2021-06-11T00:00:00+00:00</updated><id>/blog/internet/2021/06/11/fastly-outage</id><content type="html" xml:base="/blog/internet/2021/06/11/fastly-outage.html"><![CDATA[<p>June 8 - I deployed a simple webpage on GitHub pages. I shared it on a forum where users will take interest in the site. Very soon, a user shared a screenshot saying that the website was inaccessible. At first I was confused as to why this happened. My site was a simple one page HTML site. No external dependencies or sources (not even fonts).</p>
+
+<p>I quickly tried accessing my webpage and found that indeed my site was giving a 503. I looked up if GitHub was down. This led me to a tweet by GitHub where they acknowledged that their services were experiencing problems. Users started reporting that fetching assets from GitHub resulted in errors. Among many other things, this affected installation process of Linux-based distros which relied on GitHub to host repositories, like ArchCraft.</p>
+
+<p>That afternoon I couldn’t access Reddit. Their services were down too. It seemed strange that two big websites were experiencing issues at the same time. Reading up on news sites, I found that Fastly CDN was facing an outage that led to many other services being down too - Twitch, Amazon, Spotify, HBO Max, Quora, PayPal, Vimeo, the New York Times, BBC, Financial Times etc.</p>
+
+<p>Good news is that the outage was not a result of malicious intentions of a hacker. Services started being restored within 8 hours.</p>
+
+<p>CDN outages can mean significant inconvenience. Smaller websites don’t need to rely on CDN. These are of prime interest to those services that expect huge traffic and it will be virtually impossible for a single server to handle all the requests. CDN help in this situation by distributing load across different servers around the world. When CDNs go down, they defeat their purpose. However such outages don’t happen every now and then. Usually a specific region faces outage and the traffic in that region is redirected to a different region. This way, the global network of CDN ensure that outage at a particular server location doesn’t affect services. This time unfortunately, this was a global outage where majority regions were affected.</p>]]></content><author><name>Snehit Sah</name></author><category term="internet" /><category term="internet" /><summary type="html"><![CDATA[June 8 - I deployed a simple webpage on GitHub pages. I shared it on a forum where users will take interest in the site. Very soon, a user shared a screenshot saying that the website was inaccessible. At first I was confused as to why this happened. My site was a simple one page HTML site. No external dependencies or sources (not even fonts).]]></summary></entry><entry><title type="html">Foss and Profit</title><link href="/blog/foss/2021/06/07/foss-and-profit.html" rel="alternate" type="text/html" title="Foss and Profit" /><published>2021-06-07T00:00:00+00:00</published><updated>2021-06-07T00:00:00+00:00</updated><id>/blog/foss/2021/06/07/foss-and-profit</id><content type="html" xml:base="/blog/foss/2021/06/07/foss-and-profit.html"><![CDATA[<p>Often, when people think of FOSS (Free and Open Source Software), they don’t consider that it can bring monetary benefits. It is a prevailing myth that open source software is not compatible with a successful business model. This is part of the reason why open source tends to remain a hobby for most people and never develops into a “profession”.</p>
+
+<h2 id="a-small-talk-on-foss">A Small Talk on FOSS</h2>
+
+<p>The core of this misunderstanding is the word “Free”. FOSS need not be free of cost. “Free” refers to the software giving users certain rights and freedoms. I’ll borrow text for the four essential freedoms from the <a href="https://www.gnu.org/philosophy/free-sw.en.html">GNU website</a>.</p>
+
+<ul>
+  <li>The freedom to run the program as you wish, for any purpose (freedom 0).</li>
+  <li>The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.</li>
+  <li>The freedom to redistribute copies so you can help others (freedom 2).</li>
+  <li>The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.</li>
+</ul>
+
+<p>These never mention that the program needs to be provided free of cost to users. Software that is free of cost is better referred to as “gratis”, which does not contain any ambiguity as to the word “free”. Often, FOSS users or devs will refer to “free” as “libre” to avoid misunderstanding.</p>
+
+<h2 id="why-will-users-pay-for-code-that-is-open-source">Why will users pay for code that is open source?</h2>
+
+<p>You are not selling your code. You are selling a product, that is not your code. What can you sell? A compiled binary of your code, or hassle-free deployment services for your application. You can sell server services for your application. Users will pay for the service you provide. I’ll list some examples that I like.</p>
+
+<ul>
+  <li>Threema is an instant messenger like WhatsApp, that is built around security and privacy. All their tools are open source and can be freely accessed on GitHub. They offer their application for a one time charge of approx 4.5USD. They also have communication solutions for businesses and educational institutes. Their licence for educational institutes costs 10.10USD, which is quite affordable considering that it’s a lifetime license. If you want, you can also self-host Threema on your server using Nginx.</li>
+  <li>Ardour is a professional digital audio workstation. The developers constantly push out new features and they have an active community. Their code is open source, however, the binary can be aquired on a pay what you want model.<sup>1</sup> You can get all features at as low as 1USD per month. The project also accepts donations to fund itself.</li>
+  <li>FastHub is a feature-packed unofficial GitHub client for Android. A basic version of the app is free to download. For extra features and themes, you need to pay a one time charge for a license. These license charges keep the project running. If you want, you can manually build the app from source.</li>
+  <li>Matrix is a Discord like communication, but the protocol is open source and federated. It is an open standard for interoperable, decentralised, real-time communication over IP. The application is free to deploy on your VPS or elsewhere. The creators of Matrix provide a Matrix hosting service called Element that helps them fund the project.</li>
+  <li>Linux is certainly the software that has maximum influence on the services we use. It powers most of the servers and many supercomputers. The Linux Foundation offers courses, among which the advanced ones are paid.</li>
+</ul>
+
+<p>You can find many more examples where open source software helps earn money. As you saw, this profit need not necessarily come from selling the software itself. You can sell services that are built around your software.</p>
+
+<h2 id="market-competition">Market Competition</h2>
+
+<p>One insecurity around open sourcing software that often comes up is the possible competition you face from forks. Take the example of FastHub I listed above. A user forked that repository and created a version with all pro features enabled by default. He then posted it on F-Droid. The upstream developer was not happy with that move.</p>
+
+<p>Your open-source application faces a constant threat from forks. These forks may not be as simple as just enabling some locked settings. Forks can add new features and create their own identity. Since the code is open to all, you need to create your identity around the services you provide. Large open source organizations often have good support channels for customers that help them stay in demand.</p>
+
+<h2 id="is-it-viable">Is it viable?</h2>
+
+<p>Both yes and no. This depends on the scale of your application and the number of users. Do you receive enough donations? Do your services get enough users?</p>
+
+<p>A new project does not start generating revenue from day one. You keep working on it, and somewhere down the line, you get contributors and happy users who willingly donate to keep your project alive. When you feel you have enough users, you can think about making that initial investment to launch your paid services around your software.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Selling FOSS or FOSS related services is a win-win for users and developers. Users will be paying for software that they trust and like. The developers can continue to develop ethical software and keep the community alive. The market will get aligned with ethics and that’s in favour of all of us. Creating an atmosphere where users pay for FOSS can heavily incentivise ethical software.</p>
+
+<hr />
+
+<ol>
+  <li>Since Ardour is open source, you will find binaries available in repositories of Linux distros. While that is available for free and it is totally legal to do so, it is recommended to donate to the project as a means of supporting development.</li>
+</ol>
+
+<p>Cover photo by <a href="https://www.pexels.com/@seven11nash?utm_content=attributionCopyText&amp;utm_medium=referral&amp;utm_source=pexels"><strong>Marc Mueller</strong></a> from <a href="https://www.pexels.com/photo/close-up-of-computer-screen-325111/?utm_content=attributionCopyText&amp;utm_medium=referral&amp;utm_source=pexels"><strong>Pexels</strong></a></p>]]></content><author><name>Snehit Sah</name></author><category term="foss" /><category term="foss" /><category term="general" /><summary type="html"><![CDATA[Often, when people think of FOSS (Free and Open Source Software), they don’t consider that it can bring monetary benefits. It is a prevailing myth that open source software is not compatible with a successful business model. This is part of the reason why open source tends to remain a hobby for most people and never develops into a “profession”.]]></summary></entry><entry><title type="html">Playing YouTube Videos with VLC/MPV</title><link href="/blog/shell/2021/06/01/mpv-yt.html" rel="alternate" type="text/html" title="Playing YouTube Videos with VLC/MPV" /><published>2021-06-01T00:00:00+00:00</published><updated>2021-06-01T00:00:00+00:00</updated><id>/blog/shell/2021/06/01/mpv-yt</id><content type="html" xml:base="/blog/shell/2021/06/01/mpv-yt.html"><![CDATA[<p>Here’s a quick tip - you can play YouTube videos from your terminal. I like YouTube because its home to lot of content that otherwise is difficult to find. For example, I get my fill of 80’s City Pop from YouTube.</p>
+
+<p>Now I’m not a fan of bloated websites. The YouTube video player page does lot more than just playing a video. It shows suggestions, comments and a bloated user interface.</p>
+
+<p>So, the easy way out is to use your own video player to play the video!</p>
+
+<p>Go to a terminal and run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpv <span class="s2">"https://www.youtube.com/watch?v=_cPJHqMBR7M"</span>
+</code></pre></div></div>
+
+<p>This will stream the video in MPV. If you are more of a VLC person, you can use that too.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vlc <span class="s2">"https://www.youtube.com/watch?v=_cPJHqMBR7M"</span>
+</code></pre></div></div>
+
+<p>To play only audio, you can pass <code class="language-plaintext highlighter-rouge">--no-video</code> flag while invoking mpv.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mpv <span class="s2">"https://www.youtube.com/watch?v=_cPJHqMBR7M"</span> <span class="nt">--no-video</span>
+</code></pre></div></div>
+
+<p>You can play/pause with spacebar. Seek with arrow keys. Volume is controlled with number keys 9 and 0.</p>
+
+<p>The only problem with the above approach is that you still need to open the browser and bear along with the web interface to search for video and get those links. Well, there’s a solution for that too!</p>
+
+<p>Mps-youtube is a command line utility that lets you search and play content from YouTube. You can install the application from your distro repositories or via pip. On Arch Linux, you need to install <code class="language-plaintext highlighter-rouge">mps-youtube-git</code> from AUR because the stable release from community repo does not work with mpv. If you want to use VLC as your player, then the <code class="language-plaintext highlighter-rouge">mps-youtube</code> package from community repo will work too. If you don’t want to install via AUR, you can use pip to install the development version.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>git+https://github.com/mps-youtube/mps-youtube.git
+</code></pre></div></div>
+
+<p>You can launch the application with <code class="language-plaintext highlighter-rouge">mpsyt</code> in your shell. Then you need to set your YouTube API keys which is a five minute task.</p>
+
+<p>In the application, I recommend running <code class="language-plaintext highlighter-rouge">set search_music false</code> because lot of songs are not recognized as music by YouTube. But it depends on the artists you usually listen. Then you can search in vim style! Press forward slash followed by your search term. It will present a list of results. Choose the one to play by entering the corresponding number.</p>
+
+<p>By default, it plays only audio. If you want to play videos too, you will need to run <code class="language-plaintext highlighter-rouge">show_video true</code> inside the application. If using a new version of mpv, I also recommend running <code class="language-plaintext highlighter-rouge">set player vlc</code> because I had issues with using mpv for video.</p>
+
+<p>Thats it for this post!</p>
+
+<p>You can receive latest updates from this blog as an RSS feed. See <a href="/blog/website/2021/05/23/follow-this-blog.html">Follow this blog via RSS</a>.</p>
+
+<p>Follow me on GitHub : <a href="https://github.com/flyingcakes85">flyingcakes85</a></p>]]></content><author><name>Snehit Sah</name></author><category term="shell" /><category term="shell" /><category term="youtube" /><summary type="html"><![CDATA[Here’s a quick tip - you can play YouTube videos from your terminal. I like YouTube because its home to lot of content that otherwise is difficult to find. For example, I get my fill of 80’s City Pop from YouTube.]]></summary></entry></feed>
